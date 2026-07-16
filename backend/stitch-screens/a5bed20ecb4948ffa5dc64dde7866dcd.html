@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Priority Alpha | Emergency Dispatch</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=DM+Sans:wght@400;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@100..900&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .emergency-pulse {
+            animation: pulse-red 2s infinite;
+        }
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(183, 28, 28, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(183, 28, 28, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(183, 28, 28, 0); }
+        }
+        .eti-gradient {
+            background: linear-gradient(135deg, #B71C1C 0%, #222222 100%);
+        }
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: rgba(183, 28, 28, 0.3);
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: scan 3s linear infinite;
+        }
+        @keyframes scan {
+            0% { top: 0%; }
+            100% { top: 100%; }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#c9c6c4",
+                        "on-secondary-fixed-variant": "#144686",
+                        "surface-container": "#eeeeec",
+                        "outline-variant": "#c4c7c7",
+                        "secondary": "#335e9f",
+                        "on-background": "#1a1c1b",
+                        "surface-container-low": "#f4f4f2",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "surface-container-high": "#e8e8e6",
+                        "surface": "#f9f9f7",
+                        "surface-container-highest": "#e2e3e1",
+                        "secondary-container": "#8fb7fe",
+                        "secondary-fixed": "#d6e3ff",
+                        "surface-dim": "#dadad8",
+                        "primary-fixed": "#e5e2e1",
+                        "on-primary-fixed-variant": "#474746",
+                        "inverse-on-surface": "#f1f1ef",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#1c1b1a",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#484645",
+                        "on-surface-variant": "#444748",
+                        "primary-container": "#222222",
+                        "outline": "#747878",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#232221",
+                        "tertiary": "#0c0c0b",
+                        "on-primary-fixed": "#1b1c1c",
+                        "on-tertiary-container": "#8c8987",
+                        "tertiary-fixed": "#e6e2e0",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#f9f9f7",
+                        "on-surface": "#1a1c1b",
+                        "on-secondary-fixed": "#001b3e",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#8a8989",
+                        "background": "#f9f9f7",
+                        "surface-variant": "#e2e3e1",
+                        "primary": "#0b0c0c",
+                        "inverse-surface": "#2f3130",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#c8c6c5",
+                        "secondary-fixed-dim": "#aac7ff",
+                        "on-secondary-container": "#154686",
+                        "surface-tint": "#5f5e5e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "4px",
+                        "xl": "8px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "margin": "64px",
+                        "xxl": "48px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "headline-sm": ["DM Sans"],
+                        "button-text": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["DM Sans"],
+                        "headline-md": ["DM Sans"],
+                        "display-lg": ["DM Sans"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "button-text": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-hidden h-screen">
+<!-- TopNavBar (Shell) -->
+<header class="fixed top-0 w-full h-[54px] z-50 bg-surface border-b-[1.5px] border-outline-variant">
+<div class="flex justify-between items-center px-lg h-full max-w-[1440px] mx-auto">
+<div class="flex items-center gap-md">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">MechHub</span>
+<span class="bg-error/10 text-error px-md py-xs rounded-full font-label-md text-label-md flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">emergency</span>
+                    PRIORITY ALPHA ACTIVE
+                </span>
+</div>
+<div class="hidden md:flex items-center gap-xl">
+<nav class="flex gap-lg">
+<a class="text-on-surface-variant hover:text-primary font-label-md text-label-md transition-colors" href="#">Services</a>
+<a class="text-on-surface-variant hover:text-primary font-label-md text-label-md transition-colors" href="#">Workshops</a>
+<a class="text-on-surface-variant hover:text-primary font-label-md text-label-md transition-colors" href="#">Fleet</a>
+</nav>
+<div class="flex gap-md">
+<button class="bg-[#B71C1C] text-white px-md py-sm rounded-[5px] font-button-text text-button-text flex items-center gap-xs emergency-pulse">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">emergency</span>
+                        Get Help Now
+                    </button>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-[54px] pb-[40px] flex h-full">
+<!-- Content Area: Bento Layout -->
+<div class="flex-1 grid grid-cols-12 grid-rows-6 gap-lg p-lg max-w-[1440px] mx-auto w-full">
+<!-- Map View (Large Left) -->
+<div class="col-span-12 lg:col-span-8 row-span-4 bg-white border border-outline-variant rounded-xl overflow-hidden relative shadow-sm">
+<div class="absolute top-md left-md z-10 bg-white/90 backdrop-blur-md p-md rounded-lg border border-outline-variant flex flex-col gap-xs">
+<span class="text-label-md font-label-md text-on-surface-variant uppercase tracking-widest">Stalled Location</span>
+<span class="text-headline-sm font-headline-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-error">location_on</span>
+                        Highway I-95 South, Exit 24
+                    </span>
+</div>
+<!-- Map Placeholder -->
+<div class="w-full h-full bg-surface-container-high relative">
+<div class="absolute inset-0 grayscale opacity-40" data-location="Miami Highway" style="background-image: url('https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg')"></div>
+<!-- Custom SVG Overlay for Pulse/Radar (Simplified Simulation) -->
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-16 h-16 bg-error/20 rounded-full flex items-center justify-center emergency-pulse">
+<span class="material-symbols-outlined text-error text-[32px]" style="font-variation-settings: 'FILL' 1;">directions_car</span>
+</div>
+</div>
+</div>
+<div class="absolute bottom-md right-md flex gap-sm">
+<button class="bg-white p-sm border border-outline-variant rounded shadow-sm hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+<button class="bg-white p-sm border border-outline-variant rounded shadow-sm hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined">layers</span>
+</button>
+</div>
+</div>
+<!-- ETI & Status (Top Right) -->
+<div class="col-span-12 lg:col-span-4 row-span-2 eti-gradient text-white rounded-xl p-xl flex flex-col justify-between shadow-lg relative overflow-hidden">
+<div class="scanline"></div>
+<div>
+<span class="text-label-md font-label-md opacity-80 uppercase tracking-widest">Estimated Time of Intervention (ETI)</span>
+<div class="flex items-baseline gap-xs mt-sm">
+<span class="text-[64px] font-bold leading-none tracking-tight tabular-nums" id="timer">14:52</span>
+<span class="text-headline-md font-headline-md opacity-80">min</span>
+</div>
+</div>
+<div class="flex items-center gap-md border-t border-white/20 pt-md mt-md">
+<div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-white">bolt</span>
+</div>
+<div class="flex flex-col">
+<span class="text-body-sm font-bold">Dispatch Priority: ALPHA-1</span>
+<span class="text-[12px] opacity-70">Closest workshop is moving at 65mph</span>
+</div>
+</div>
+</div>
+<!-- Remote Troubleshooting (Middle Right) -->
+<div class="col-span-12 lg:col-span-4 row-span-2 bg-white border border-outline-variant rounded-xl p-lg flex flex-col gap-md shadow-sm">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="text-label-md font-label-md text-on-surface-variant uppercase">Remote Diagnostic</span>
+<h3 class="text-headline-sm font-headline-sm">Master Tech Hotline</h3>
+</div>
+<span class="bg-secondary/10 text-secondary px-sm py-xs rounded font-label-md text-label-md">LIVE NOW</span>
+</div>
+<div class="flex-1 bg-tertiary rounded-lg relative overflow-hidden group cursor-pointer">
+<div class="absolute inset-0" data-alt="A professional master automotive technician in a clean, modern workshop setting, wearing a headset and looking at a holographic diagnostic screen. Cinematic low-light lighting with cool blue and grey tones to emphasize professional mechanical expertise and trust." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAO0GssmQE14LoxvV8Ya_FACNqOr5cHb-69GNM8OJ5uYqIDfTh2w9ngTcJfjGrlhf-ekr1YFLgdjus5UpYu0i-wimssbMJ_NlU4CBQi2uen_6MgIS5LrwhSFKU1N5BRAU1STAZjwpdl7gjO_P7YstpzKwyJISuAUcfkH1YPMTnrZBkSjsskKxsi4VdMABDYuMNxYU2OzW_gF7CTDaJ3pGsC37gB0Rk3X95pXGYfjatWunbSTgTXtU5BI1lcaHM_ndXjbkcl0hAGk5o')"></div>
+<div class="absolute bottom-md left-md right-md flex justify-between items-center bg-black/40 backdrop-blur-sm p-sm rounded-lg">
+<div class="flex items-center gap-sm">
+<div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+<span class="text-white text-body-sm font-bold">Technician Marcus</span>
+</div>
+<button class="bg-[#222222] border border-white/20 text-white p-xs rounded-full hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[18px]">videocam</span>
+</button>
+</div>
+</div>
+<button class="w-full bg-secondary text-white py-md rounded-[5px] font-button-text text-button-text flex justify-center items-center gap-sm hover:opacity-90 transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined">call</span>
+                    Start Video Inspection
+                </button>
+</div>
+<!-- Responding Workshops (Bottom Row) -->
+<div class="col-span-12 row-span-2 flex flex-col gap-md">
+<h3 class="text-headline-md font-headline-md">Nearest Responding Workshops</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg h-full">
+<!-- Unit 1 -->
+<div class="bg-white border border-outline-variant rounded-xl p-md flex flex-col gap-md hover:border-secondary transition-all cursor-pointer relative group">
+<div class="flex justify-between items-center">
+<span class="text-label-md font-label-md bg-secondary/10 text-secondary px-sm py-xs rounded">PRIMARY UNIT</span>
+<span class="text-body-sm font-bold text-on-surface-variant">4.2 miles away</span>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-primary text-[32px]">local_shipping</span>
+</div>
+<div class="flex flex-col">
+<span class="text-body-md font-bold">Apex Mobile Repair</span>
+<span class="text-body-sm text-on-surface-variant">Technician: Dave S.</span>
+</div>
+</div>
+<div class="mt-auto pt-sm border-t border-outline-variant flex justify-between items-center">
+<div class="flex gap-xs">
+<span class="material-symbols-outlined text-green-600 text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-body-sm font-bold">4.9</span>
+</div>
+<span class="text-label-md text-secondary">ARRIVING IN 15 MIN</span>
+</div>
+<div class="absolute top-0 right-0 p-xs opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-secondary">open_in_new</span>
+</div>
+</div>
+<!-- Unit 2 -->
+<div class="bg-white border border-outline-variant rounded-xl p-md flex flex-col gap-md hover:border-secondary transition-all cursor-pointer">
+<div class="flex justify-between items-center">
+<span class="text-label-md font-label-md bg-surface-container text-on-surface-variant px-sm py-xs rounded">BACKUP UNIT</span>
+<span class="text-body-sm font-bold text-on-surface-variant">6.8 miles away</span>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-primary text-[32px]">build_circle</span>
+</div>
+<div class="flex flex-col">
+<span class="text-body-md font-bold">City Fleet Response</span>
+<span class="text-body-sm text-on-surface-variant">Technician: Anna L.</span>
+</div>
+</div>
+<div class="mt-auto pt-sm border-t border-outline-variant flex justify-between items-center">
+<div class="flex gap-xs">
+<span class="material-symbols-outlined text-green-600 text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-body-sm font-bold">4.7</span>
+</div>
+<span class="text-label-md text-on-surface-variant">ARRIVING IN 22 MIN</span>
+</div>
+</div>
+<!-- Unit 3 -->
+<div class="bg-white border border-outline-variant rounded-xl p-md flex flex-col gap-md hover:border-secondary transition-all cursor-pointer">
+<div class="flex justify-between items-center">
+<span class="text-label-md font-label-md bg-surface-container text-on-surface-variant px-sm py-xs rounded">STANDBY UNIT</span>
+<span class="text-body-sm font-bold text-on-surface-variant">9.1 miles away</span>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-primary text-[32px]">rv_hookup</span>
+</div>
+<div class="flex flex-col">
+<span class="text-body-md font-bold">Heavy Tow & Gear</span>
+<span class="text-body-sm text-on-surface-variant">Available for Towing</span>
+</div>
+</div>
+<div class="mt-auto pt-sm border-t border-outline-variant flex justify-between items-center">
+<div class="flex gap-xs">
+<span class="material-symbols-outlined text-green-600 text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-body-sm font-bold">4.8</span>
+</div>
+<span class="text-label-md text-on-surface-variant">ARRIVING IN 31 MIN</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Law Strip -->
+<footer class="fixed bottom-0 w-full h-[40px] z-[60] bg-[#FFF9E6] border-t border-[#E0C040] flex items-center justify-center px-md">
+<div class="flex items-center gap-md">
+<span class="font-label-md text-label-md text-tertiary">MechHub Intelligence</span>
+<div class="h-4 w-[1px] bg-[#E0C040]/50"></div>
+<p class="font-body-sm text-body-sm text-tertiary">Applied: Hick's Law - Reducing choices for faster decision making during crisis.</p>
+</div>
+</footer>
+<!-- Video Call UI Overlay (Hidden by default) -->
+<div class="hidden fixed inset-0 z-[100] bg-black/90 flex items-center justify-center backdrop-blur-md p-lg" id="videoModal">
+<div class="max-w-[1200px] w-full aspect-video bg-tertiary rounded-2xl overflow-hidden relative border border-white/10 shadow-2xl">
+<div class="absolute inset-0" data-alt="POV video call screen of a mechanic's workspace. Multiple high-definition camera feeds showing an engine block, a diagnostic tablet displaying error codes, and the technician's face in a PIP window. Modern, high-trust industrial aesthetic with sharp details and emergency status indicators." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDOgw0Kf2tx4XjCdfx121KcoNf51lxz-c_Qsxj5UfuGD42iP9ElRbVPJ4S56I5N01CLxhx9uAc5eXWzTAw7r8zdF8KfJYbJvqZOVxEEfTweAKg9Jn6fboZhIIvUakPjVmV1UDSt3BBCBNIvPYEKiG-zgQ6mGQ4QMXapSajduW2zMa7mUVmPkgADQZ_fdbe3MPNCK-EoeFluHQzoVMHEURctDykp5ewMWo4gQ29fpX3BQU6YIRMzQLjSYczFOMIs46QMF-E-flgWGLs')"></div>
+<div class="absolute top-lg left-lg flex gap-md">
+<div class="bg-black/50 backdrop-blur-md px-md py-sm rounded-lg border border-white/20">
+<span class="text-white font-bold block">Engine Feed: LIVE</span>
+<span class="text-[12px] text-white/70">Cam 04 - Wide Angle</span>
+</div>
+</div>
+<div class="absolute bottom-lg left-1/2 -translate-x-1/2 flex items-center gap-lg bg-black/60 backdrop-blur-xl p-md rounded-full border border-white/20">
+<button class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20">
+<span class="material-symbols-outlined">mic</span>
+</button>
+<button class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20">
+<span class="material-symbols-outlined">videocam</span>
+</button>
+<button class="w-16 h-12 rounded-full bg-error flex items-center justify-center text-white hover:opacity-90" id="closeVideo">
+<span class="material-symbols-outlined">call_end</span>
+</button>
+<button class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20">
+<span class="material-symbols-outlined">flashlight_on</span>
+</button>
+<button class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20">
+<span class="material-symbols-outlined">screen_share</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+        // Simple Countdown Timer
+        const timerDisplay = document.getElementById('timer');
+        let totalSeconds = 14 * 60 + 52;
+
+        const countdown = setInterval(() => {
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            
+            timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (totalSeconds <= 0) {
+                clearInterval(countdown);
+            } else {
+                totalSeconds--;
+            }
+        }, 1000);
+
+        // Simple Video Modal Interaction
+        const videoBtn = document.querySelector('button:contains("Start Video Inspection")');
+        // Since :contains isn't standard CSS, we manually find it
+        const buttons = document.querySelectorAll('button');
+        let triggerBtn;
+        buttons.forEach(b => { if(b.textContent.includes('Start Video Inspection')) triggerBtn = b; });
+
+        const modal = document.getElementById('videoModal');
+        const closeBtn = document.getElementById('closeVideo');
+
+        if(triggerBtn) {
+            triggerBtn.addEventListener('click', () => {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            });
+        }
+
+        closeBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Micro-interaction for workshop cards
+        document.querySelectorAll('.col-span-12 .bg-white').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.classList.add('scale-[0.98]');
+            });
+            card.addEventListener('mouseup', () => {
+                card.classList.remove('scale-[0.98]');
+            });
+        });
+    </script>
+</body></html>

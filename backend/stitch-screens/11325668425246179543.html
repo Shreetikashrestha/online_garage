@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Medical Emergency Dispatch | MechHub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#474746",
+                    "on-tertiary-fixed-variant": "#484645",
+                    "inverse-surface": "#2f3130",
+                    "tertiary-fixed-dim": "#c9c6c4",
+                    "outline": "#747878",
+                    "background": "#f9f9f7",
+                    "primary": "#0b0c0c",
+                    "secondary-fixed-dim": "#aac7ff",
+                    "surface": "#f9f9f7",
+                    "on-primary-fixed": "#1b1c1c",
+                    "on-secondary-fixed": "#001b3e",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#e6e2e0",
+                    "surface-container-highest": "#e2e3e1",
+                    "secondary": "#335e9f",
+                    "on-primary": "#ffffff",
+                    "surface-container-high": "#e8e8e6",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-container": "#232221",
+                    "surface-bright": "#f9f9f7",
+                    "surface-container": "#eeeeec",
+                    "error-container": "#ffdad6",
+                    "surface-variant": "#e2e3e1",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "outline-variant": "#c4c7c7",
+                    "error": "#ba1a1a",
+                    "primary-container": "#222222",
+                    "on-tertiary-fixed": "#1c1b1a",
+                    "inverse-on-surface": "#f1f1ef",
+                    "primary-fixed": "#e5e2e1",
+                    "on-surface-variant": "#444748",
+                    "on-primary-container": "#8a8989",
+                    "inverse-primary": "#c8c6c5",
+                    "surface-tint": "#5f5e5e",
+                    "on-secondary-fixed-variant": "#144686",
+                    "on-background": "#1a1c1b",
+                    "surface-dim": "#dadad8",
+                    "secondary-container": "#8fb7fe",
+                    "on-surface": "#1a1c1b",
+                    "on-error": "#ffffff",
+                    "secondary-fixed": "#d6e3ff",
+                    "surface-container-low": "#f4f4f2",
+                    "on-tertiary-container": "#8c8987",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-container": "#154686",
+                    "tertiary": "#0c0c0b",
+                    "on-secondary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "margin": "64px",
+                    "xl": "32px",
+                    "gutter": "24px",
+                    "xs": "4px",
+                    "lg": "24px",
+                    "xxl": "48px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "button-text": ["Inter"],
+                    "headline-lg": ["DM Sans"],
+                    "display-lg": ["DM Sans"],
+                    "headline-md": ["DM Sans"],
+                    "label-md": ["Inter"],
+                    "headline-sm": ["DM Sans"],
+                    "body-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "button-text": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .pulse-urgent {
+            animation: pulse-red 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-red {
+            0%, 100% { background-color: #B71C1C; opacity: 1; }
+            50% { background-color: #ef5350; opacity: 0.9; }
+        }
+        .audio-wave {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            height: 20px;
+        }
+        .audio-bar {
+            width: 3px;
+            background: #1A4A8A;
+            border-radius: 1px;
+            animation: wave 1s ease-in-out infinite;
+        }
+        @keyframes wave {
+            0%, 100% { height: 4px; }
+            50% { height: 18px; }
+        }
+        .map-container {
+            background-image: radial-gradient(#DDDBD5 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .custom-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-hidden">
+<!-- Top Navigation Bar -->
+<header class="flex justify-between items-center px-lg w-full fixed top-0 z-50 bg-surface border-b border-outline-variant h-[54px]">
+<div class="flex items-center gap-md">
+<span class="font-display-lg text-[24px] font-bold text-primary">MechHub</span>
+<div class="h-6 w-px bg-outline-variant mx-sm"></div>
+<h1 class="font-headline-sm text-headline-sm text-primary">Medical Emergency Dispatch</h1>
+</div>
+<div class="flex items-center gap-md">
+<button class="flex items-center gap-xs px-md py-xs bg-[#B71C1C] text-white font-bold rounded-[5px] text-body-sm hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[18px]">emergency</span>
+                🚨 SOS Help
+            </button>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">account_circle</span>
+</div>
+</header>
+<!-- Main Grid Layout -->
+<main class="fixed top-[54px] left-0 bottom-[40px] right-0 flex">
+<!-- Left Side: Status & Guides (400px) -->
+<aside class="w-[400px] border-r border-outline-variant flex flex-col bg-white overflow-y-auto custom-scroll">
+<!-- Urgent Status Banner -->
+<div class="pulse-urgent p-lg text-white">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-label-md uppercase tracking-widest opacity-90">Current Status</span>
+<span class="px-sm py-[2px] bg-white/20 rounded-full text-[10px] font-bold">LEVEL 1</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg leading-tight mb-xs">MEDICAL PRIORITY</h2>
+<p class="font-body-sm opacity-90">First responders dispatched. Estimated arrival: 4 mins.</p>
+</div>
+<!-- Emergency Responder Link -->
+<div class="p-lg bg-surface-container-low border-b border-outline-variant">
+<div class="flex items-center justify-between mb-md">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">support_agent</span>
+</div>
+<div>
+<p class="font-headline-sm text-body-md font-bold">Officer Sarah J.</p>
+<p class="text-[12px] text-on-surface-variant">Emergency Dispatcher</p>
+</div>
+</div>
+<div class="audio-wave">
+<div class="audio-bar" style="animation-delay: 0.1s"></div>
+<div class="audio-bar" style="animation-delay: 0.3s"></div>
+<div class="audio-bar" style="animation-delay: 0.2s"></div>
+<div class="audio-bar" style="animation-delay: 0.4s"></div>
+<div class="audio-bar" style="animation-delay: 0.1s"></div>
+</div>
+</div>
+<button class="w-full py-sm bg-primary text-white rounded-[5px] font-button-text flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined text-[18px]">mic</span>
+                    Hold to Speak
+                </button>
+</div>
+<!-- First Aid Guide -->
+<div class="p-lg space-y-md">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-primary">Emergency First Aid</h3>
+<span class="text-[12px] font-bold text-secondary">ROAD ACCIDENT PROTOCOL</span>
+</div>
+<!-- Guide Cards -->
+<div class="space-y-sm">
+<div class="p-md border border-outline-variant rounded-lg bg-surface hover:border-secondary transition-colors cursor-pointer group">
+<div class="flex items-start gap-md">
+<div class="text-error bg-error/10 p-sm rounded-full">
+<span class="material-symbols-outlined">bloodtype</span>
+</div>
+<div>
+<h4 class="font-bold text-body-md mb-1">Severe Bleeding</h4>
+<p class="text-body-sm text-on-surface-variant">Apply firm, steady pressure directly to the wound with clean cloth.</p>
+</div>
+</div>
+</div>
+<div class="p-md border border-outline-variant rounded-lg bg-surface hover:border-secondary transition-colors cursor-pointer">
+<div class="flex items-start gap-md">
+<div class="text-secondary bg-secondary/10 p-sm rounded-full">
+<span class="material-symbols-outlined">airplay</span>
+</div>
+<div>
+<h4 class="font-bold text-body-md mb-1">Airway Management</h4>
+<p class="text-body-sm text-on-surface-variant">Check if the patient is breathing. Do not move the neck if trauma is suspected.</p>
+</div>
+</div>
+</div>
+<div class="p-md border border-outline-variant rounded-lg bg-surface hover:border-secondary transition-colors cursor-pointer">
+<div class="flex items-start gap-md">
+<div class="text-on-tertiary-fixed-variant bg-tertiary-fixed p-sm rounded-full">
+<span class="material-symbols-outlined">medical_information</span>
+</div>
+<div>
+<h4 class="font-bold text-body-md mb-1">Shock Prevention</h4>
+<p class="text-body-sm text-on-surface-variant">Keep the patient warm and calm. Do not offer food or water.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Right Side: Map (Full remaining space) -->
+<section class="flex-1 relative map-container overflow-hidden">
+<!-- Map Overlay UI: Search/Controls -->
+<div class="absolute top-md left-md z-10 flex flex-col gap-sm">
+<div class="bg-white p-sm rounded-lg shadow-md border border-outline-variant flex items-center gap-md w-[300px]">
+<span class="material-symbols-outlined text-on-surface-variant">location_on</span>
+<div class="flex-1">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase">Current Location</p>
+<p class="text-body-sm font-bold truncate">Route 66, Mile Marker 142</p>
+</div>
+</div>
+</div>
+<!-- Ambulance ETA Tooltip -->
+<div class="absolute top-md right-md z-10 bg-white p-md rounded-lg shadow-lg border border-outline-variant w-64">
+<div class="flex items-center gap-md mb-md">
+<div class="p-sm bg-error/10 text-error rounded-lg">
+<span class="material-symbols-outlined">ambulance</span>
+</div>
+<div>
+<p class="font-bold text-body-md">Unit #429 (ALS)</p>
+<p class="text-body-sm text-on-surface-variant">4.2 miles away</p>
+</div>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-error h-full w-2/3"></div>
+</div>
+<p class="text-[11px] mt-2 text-center font-bold text-on-surface-variant uppercase">En route • High Priority</p>
+</div>
+<!-- Background Image Map -->
+<div class="absolute inset-0 w-full h-full grayscale-[0.2]">
+<img alt="Emergency Map View" class="w-full h-full object-cover" data-alt="A clean, minimalist topographical map view of a suburban area with clear street lines and geometric patterns. The map shows navigation paths highlighted in subtle blue and red lines, representing emergency routes. Small digital markers indicate the location of hospitals and emergency vehicles in a high-utility professional interface style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6ArHnc1N64XnwaPo-FWdCEdzQKEdNPX6Y7Kl905Xp82Gfmdtyw4BLqjprYEbMMoVYDxTitrUOgfXFJmwj4QM5oNmQWwanegOeJrlmMQTZG4PQ5AZYeFEppZTjn6lJacJk1uZZ1R7lh-284QS2UmSZmRDWnYxgUWrzoLVZiTIG0QyFqLT9NY1EVLEnm7ZxihMlsUJVqxqzO-XTVritkXn1pn4Vw5d1ermJOsqLUyQqtd_xnHDkct6lWhJ3lswXDpDCrugoOsailAo"/>
+<!-- Digital Markers -->
+<div class="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2">
+<div class="relative flex items-center justify-center">
+<div class="absolute w-12 h-12 bg-error/20 rounded-full animate-ping"></div>
+<span class="material-symbols-outlined text-error text-[40px]" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+</div>
+<div class="absolute bottom-1/4 right-1/4">
+<div class="bg-secondary text-white p-sm rounded-full shadow-lg flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">local_hospital</span>
+<span class="text-[10px] font-bold pr-1">CITY GENERAL</span>
+</div>
+</div>
+</div>
+<!-- Footer Hospital Info -->
+<div class="absolute bottom-md left-md right-md z-10 flex gap-md">
+<div class="flex-1 bg-white p-lg rounded-xl border border-outline-variant shadow-lg flex items-center justify-between">
+<div class="flex items-center gap-xl">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase">Nearest Trauma Center</span>
+<span class="font-headline-sm">St. Jude Medical Complex</span>
+</div>
+<div class="h-8 w-px bg-outline-variant"></div>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase">ER Wait Time</span>
+<span class="font-headline-sm text-secondary">00:12:00</span>
+</div>
+</div>
+<button class="px-xl py-md bg-secondary text-white rounded-full font-button-text hover:bg-on-secondary-container transition-colors">
+                        Notify Arrival
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer / UX Law Strip -->
+<footer class="fixed bottom-0 left-0 w-full z-50 flex items-center justify-center gap-md bg-[#FFF9E6] border-t border-[#E0C040] h-[40px] text-body-sm text-[#E0C040]">
+<span class="font-bold">Applied: Hick's Law</span>
+<div class="flex gap-md">
+<a class="hover:opacity-80 transition-opacity" href="#">Privacy Policy</a>
+<a class="hover:opacity-80 transition-opacity" href="#">Help Center</a>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for the audio bars
+        const bars = document.querySelectorAll('.audio-bar');
+        setInterval(() => {
+            bars.forEach(bar => {
+                const randomHeight = Math.floor(Math.random() * 16) + 4;
+                bar.style.height = `${randomHeight}px`;
+            });
+        }, 150);
+    </script>
+</body></html>

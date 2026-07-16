@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Live Tracking | Online Garage</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@100..900&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for sidebar */
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #DDDBD5; border-radius: 10px; }
+        
+        /* Map pulse animation */
+        @keyframes pulse-ring {
+            0% { transform: scale(.33); }
+            80%, 100% { opacity: 0; }
+        }
+        .pulse-marker::before {
+            content: '';
+            position: absolute;
+            width: 300%;
+            height: 300%;
+            margin-left: -100%;
+            margin-top: -100%;
+            border-radius: 50%;
+            background-color: #335e9f;
+            animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#232221",
+                        "surface-variant": "#e2e3e1",
+                        "on-primary-container": "#8a8989",
+                        "primary": "#0b0c0c",
+                        "inverse-on-surface": "#f1f1ef",
+                        "surface": "#f9f9f7",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#dadad8",
+                        "surface-container-highest": "#e2e3e1",
+                        "surface-bright": "#f9f9f7",
+                        "on-primary-fixed-variant": "#474746",
+                        "surface-container-low": "#f4f4f2",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "secondary": "#335e9f",
+                        "on-surface": "#1a1c1b",
+                        "secondary-fixed-dim": "#aac7ff",
+                        "outline-variant": "#c4c7c7",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "inverse-primary": "#c8c6c5",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#747878",
+                        "on-secondary-fixed-variant": "#144686",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#8fb7fe",
+                        "on-secondary-fixed": "#001b3e",
+                        "on-primary-fixed": "#1b1c1c",
+                        "on-tertiary-fixed-variant": "#484645",
+                        "on-surface-variant": "#444748",
+                        "on-background": "#1a1c1b",
+                        "surface-container": "#eeeeec",
+                        "primary-fixed": "#e5e2e1",
+                        "primary-container": "#222222",
+                        "on-tertiary-fixed": "#1c1b1a",
+                        "surface-tint": "#5f5e5e",
+                        "surface-container-high": "#e8e8e6",
+                        "on-secondary-container": "#154686",
+                        "secondary-fixed": "#d6e3ff",
+                        "inverse-surface": "#2f3130",
+                        "on-tertiary-container": "#8c8987",
+                        "on-primary": "#ffffff",
+                        "tertiary": "#0c0c0b",
+                        "background": "#f9f9f7",
+                        "tertiary-fixed": "#e6e2e0",
+                        "tertiary-fixed-dim": "#c9c6c4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "margin": "64px",
+                        "xl": "32px",
+                        "gutter": "24px",
+                        "xxl": "48px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "button-text": ["Inter"],
+                        "headline-lg": ["DM Sans"],
+                        "display-lg": ["DM Sans"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["DM Sans"],
+                        "body-sm": ["Inter"],
+                        "headline-md": ["DM Sans"]
+                    },
+                    "fontSize": {
+                        "button-text": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-hidden h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-lg h-16 bg-surface-container-lowest border-b border-outline-variant shadow-sm">
+<div class="flex items-center gap-xl">
+<span class="font-headline-lg text-headline-lg font-bold text-primary">Online Garage</span>
+<nav class="hidden md:flex gap-lg">
+<a class="text-on-surface-variant font-label-md transition-colors hover:text-secondary" href="#">Dashboard</a>
+<a class="text-on-surface-variant font-label-md transition-colors hover:text-secondary" href="#">My Vehicles</a>
+<a class="text-secondary font-bold border-b-2 border-secondary font-label-md py-4" href="#">Live Tracking</a>
+<a class="text-on-surface-variant font-label-md transition-colors hover:text-secondary" href="#">History</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button class="bg-[#B71C1C] text-white px-md py-xs rounded-lg font-bold flex items-center gap-xs text-body-sm shadow-md active:scale-95 transition-transform">
+                🚨 SOS Help
+            </button>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container p-sm rounded-full transition-colors">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container p-sm rounded-full transition-colors">support_agent</span>
+<div class="w-10 h-10 rounded-full border-2 border-outline-variant overflow-hidden cursor-pointer">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="A close-up professional portrait of a modern male user in his late 20s, featuring sharp focus, neutral studio lighting, and a minimalist gray background. The user has a confident yet approachable expression. The overall aesthetic is clean, corporate, and high-quality, fitting a premium service platform's user interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyBVlIwszPb3GRHHSTzR9_b4lK5egfq2sHTu6d-m0XbrZX7lmfuScWgxl6z88vKht-vDoOtkpVWwIasKYcU176asHyX7I9s7acKxu87UM5t0SIGuDay_JAu-PqI35lS2FYDzUiMdg3jhuncsioFJ0q7Z4uGqlbM3UAmjEBNeFED-feAOoiLWI2OQdJCp9ab7Gf7eQPzS8pJ1aEZb-o5npK88cfFa3vM032H_YX-bwOn4q19XzqcII4twwOAxWmdbsxrE7xlLkNsRQ"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Sidebar & Map Container -->
+<main class="flex-1 flex pt-16 relative">
+<!-- Status Sidebar -->
+<aside class="w-[380px] bg-white border-r border-outline-variant z-20 flex flex-col shadow-xl overflow-y-auto custom-scrollbar">
+<!-- Header Section -->
+<div class="p-lg border-b border-outline-variant bg-surface-container-lowest">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary mb-xs">Live Tracking</h2>
+<span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">confirmation_number</span>
+                            Order #OG-99210
+                        </span>
+</div>
+<div class="bg-secondary/10 px-md py-xs rounded-full">
+<span class="text-secondary font-bold text-label-md">8 mins ETA</span>
+</div>
+</div>
+<!-- Mechanic Profile -->
+<div class="flex items-center gap-md bg-surface p-md rounded-xl border border-outline-variant">
+<div class="relative">
+<img alt="Raj Kumar" class="w-16 h-16 rounded-full object-cover" data-alt="A professional headshot of a mechanic named Raj Kumar in a clean, dark charcoal workshop uniform. He is standing in a brightly lit, modern automotive garage with high-end tools visible in the blurred background. The lighting is crisp and detailed, emphasizing expertise and reliability in a professional workshop setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsjlgchhOj2ucO35HjMAvH-z1SvWDGSsX-9JhGwlIaddHm6dTvf3MaFzBbLZ2TlcbWCGEhRHPbgo_zlrtiYUV1ooOSUKo0K2mu-PwW2IxhVUOwIkXnVirK9-B9DjH1_kg6GXHPTsY4o6OTwnUqVjSRZabkMO8rggdgzsbCUxnPqqjRYz8Z4wWkFIxpXUfqd9aoZ2D6HW4JEH4ufC9SJS6w6ApOdFcAvagd7GcIt1ulUAGr84BInKAbPvESSP04aUxqYjkGjY6GV04"/>
+<div class="absolute -bottom-1 -right-1 bg-[#1B5E20] border-2 border-white rounded-full p-xs">
+<span class="material-symbols-outlined text-white text-[12px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center">
+<h3 class="font-headline-sm text-primary">Raj Kumar</h3>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-amber-500 text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-body-sm">4.9</span>
+</div>
+</div>
+<p class="text-on-surface-variant text-body-sm">Mobile Shop 04 • DL 01 AB 1234</p>
+</div>
+</div>
+</div>
+<!-- Status Timeline -->
+<div class="p-lg flex-1">
+<h4 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-lg">Service Progress</h4>
+<div class="relative space-y-xxl before:absolute before:left-3 before:top-2 before:bottom-2 before:w-0.5 before:bg-outline-variant">
+<!-- Step 1 -->
+<div class="flex items-start gap-lg relative">
+<div class="w-6 h-6 rounded-full bg-secondary flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-white text-[14px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div>
+<p class="font-bold text-on-surface-variant">Booking Confirmed</p>
+<p class="text-body-sm text-on-surface-variant/70">10:45 AM</p>
+</div>
+</div>
+<!-- Step 2 (Active) -->
+<div class="flex items-start gap-lg relative">
+<div class="w-6 h-6 rounded-full bg-secondary flex items-center justify-center z-10 border-4 border-secondary-fixed ring-2 ring-secondary">
+<div class="w-2 h-2 bg-white rounded-full"></div>
+</div>
+<div>
+<p class="font-bold text-secondary">Mechanic En Route</p>
+<p class="text-body-sm text-secondary/70">Estimated arrival 11:05 AM</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex items-start gap-lg relative">
+<div class="w-6 h-6 rounded-full bg-outline-variant flex items-center justify-center z-10"></div>
+<div>
+<p class="font-medium text-on-surface-variant">Arrived</p>
+<p class="text-body-sm text-on-surface-variant/50">Pending</p>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="flex items-start gap-lg relative">
+<div class="w-6 h-6 rounded-full bg-outline-variant flex items-center justify-center z-10"></div>
+<div>
+<p class="font-medium text-on-surface-variant">Service in Progress</p>
+<p class="text-body-sm text-on-surface-variant/50">Pending</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Action & Security -->
+<div class="p-lg border-t border-outline-variant bg-surface-container-low">
+<!-- User Status Context Badge -->
+<div class="bg-[#1B5E20]/10 border border-[#1B5E20]/30 rounded-xl p-md mb-lg flex gap-md items-start">
+<span class="material-symbols-outlined text-[#1B5E20]">security</span>
+<div>
+<p class="font-bold text-[#1B5E20] text-body-sm">Verified Secure Escrow</p>
+<p class="text-body-sm text-[#1B5E20]/80">Payment will be released after service approval.</p>
+</div>
+</div>
+<div class="flex gap-md">
+<button class="flex-1 flex items-center justify-center gap-xs bg-primary text-white py-md rounded-lg font-button-text active:scale-95 transition-transform">
+<span class="material-symbols-outlined">chat</span>
+                        Message
+                    </button>
+<button class="flex-1 flex items-center justify-center gap-xs bg-surface border border-outline text-primary py-md rounded-lg font-button-text hover:bg-surface-container transition-colors active:scale-95">
+<span class="material-symbols-outlined">call</span>
+                        Call
+                    </button>
+</div>
+</div>
+</aside>
+<!-- Map View -->
+<div class="flex-1 bg-surface-dim relative overflow-hidden">
+<!-- Simulated Map Image -->
+<img class="w-full h-full object-cover grayscale opacity-80" data-alt="A sophisticated, high-resolution overhead map view of a clean urban grid. The map features a minimalist, dark charcoal and slate gray color palette with high-contrast labels. Soft, clean light highlights the streets and green areas, creating a professional and technical aesthetic suitable for a high-fidelity live tracking dashboard." data-location="New Delhi" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGM5gkvj2XmHzWRf_hMt9we1maGTS-3SfbSad4iT77sMwcz8EIobHdx6aVgv3Wl-Dis1VKeEb7VG7VYFDciKqYBzVEHmb87rnbcdGS9NGv5wu04EiGLAI1rSAudK_zy4bLvWRc9AUzexEcU1UPyuWDHCUcqCwxQxhObReVqpLnRkSb-wQjiq3JDywoc4GbJi-wK6dcgxqajdB-2R7E_2_Z0nTwdzYb7z6IANp-Qgu8Xm0WpMYz6mzzXNnQdSeYgYq25QgQZhPV7BA"/>
+<!-- Map Overlay UI Elements -->
+<div class="absolute inset-0 pointer-events-none">
+<!-- Mechanic Marker -->
+<div class="absolute top-[40%] left-[60%] flex flex-col items-center pointer-events-auto cursor-pointer">
+<div class="relative">
+<div class="pulse-marker absolute inset-0"></div>
+<div class="relative bg-secondary p-xs rounded-xl shadow-lg border-2 border-white z-10">
+<span class="material-symbols-outlined text-white text-[32px]">local_shipping</span>
+</div>
+</div>
+<div class="mt-sm bg-primary text-white text-[10px] px-sm py-xs rounded font-bold uppercase tracking-tighter">Mobile Shop 04</div>
+</div>
+<!-- User Marker -->
+<div class="absolute top-[60%] left-[30%] flex flex-col items-center pointer-events-auto cursor-pointer">
+<div class="bg-primary p-xs rounded-full shadow-lg border-2 border-white z-10">
+<div class="w-4 h-4 bg-white rounded-full"></div>
+</div>
+<div class="mt-sm bg-white border border-outline-variant text-primary text-[10px] px-sm py-xs rounded font-bold uppercase tracking-tighter shadow-sm">Your Location</div>
+</div>
+<!-- Map Controls -->
+<div class="absolute bottom-xl right-xl flex flex-col gap-sm pointer-events-auto">
+<button class="w-12 h-12 bg-white rounded-lg shadow-lg flex items-center justify-center hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-primary">add</span>
+</button>
+<button class="w-12 h-12 bg-white rounded-lg shadow-lg flex items-center justify-center hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-primary">remove</span>
+</button>
+<button class="w-12 h-12 bg-white rounded-lg shadow-lg flex items-center justify-center hover:bg-surface-container transition-colors mt-md">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">my_location</span>
+</button>
+</div>
+<!-- Floating Route Info -->
+<div class="absolute top-lg left-1/2 -translate-x-1/2 bg-primary/90 text-white px-xl py-md rounded-full shadow-2xl flex items-center gap-lg border border-white/20 backdrop-blur-md pointer-events-auto">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary-container">directions_car</span>
+<span class="font-bold text-body-sm">3.4 km</span>
+</div>
+<div class="w-px h-6 bg-white/20"></div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary-container">timer</span>
+<span class="font-bold text-body-sm">8 mins</span>
+</div>
+<div class="w-px h-6 bg-white/20"></div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary-container">traffic</span>
+<span class="font-bold text-body-sm">Light Traffic</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- UX Law Strip -->
+<div class="fixed bottom-0 w-full h-[40px] bg-[#FFF9E6] border-t border-[#E0C040] flex items-center justify-center z-[100]">
+<p class="font-body-sm text-[#7D6608] font-medium flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">info</span>
+            Applied: <strong>Hick's Law</strong> – Decision making time minimized through focused service tracking hierarchy.
+        </p>
+</div>
+<script>
+        // Micro-interactions for button active states
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.classList.add('scale-95');
+            });
+            button.addEventListener('mouseup', () => {
+                button.classList.remove('scale-95');
+            });
+        });
+
+        // Simple toggle for mobile view logic (just for demo purposes)
+        window.addEventListener('resize', () => {
+            if (window.innerWidth < 768) {
+                // In a real app, we'd adjust layout here.
+            }
+        });
+    </script>
+</body></html>

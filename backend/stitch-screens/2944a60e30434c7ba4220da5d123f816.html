@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Booking Confirmed | MechHub</title>
+<!-- Load Tailwind CSS v3 with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Load Google Fonts: DM Sans and Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            mechhub: {
+              primary: '#222222',
+              background: '#F7F7F5',
+              success: '#1B5E20',
+              successLight: '#F1F8E9',
+              successBorder: '#C8E6C9',
+              surface: '#FFFFFF',
+              border: '#E0E0E0',
+              text: '#444444',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['DM Sans', 'sans-serif'],
+          },
+          borderRadius: {
+            'custom': '8px',
+            'button': '5px',
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-typography">
+    h1, h2, h3 { font-family: 'DM Sans', sans-serif; font-weight: 700; }
+    body { font-family: 'Inter', sans-serif; color: #222222; }
+  </style>
+</head>
+<body class="bg-mechhub-background min-h-screen flex flex-col">
+<!-- BEGIN: MainHeader -->
+<header class="bg-white border-b border-mechhub-border px-8 py-4 flex justify-between items-center" data-purpose="site-header">
+<div class="flex items-center gap-2">
+<span class="text-xl font-heading font-bold tracking-tight">Online Garage</span>
+<!-- Preview Tag from Reference -->
+<span class="bg-gray-600 text-white text-[10px] px-2 py-0.5 rounded uppercase font-bold">Preview</span>
+</div>
+<button class="bg-[#C62828] text-white px-4 py-2 rounded-button flex items-center gap-2 font-semibold text-sm hover:bg-red-800 transition-colors" onclick="window.location.href='{{DATA:SCREEN:SCREEN_61}}'">
+<span class="text-xs">🚨</span> SOS Help
+    </button>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: ContentContainer -->
+<main class="flex-grow max-w-6xl mx-auto w-full px-6 py-12 flex flex-col gap-8">
+<!-- BEGIN: SuccessBanner -->
+<section class="bg-mechhub-successLight border border-mechhub-successBorder rounded-custom p-6 flex items-start gap-4" data-purpose="confirmation-banner">
+<div class="bg-mechhub-success text-white p-1 rounded-md mt-1">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div>
+<h1 class="text-mechhub-success text-xl font-heading">Booking confirmed! Mechanic is on the way.</h1>
+<p class="text-mechhub-success opacity-80 text-sm mt-1">Confirmation sent to your phone and email</p>
+</div>
+</section>
+<!-- END: SuccessBanner -->
+<!-- BEGIN: DetailsGrid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-purpose="info-grid">
+<!-- Column 1: Booking Details -->
+<article class="bg-mechhub-surface border border-mechhub-border rounded-custom p-6 flex flex-col h-full">
+<h2 class="text-lg mb-6">Booking details</h2>
+<div class="space-y-3 text-sm flex-grow">
+<div class="flex justify-between">
+<span class="text-gray-500">Ref:</span>
+<span class="font-bold">#MH-20850</span>
+</div>
+<div class="flex justify-between">
+<span class="text-gray-500">Mechanic:</span>
+<span class="font-medium">Raj Kumar</span>
+</div>
+<div class="flex justify-between">
+<span class="text-gray-500">Service:</span>
+<span class="font-medium">Tyre Replacement</span>
+</div>
+<div class="flex justify-between">
+<span class="text-gray-500">ETA:</span>
+<span class="font-medium">8–15 minutes</span>
+</div>
+<div class="flex justify-between">
+<span class="text-gray-500">Amount:</span>
+<span class="font-bold">₹800</span>
+</div>
+<div class="flex justify-between">
+<span class="text-gray-500">Payment:</span>
+<span class="text-mechhub-success font-medium">After service approval</span>
+</div>
+</div>
+</article>
+<!-- Column 2: Safety Features -->
+<article class="bg-mechhub-surface border border-mechhub-border rounded-custom p-6 flex flex-col h-full">
+<h2 class="text-lg mb-6">Your safety features</h2>
+<ul class="space-y-4 text-sm">
+<li class="flex items-center gap-3">
+<span class="grayscale text-base">🛡️</span>
+<span>1 backup mechanic on standby</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="grayscale text-base">📍</span>
+<span>Live GPS tracking active</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="grayscale text-base">🔒</span>
+<span>Price locked at ₹800</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="grayscale text-base">📸</span>
+<span>Part photo verification on</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="grayscale text-base">💬</span>
+<span>In-app chat with mechanic</span>
+</li>
+</ul>
+</article>
+<!-- Column 3: Share Tracking -->
+<article class="bg-mechhub-surface border border-mechhub-border rounded-custom p-6 flex flex-col h-full">
+<h2 class="text-lg mb-4">Share tracking</h2>
+<p class="text-gray-500 text-sm mb-6 leading-relaxed">Let someone know where you are. Send them the live tracking link.</p>
+<div class="space-y-3">
+<button class="w-full bg-[#f4f4f2] text-mechhub-primary border border-transparent hover:border-gray-300 py-3 px-4 rounded-button flex items-center justify-center gap-2 font-medium transition-all">
+<span>📲</span> Send via WhatsApp
+          </button>
+<button class="w-full bg-[#f4f4f2] text-mechhub-primary border border-transparent hover:border-gray-300 py-3 px-4 rounded-button flex items-center justify-center gap-2 font-medium transition-all">
+<span>📋</span> Copy tracking link
+          </button>
+</div>
+</article>
+</div>
+<!-- END: DetailsGrid -->
+<!-- BEGIN: PrimaryAction -->
+<div class="flex justify-center mt-4">
+<button class="flex items-center gap-2 text-mechhub-primary font-heading font-bold text-lg hover:underline underline-offset-4" onclick="window.location.href='{{DATA:SCREEN:SCREEN_73}}'">
+        View live tracking 
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<!-- END: PrimaryAction -->
+</main>
+<!-- END: ContentContainer -->
+<!-- BEGIN: AnnotationFooter -->
+<footer class="mt-auto py-4 bg-[#FFFBEC] border-t border-[#FFECB3] text-center text-xs text-[#856404] italic">
+    * This status page updates automatically every 30 seconds.
+  </footer>
+<!-- END: AnnotationFooter -->
+</body></html>

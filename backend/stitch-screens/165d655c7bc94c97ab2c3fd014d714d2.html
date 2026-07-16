@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MechHub | Identity Verification</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#747878",
+                    "tertiary-fixed": "#e6e2e0",
+                    "primary": "#0b0c0c",
+                    "inverse-on-surface": "#f1f1ef",
+                    "surface-dim": "#dadad8",
+                    "outline-variant": "#c4c7c7",
+                    "surface-bright": "#f9f9f7",
+                    "primary-container": "#222222",
+                    "on-secondary-fixed-variant": "#144686",
+                    "inverse-surface": "#2f3130",
+                    "tertiary-container": "#232221",
+                    "on-tertiary-container": "#8c8987",
+                    "secondary-container": "#8fb7fe",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "on-secondary-container": "#154686",
+                    "primary-fixed": "#e5e2e1",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed": "#1c1b1a",
+                    "on-primary-fixed": "#1b1c1c",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#474746",
+                    "surface-variant": "#e2e3e1",
+                    "tertiary": "#0c0c0b",
+                    "tertiary-fixed-dim": "#c9c6c4",
+                    "secondary-fixed-dim": "#aac7ff",
+                    "on-surface": "#1a1c1b",
+                    "on-primary-container": "#8a8989",
+                    "inverse-primary": "#c8c6c5",
+                    "secondary": "#335e9f",
+                    "surface-container-highest": "#e2e3e1",
+                    "on-surface-variant": "#444748",
+                    "surface-container-high": "#e8e8e6",
+                    "on-primary": "#ffffff",
+                    "on-background": "#1a1c1b",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#484645",
+                    "on-secondary-fixed": "#001b3e",
+                    "surface": "#f9f9f7",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f4f4f2",
+                    "background": "#f9f9f7",
+                    "secondary-fixed": "#d6e3ff",
+                    "surface-tint": "#5f5e5e",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#eeeeec",
+                    "error": "#ba1a1a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "xxl": "48px",
+                    "xs": "4px",
+                    "xl": "32px",
+                    "sm": "8px",
+                    "lg": "24px",
+                    "gutter": "24px",
+                    "margin": "64px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "display-lg": ["DM Sans"],
+                    "headline-sm": ["DM Sans"],
+                    "headline-md": ["DM Sans"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["DM Sans"],
+                    "button-text": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "button-text": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #F7F7F5; }
+        .dashed-border { background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='5' ry='5' stroke='%23DDDBD5' stroke-width='2' stroke-dasharray='8%2c 8' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e"); border-radius: 5px; }
+        .custom-shadow { box-shadow: 0px 4px 12px rgba(0,0,0,0.05); }
+        .sos-shadow { box-shadow: 0px 8px 24px rgba(0,0,0,0.12); }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center px-lg w-full fixed top-0 z-50 bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline h-[54px]">
+<div class="flex items-center gap-md">
+<span class="font-display-lg text-[28px] font-bold text-primary dark:text-primary-fixed">MechHub</span>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary font-bold cursor-pointer hover:bg-surface-container-low p-xs transition-colors rounded-full" data-icon="account_circle">account_circle</span>
+</div>
+</header>
+<!-- SideNavBar (Used for semantic desktop structure, even if hidden/minimal on verification pages) -->
+<aside class="hidden lg:flex flex-col h-full py-xl fixed left-0 top-0 w-[280px] bg-primary dark:bg-primary-container shadow-md z-40">
+<div class="px-lg pt-xl mb-xxl">
+<h1 class="font-headline-lg text-headline-lg text-on-primary">Registration</h1>
+<p class="font-body-md text-body-md text-primary-fixed-dim opacity-70">Step 3 of 3</p>
+</div>
+<nav class="flex-1 space-y-sm">
+<div class="flex items-center gap-md px-lg py-md text-primary-fixed-dim opacity-70">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</div>
+<div class="flex items-center gap-md px-lg py-md text-primary-fixed-dim opacity-70">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-body-md">Bookings</span>
+</div>
+<div class="flex items-center gap-md px-lg py-md text-primary-fixed-dim opacity-70">
+<span class="material-symbols-outlined" data-icon="directions_car">directions_car</span>
+<span class="font-body-md">Vehicles</span>
+</div>
+<div class="flex items-center gap-md px-lg py-md border-l-4 border-secondary text-on-primary font-bold bg-white/10">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+<span class="font-body-md">Identity</span>
+</div>
+</nav>
+<div class="p-lg mt-auto">
+<button class="w-full py-md px-lg bg-error text-white font-bold rounded-[5px] flex items-center justify-center gap-xs hover:opacity-90 transition-all scale-95 active:opacity-80">
+<span>🚨 SOS Help</span>
+</button>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="pt-[54px] pb-[40px] lg:pl-[280px] min-h-screen">
+<div class="max-w-[1440px] mx-auto p-lg lg:p-xxl flex flex-col lg:flex-row gap-gutter">
+<!-- Left Column: Registration Form -->
+<div class="flex-1 space-y-xl">
+<!-- Progress Header -->
+<div class="space-y-md">
+<div class="w-full bg-surface-container-high h-[6px] rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-full"></div>
+</div>
+<div>
+<h2 class="font-headline-md text-[22px] font-bold text-on-surface">Verify Identity</h2>
+<span class="font-label-md text-[10px] text-outline uppercase tracking-wider">Final Step: Unlock Pay After Service</span>
+</div>
+</div>
+<!-- Main Action Card -->
+<section class="bg-white border-2 border-primary p-xxl rounded-[8px] custom-shadow space-y-xl">
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined text-secondary" data-icon="info">info</span>
+<p class="font-body-md text-on-surface">Upload a government-issued ID to verify your identity. This unlocks <span class="font-bold text-secondary">Pay After Service</span> and applies an instant <span class="font-bold text-secondary">10% discount</span> to your current booking.</p>
+</div>
+<!-- Upload Box -->
+<div class="dashed-border h-[160px] flex flex-col items-center justify-center cursor-pointer hover:bg-surface-container-low transition-colors group">
+<span class="material-symbols-outlined text-[48px] text-outline group-hover:text-primary transition-colors" data-icon="cloud_upload">cloud_upload</span>
+<p class="mt-md font-body-md text-on-surface-variant text-center px-lg">
+                            Drag &amp; drop ID (Driving License or Passport) or <span class="text-secondary font-bold underline">click to upload</span>
+</p>
+</div>
+<p class="text-center font-body-sm text-outline">JPG, PNG or PDF — up to 10MB</p>
+<div class="pt-md">
+<button class="w-full py-xl bg-primary text-on-primary font-button-text text-button-text rounded-[5px] hover:bg-primary-container transition-all active:scale-[0.98] flex items-center justify-center gap-md">Verify Now &amp; Save 10% <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span></button>
+<a class="block text-center mt-xl font-body-sm text-secondary hover:underline transition-all" href="#">Verify later (Note: Unverified accounts must pay in full at booking)</a>
+</div>
+</section>
+</div>
+<!-- Right Column: Help & SLAs -->
+<aside class="w-full lg:w-[340px] space-y-lg">
+<!-- Info Card -->
+<div class="bg-white border border-outline-variant p-lg rounded-[8px] space-y-md custom-shadow">
+<h3 class="font-headline-sm text-headline-sm">What happens next</h3>
+<ul class="space-y-md">
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="check_circle">check_circle</span>
+<span class="font-body-sm">Personal agent assignment for your account.</span>
+</li>
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="schedule">schedule</span>
+<span class="font-body-sm">4-hour manual review of submitted documents.</span>
+</li>
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="confirmation_number">confirmation_number</span>
+<span class="font-body-sm">Confirmation ticket generated via email.</span>
+</li>
+</ul>
+</div>
+<!-- SLA Card -->
+<div class="bg-surface-container-low border border-outline-variant p-lg rounded-[8px] flex items-center justify-between">
+<span class="font-label-md text-outline">Verification time:</span>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-secondary text-[16px]" data-icon="timer">timer</span>
+<span class="font-button-text text-on-surface">&lt; 4 hours</span>
+</div>
+</div>
+<!-- Emergency SOS Card -->
+<div class="bg-error-container/20 border-2 border-error p-lg rounded-[8px] space-y-md sos-shadow">
+<p class="font-headline-sm text-error text-[18px] font-bold">Need immediate help?</p>
+<p class="font-body-sm text-on-error-container">Our emergency verification line is open 24/7 for urgent mechanical breakdowns.</p>
+<button class="w-full py-md bg-error text-white font-bold rounded-[5px] flex items-center justify-center gap-sm hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="phone_in_talk">phone_in_talk</span>
+                        Call SOS Help
+                    </button>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer / UX Law Strip -->
+<footer class="fixed bottom-0 left-0 w-full z-50 flex items-center justify-center gap-md bg-[#FFF9E6] border-t border-[#E0C040] h-[40px]">
+<div class="flex items-center gap-lg">
+<span class="font-body-sm text-[#E0C040]">Applied: Hick's Law</span>
+<div class="h-4 w-[1px] bg-[#E0C040]/30"></div>
+<span class="font-body-sm text-on-tertiary-fixed-variant">Heuristic 1 — Next steps communicated</span>
+<div class="h-4 w-[1px] bg-[#E0C040]/30"></div>
+<span class="font-body-sm text-on-tertiary-fixed-variant">Heuristic 3 — Optionality</span>
+<div class="h-4 w-[1px] bg-[#E0C040]/30"></div>
+<span class="font-body-sm text-on-tertiary-fixed-variant">Peak-End Rule — Finalizing setup</span>
+</div>
+</footer>
+<script>
+        // Simple Micro-interaction for the upload box
+        const uploadBox = document.querySelector('.dashed-border');
+        uploadBox.addEventListener('mouseenter', () => {
+            uploadBox.style.transform = 'translateY(-2px)';
+            uploadBox.style.transition = 'all 0.2s ease-out';
+        });
+        uploadBox.addEventListener('mouseleave', () => {
+            uploadBox.style.transform = 'translateY(0px)';
+        });
+    </script>
+</body></html>

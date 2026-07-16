@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Online Garage - Choose Mechanic</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Inter & DM Sans -->
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'mech-black': '#222222',
+            'mech-gray-bg': '#F7F7F5',
+            'mech-border': '#E5E7EB',
+            'mech-red': '#C53030',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['DM Sans', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-styling">
+    body {
+      background-color: #F7F7F5;
+      color: #222222;
+      font-family: 'Inter', sans-serif;
+    }
+    .custom-shadow {
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<!-- BEGIN: Navigation Bar -->
+<header class="bg-white border-b border-mech-border px-6 py-3 flex items-center justify-between sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<a class="text-mech-black font-medium flex items-center gap-2 hover:opacity-70 transition-opacity" href="{{DATA:SCREEN:SCREEN_93}}"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"></path></svg>Back</a>
+</div>
+<div>
+<a class="text-mech-black font-medium flex items-center gap-2 hover:opacity-70 transition-opacity" href="{{DATA:SCREEN:SCREEN_93}}"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"></path></svg>Back</a>
+</div>
+</header>
+<!-- END: Navigation Bar -->
+<!-- BEGIN: Breadcrumbs -->
+<nav class="px-8 py-3 text-sm text-gray-500 border-b border-mech-border bg-white" data-purpose="breadcrumbs">
+<div class="max-w-7xl mx-auto">
+      Dashboard → Problem → <span class="text-mech-black">Choose mechanic</span>
+</div>
+</nav>
+<!-- END: Breadcrumbs -->
+<main class="flex-grow p-8 max-w-7xl mx-auto w-full space-y-8">
+<!-- BEGIN: Filter & Map Section -->
+<section class="bg-white border border-mech-border rounded-xl p-6 space-y-6" data-purpose="filter-map-container">
+<h2 class="font-bold text-lg">Filters</h2>
+<div class="space-y-6">
+<!-- Sort By -->
+<div class="space-y-3">
+<p class="text-sm font-medium text-gray-600">Sort by</p>
+<div class="flex gap-2">
+<button class="bg-mech-black text-white px-4 py-1.5 rounded-full text-sm font-medium">Nearest first</button>
+<button class="bg-gray-100 text-mech-black px-4 py-1.5 rounded-full text-sm font-medium hover:bg-gray-200">Rating</button>
+<button class="bg-gray-100 text-mech-black px-4 py-1.5 rounded-full text-sm font-medium hover:bg-gray-200">Price</button>
+</div>
+</div>
+<hr class="border-mech-border"/>
+<!-- Reliability -->
+<div class="space-y-3">
+<p class="text-sm font-medium text-gray-600">Reliability</p>
+<div class="flex gap-2">
+<button class="bg-mech-black text-white px-4 py-1.5 rounded-full text-sm font-medium flex items-center gap-1">
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"></path></svg>
+              Reliable badge
+            </button>
+</div>
+</div>
+<!-- Vehicle Type -->
+<div class="space-y-3 relative">
+<p class="text-sm font-medium text-gray-600">Vehicle</p>
+<!-- Tooltip logic placeholder -->
+<div class="absolute -top-6 left-12 bg-gray-700 text-white text-[10px] px-2 py-0.5 rounded">Preview</div>
+<div class="flex gap-2">
+<button class="bg-mech-black text-white px-4 py-1.5 rounded-full text-sm font-medium">Toyota Hilux</button>
+</div>
+</div>
+</div>
+<!-- Map Placeholder -->
+<div class="w-full h-48 bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center text-gray-500" data-purpose="live-map">
+<div class="text-3xl mb-2">🗺️</div>
+<p class="text-sm font-medium">Live map of mechanics</p>
+</div>
+</section>
+<!-- END: Filter & Map Section -->
+<!-- BEGIN: Mechanic List Section -->
+<section class="space-y-4" data-purpose="mechanic-results">
+<p class="text-sm text-gray-600 font-medium ml-1">7 mechanics available near you — sorted by distance</p>
+<!-- Mechanic Card 1 -->
+<div class="bg-white border-2 border-mech-black rounded-xl p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6" data-purpose="mechanic-card">
+<div class="flex gap-4 items-center">
+<!-- Avatar -->
+<div class="w-16 h-16 bg-mech-black text-white rounded-full flex items-center justify-center font-bold text-xl">
+            RK
+          </div>
+<!-- Info -->
+<div class="space-y-1">
+<h3 class="font-bold text-xl font-display">Raj Kumar</h3>
+<div class="flex flex-wrap gap-2 py-1">
+<span class="border border-gray-300 px-3 py-0.5 rounded text-xs font-semibold flex items-center gap-1">
+<svg class="text-green-600" fill="none" height="12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24" width="12" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"></path></svg>
+                Reliable
+              </span>
+<span class="border border-gray-300 px-3 py-0.5 rounded text-xs font-semibold">Verified ID</span>
+<span class="border border-gray-300 px-3 py-0.5 rounded text-xs font-semibold">Toyota specialist</span>
+</div>
+<div class="text-sm text-gray-600 flex items-center gap-2">
+<span class="flex items-center text-yellow-500">
+<svg fill="currentColor" height="14" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+</span>
+<span class="font-bold text-mech-black">4.8</span> (142 reviews) • 2.1 km away • ETA 8–12 min • 350+ jobs
+            </div>
+</div>
+</div>
+<!-- Price & CTA -->
+<div class="text-right flex flex-col items-end gap-3 w-full md:w-auto">
+<div>
+<div class="text-3xl font-bold font-display">₹800</div>
+<div class="text-xs text-gray-500 font-medium">estimated total</div>
+</div>
+<a class="font-bold text-mech-black flex items-center gap-2 hover:translate-x-1 transition-transform" href="{{DATA:SCREEN:SCREEN_52}}">Select →</a>
+</div>
+</div>
+<!-- Mechanic Card 2 -->
+<div class="bg-white border border-mech-border rounded-xl p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6" data-purpose="mechanic-card">
+<div class="flex gap-4 items-center">
+<!-- Avatar -->
+<div class="w-16 h-16 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold text-xl">
+            SP
+          </div>
+<!-- Info -->
+<div class="space-y-1">
+<h3 class="font-bold text-xl font-display">Suresh Paudel</h3>
+<div class="flex flex-wrap gap-2 py-1">
+<span class="border border-gray-300 px-3 py-0.5 rounded text-xs font-semibold">Verified ID</span>
+</div>
+<div class="text-sm text-gray-600 flex items-center gap-2">
+<span class="flex items-center text-yellow-500">
+<svg fill="currentColor" height="14" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+</span>
+<span class="font-bold text-mech-black">4.5</span> (89 reviews) • 3.4 km away • ETA 12–18 min • 200+ jobs
+            </div>
+</div>
+</div>
+<!-- Price & CTA -->
+<div class="text-right flex flex-col items-end gap-3 w-full md:w-auto">
+<div>
+<div class="text-3xl font-bold font-display">₹750</div>
+<div class="text-xs text-gray-500 font-medium">estimated total</div>
+</div>
+<button class="font-bold text-mech-black flex items-center gap-2 hover:translate-x-1 transition-transform">
+            Select →
+          </button>
+</div>
+</div>
+</section>
+<!-- END: Mechanic List Section -->
+</main>
+<!-- BEGIN: UX Law Strip -->
+<footer class="bg-gray-800 text-white py-4 mt-12 overflow-hidden whitespace-nowrap relative" data-purpose="ux-law-strip">
+<div class="flex animate-marquee gap-8">
+<span class="font-bold flex items-center gap-2">⚠️ <span class="uppercase tracking-widest text-sm">Hick's Law:</span> Reducing choice complexity speeds up user decision-making</span>
+<span class="font-bold flex items-center gap-2">⚠️ <span class="uppercase tracking-widest text-sm">Miller's Law:</span> Only show essential details to avoid cognitive overload</span>
+<span class="font-bold flex items-center gap-2">⚠️ <span class="uppercase tracking-widest text-sm">Fitts's Law:</span> Primary actions are sized and placed for easy reach</span>
+<!-- Repeated for seamless loop -->
+<span class="font-bold flex items-center gap-2">⚠️ <span class="uppercase tracking-widest text-sm">Hick's Law:</span> Reducing choice complexity speeds up user decision-making</span>
+</div>
+</footer>
+<!-- END: UX Law Strip -->
+<!-- Floating Question Mark button -->
+<button class="fixed bottom-6 right-6 w-10 h-10 bg-mech-black text-white rounded-full flex items-center justify-center font-bold shadow-lg hover:scale-110 transition-transform">
+    ?
+  </button>
+<style data-purpose="animations">
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: flex;
+      width: 200%;
+      animation: marquee 30s linear infinite;
+    }
+  </style>
+</body></html>

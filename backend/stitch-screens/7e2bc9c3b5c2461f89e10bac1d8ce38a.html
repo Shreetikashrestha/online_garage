@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MechHub - Towing Results</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=DM+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f4f4f2",
+                        "on-background": "#1a1c1b",
+                        "surface-container": "#eeeeec",
+                        "primary": "#0b0c0c",
+                        "outline-variant": "#c4c7c7",
+                        "surface-container-highest": "#e2e3e1",
+                        "tertiary-fixed": "#e6e2e0",
+                        "secondary-fixed": "#d6e3ff",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#222222",
+                        "on-secondary-container": "#154686",
+                        "on-secondary-fixed-variant": "#144686",
+                        "on-tertiary-fixed": "#1c1b1a",
+                        "surface-dim": "#dadad8",
+                        "inverse-surface": "#2f3130",
+                        "tertiary-fixed-dim": "#c9c6c4",
+                        "on-tertiary-fixed-variant": "#484645",
+                        "on-tertiary-container": "#8c8987",
+                        "secondary-fixed-dim": "#aac7ff",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "outline": "#747878",
+                        "inverse-primary": "#c8c6c5",
+                        "tertiary-container": "#232221",
+                        "on-primary-fixed": "#1b1c1c",
+                        "inverse-on-surface": "#f1f1ef",
+                        "surface-bright": "#f9f9f7",
+                        "surface-tint": "#5f5e5e",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "background": "#f9f9f7",
+                        "surface": "#f9f9f7",
+                        "on-secondary-fixed": "#001b3e",
+                        "on-primary-fixed-variant": "#474746",
+                        "on-surface": "#1a1c1b",
+                        "error-container": "#ffdad6",
+                        "secondary": "#335e9f",
+                        "tertiary": "#0c0c0b",
+                        "primary-fixed": "#e5e2e1",
+                        "on-surface-variant": "#444748",
+                        "surface-container-high": "#e8e8e6",
+                        "on-primary-container": "#8a8989",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#8fb7fe",
+                        "surface-variant": "#e2e3e1",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xxl": "48px",
+                        "gutter": "24px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "margin": "64px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "headline-sm": ["DM Sans"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["DM Sans"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["DM Sans"],
+                        "button-text": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["DM Sans"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "button-text": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { background-color: #f9f9f7; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #DDDBD5; border-radius: 10px; }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- Top Navigation Shell -->
+<nav class="fixed top-0 w-full h-[54px] z-50 bg-surface border-b-[1.5px] border-outline-variant">
+<div class="flex justify-between items-center px-lg h-full max-w-[1440px] mx-auto">
+<div class="font-headline-sm text-headline-sm font-bold text-primary">MechHub</div>
+<div class="hidden md:flex gap-md">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Services</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Workshops</a>
+<a class="font-label-md text-label-md text-primary font-bold border-b-2 border-secondary" href="#">Fleet</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Pricing</a>
+</div>
+<div class="flex items-center gap-sm">
+<button class="bg-[#B71C1C] text-white px-md py-xs rounded-[5px] font-button-text text-button-text flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">emergency</span> Get Help Now
+                </button>
+</div>
+</div>
+</nav>
+<!-- Side Navigation Shell -->
+<aside class="fixed left-0 top-0 h-full w-[280px] z-40 bg-tertiary shadow-md border-r-[1.5px] border-outline hidden lg:flex flex-col pt-[64px]">
+<div class="px-md mb-xl">
+<h2 class="font-headline-sm text-headline-sm text-on-tertiary">Account Management</h2>
+<p class="font-label-md text-label-md text-on-tertiary-container">Vehicle &amp; Service Control</p>
+</div>
+<nav class="flex-1">
+<a class="flex items-center gap-md text-on-tertiary-container hover:text-on-tertiary px-4 py-3 transition-all hover:bg-tertiary-container" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md text-on-tertiary border-l-4 border-secondary-container bg-tertiary-container px-4 py-3 translate-x-1" href="#">
+<span class="material-symbols-outlined">directions_car</span>
+<span class="font-label-md">My Vehicles</span>
+</a>
+<a class="flex items-center gap-md text-on-tertiary-container hover:text-on-tertiary px-4 py-3 transition-all hover:bg-tertiary-container" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-md">Booking History</span>
+</a>
+<a class="flex items-center gap-md text-on-tertiary-container hover:text-on-tertiary px-4 py-3 transition-all hover:bg-tertiary-container" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md">Payments</span>
+</a>
+<a class="flex items-center gap-md text-on-tertiary-container hover:text-on-tertiary px-4 py-3 transition-all hover:bg-tertiary-container" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+</nav>
+<div class="p-md mt-auto mb-12">
+<button class="w-full bg-[#222222] text-white py-sm rounded-[5px] font-button-text">Add New Vehicle</button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:ml-[280px] pt-[54px] pb-[40px] min-h-screen px-lg max-w-[1440px]">
+<!-- Header & Input Area -->
+<header class="py-xl">
+<div class="max-w-3xl">
+<h1 class="font-headline-lg text-headline-lg text-primary mb-md">Towing Results</h1>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline">location_on</span>
+<input class="w-full pl-xl pr-md py-md bg-white border border-outline-variant rounded-[5px] focus:outline-none focus:border-secondary transition-all font-body-md shadow-sm" placeholder="Tow destination?" type="text" value="Connaught Place, New Delhi"/>
+<span class="absolute right-md top-1/2 -translate-y-1/2 font-label-md text-secondary cursor-pointer">Change</span>
+</div>
+</div>
+</header>
+<div class="grid grid-cols-12 gap-gutter items-start">
+<!-- Left Column: Options -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-lg h-[calc(100vh-280px)] overflow-y-auto custom-scrollbar pr-xs">
+<!-- Quick Tow Co. Card -->
+<div class="bg-white border border-outline-variant rounded-xl p-lg flex flex-col gap-md transition-all hover:shadow-md cursor-pointer border-l-4 border-l-secondary">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Quick Tow Co.</h3>
+<div class="flex items-center gap-xs mt-xs">
+<span class="material-symbols-outlined text-[16px] text-[#E0C040]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-on-surface">4.7</span>
+<span class="text-outline-variant">•</span>
+<span class="font-label-md text-on-surface-variant">2.4k reviews</span>
+</div>
+</div>
+<div class="bg-[#1B5E20]/10 text-[#1B5E20] px-sm py-xs rounded-full font-label-md">Verified</div>
+</div>
+<div class="flex justify-between items-center bg-surface-container-low p-sm rounded-lg">
+<div class="flex flex-col">
+<span class="font-label-md text-outline">ETA</span>
+<span class="font-body-md font-bold text-primary">10-15 min</span>
+</div>
+<div class="flex flex-col text-right">
+<span class="font-label-md text-outline">Price</span>
+<span class="font-headline-sm text-headline-sm text-primary">₹1,200</span>
+</div>
+</div>
+<button class="w-full bg-primary text-white py-sm rounded-[5px] font-button-text hover:bg-opacity-90 transition-all">Select Quick Tow</button>
+</div>
+<!-- City Rescue Card -->
+<div class="bg-white border border-outline-variant rounded-xl p-lg flex flex-col gap-md transition-all hover:shadow-md cursor-pointer">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">City Rescue</h3>
+<div class="flex items-center gap-xs mt-xs">
+<span class="material-symbols-outlined text-[16px] text-[#E0C040]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-on-surface">4.3</span>
+<span class="text-outline-variant">•</span>
+<span class="font-label-md text-on-surface-variant">1.8k reviews</span>
+</div>
+</div>
+<div class="bg-[#1A4A8A]/10 text-[#1A4A8A] px-sm py-xs rounded-full font-label-md">Economical</div>
+</div>
+<div class="flex justify-between items-center bg-surface-container-low p-sm rounded-lg">
+<div class="flex flex-col">
+<span class="font-label-md text-outline">ETA</span>
+<span class="font-body-md font-bold text-primary">18-22 min</span>
+</div>
+<div class="flex flex-col text-right">
+<span class="font-label-md text-outline">Price</span>
+<span class="font-headline-sm text-headline-sm text-primary">₹1,000</span>
+</div>
+</div>
+<button class="w-full bg-primary text-white py-sm rounded-[5px] font-button-text hover:bg-opacity-90 transition-all">Select City Rescue</button>
+</div>
+<!-- Combo Booking Tip Box -->
+<div class="bg-[#FFF9E6] border border-[#E0C040] rounded-xl p-lg relative overflow-hidden">
+<div class="flex flex-col gap-sm relative z-10">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-[#E0C040]">lightbulb</span>
+<span class="font-label-md font-bold text-[#484645]">Combo Booking Tip</span>
+</div>
+<p class="font-body-sm text-[#484645]">Book mechanic + towing together. If mechanic fixes it, cancel the tow — no charge.</p>
+<button class="mt-sm bg-white border border-[#E0C040] text-primary py-xs px-md rounded-[5px] font-button-text text-button-text hover:bg-surface-container transition-all">
+                            Book mechanic + towing together
+                        </button>
+</div>
+</div>
+</div>
+<!-- Middle Column: Live Map View -->
+<div class="col-span-12 lg:col-span-5 h-[calc(100vh-280px)] rounded-xl overflow-hidden border border-outline-variant relative">
+<img alt="Top-down satellite map view of city streets with dynamic navigation lines and small vehicle indicators." class="w-full h-full object-cover grayscale-[0.2]" data-alt="A sophisticated digital map visualization showcasing a top-down view of a dense metropolitan area. The streets are rendered in professional shades of slate and light grey, with vibrant blue paths indicating navigation routes. Icons representing tow trucks and user location are rendered as glowing geometric markers. The overall aesthetic is high-tech, clean, and utilitarian, emphasizing clarity and real-time data tracking." data-location="New Delhi" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABfe4oQt_G_hs7M0eEKGRjQUlzF5ATiSJo0Sk3srK4efP-I7lE5Ac0IGn1QqR1X2dIg1oUDzmdM-6X3xNfFDygYBsrk009bWSrWAZM4ZKRY3d7-KGhe5YImqCUpLa486F8XndZ98sKEN5TJGzAsQ7TKUoR0fazuDT9GGY7Wq5RruNvOmOFKeyX9lPvQ3S5CcePFqiKSsohAcsSVwfmJdLbguSBYh475SM8Hs05szISZ4g-ffqMo93dIrrIRkHSNCMna199h_pAy3U"/>
+<!-- Map Overlays -->
+<div class="absolute top-md left-md bg-white p-sm rounded-lg shadow-md border border-outline-variant flex items-center gap-sm">
+<div class="w-2 h-2 rounded-full bg-[#1B5E20] animate-pulse"></div>
+<span class="font-label-md text-primary">3 Trucks nearby</span>
+</div>
+<div class="absolute inset-0 pointer-events-none flex items-center justify-center">
+<div class="relative">
+<!-- User Pin -->
+<div class="w-8 h-8 bg-secondary rounded-full border-4 border-white shadow-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[18px]" style="font-variation-settings: 'FILL' 1;">person_pin_circle</span>
+</div>
+<div class="absolute top-full mt-xs bg-white px-sm py-xs rounded font-label-md shadow-lg border border-outline-variant">You</div>
+</div>
+</div>
+<!-- Tow Truck Pin 1 -->
+<div class="absolute top-1/4 right-1/4 pointer-events-none">
+<div class="w-10 h-10 bg-primary rounded-full border-2 border-white shadow-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[20px]">local_shipping</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Price Breakdown Sidebar -->
+<div class="col-span-12 lg:col-span-3 bg-white border border-outline-variant rounded-xl p-lg flex flex-col gap-lg shadow-sm">
+<div class="border-b border-outline-variant pb-md">
+<h3 class="font-headline-sm text-headline-sm text-primary">Price breakdown</h3>
+<p class="font-label-md text-outline">Estimates based on current route</p>
+</div>
+<div class="flex flex-col gap-md">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-on-surface-variant">Base charge</span>
+<span class="font-body-md font-bold text-primary">₹500.00</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-on-surface-variant">Extra per km (₹40/km)</span>
+<span class="font-body-md font-bold text-primary">₹480.00</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-on-surface-variant">Estimated distance</span>
+<span class="font-body-md text-secondary">12.0 km</span>
+</div>
+<div class="flex justify-between items-center border-t border-outline-variant pt-md mt-md">
+<span class="font-headline-sm text-headline-sm text-primary">Estimated total</span>
+<span class="font-headline-sm text-headline-sm text-primary">₹980.00*</span>
+</div>
+</div>
+<div class="bg-surface-container p-sm rounded-lg">
+<p class="font-label-md text-on-surface-variant italic">
+                        *Final price may vary based on actual distance and local traffic tolls.
+                    </p>
+</div>
+<div class="flex flex-col gap-sm mt-lg">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-[#1B5E20] text-[20px]">verified_user</span>
+<span class="font-label-md text-on-surface">Secure payment via MechHub</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline text-[20px]">schedule</span>
+<span class="font-label-md text-on-surface">Track in real-time</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer: UX Law Strip -->
+<footer class="fixed bottom-0 w-full h-[40px] z-[60] bg-[#FFF9E6] border-t border-[#E0C040] flex items-center justify-center px-md">
+<p class="font-body-sm text-body-sm text-tertiary">
+            Applied: <span class="font-bold">Hick's Law</span> - Reducing choices for faster decision making. | <span class="opacity-80">Documentation</span> | <span class="opacity-80">UX Research</span>
+</p>
+</footer>
+<!-- Mobile Bottom Navigation (Hidden on Large) -->
+<div class="md:hidden fixed bottom-[40px] left-0 w-full bg-white border-t border-outline-variant z-50 flex justify-around items-center py-sm shadow-lg">
+<div class="flex flex-col items-center gap-xs text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">directions_car</span>
+<span class="text-[10px] font-label-md">Towing</span>
+</div>
+<div class="flex flex-col items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined">build</span>
+<span class="text-[10px] font-label-md">Service</span>
+</div>
+<div class="flex flex-col items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined">history</span>
+<span class="text-[10px] font-label-md">History</span>
+</div>
+<div class="flex flex-col items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-label-md">Profile</span>
+</div>
+</div>
+<script>
+        // Simple Interaction logic for card selection
+        document.querySelectorAll('.cursor-pointer').forEach(card => {
+            card.addEventListener('click', function() {
+                document.querySelectorAll('.cursor-pointer').forEach(c => c.classList.remove('border-l-4', 'border-l-secondary'));
+                this.classList.add('border-l-4', 'border-l-secondary');
+            });
+        });
+
+        // Simulating truck movement on map
+        let truck = document.querySelector('.Tow Truck Pin 1'); // Placeholder for dynamic movement if added later
+    </script>
+</body></html>

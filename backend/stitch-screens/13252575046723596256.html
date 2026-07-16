@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MechHub SOS | Emergency Services</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@400;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@100..900&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary": "#ffffff",
+                      "surface-variant": "#e2e3e1",
+                      "surface-bright": "#f9f9f7",
+                      "inverse-surface": "#2f3130",
+                      "secondary-container": "#8fb7fe",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary-fixed": "#001b3e",
+                      "on-tertiary-fixed": "#1c1b1a",
+                      "surface-container-highest": "#e2e3e1",
+                      "outline-variant": "#c4c7c7",
+                      "secondary": "#335e9f",
+                      "on-surface": "#1a1c1b",
+                      "primary-fixed": "#e5e2e1",
+                      "secondary-fixed": "#d6e3ff",
+                      "inverse-on-surface": "#f1f1ef",
+                      "secondary-fixed-dim": "#aac7ff",
+                      "on-background": "#1a1c1b",
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed-variant": "#474746",
+                      "primary-container": "#222222",
+                      "on-surface-variant": "#444748",
+                      "background": "#f9f9f7",
+                      "surface-container-high": "#e8e8e6",
+                      "tertiary-fixed-dim": "#c9c6c4",
+                      "on-tertiary-fixed-variant": "#484645",
+                      "on-error": "#ffffff",
+                      "surface-container-low": "#f4f4f2",
+                      "outline": "#747878",
+                      "error": "#ba1a1a",
+                      "surface-container": "#eeeeec",
+                      "tertiary-fixed": "#e6e2e0",
+                      "on-secondary-fixed-variant": "#144686",
+                      "on-primary-fixed": "#1b1c1c",
+                      "on-primary-container": "#8a8989",
+                      "surface-tint": "#5f5e5e",
+                      "primary": "#0b0c0c",
+                      "on-secondary": "#ffffff",
+                      "inverse-primary": "#c8c6c5",
+                      "tertiary-container": "#232221",
+                      "error-container": "#ffdad6",
+                      "on-secondary-container": "#154686",
+                      "surface-dim": "#dadad8",
+                      "primary-fixed-dim": "#c8c6c5",
+                      "surface-container-lowest": "#ffffff",
+                      "surface": "#f9f9f7",
+                      "tertiary": "#0c0c0b",
+                      "on-tertiary-container": "#8c8987"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "lg": "24px",
+                      "xs": "4px",
+                      "xxl": "48px",
+                      "sm": "8px",
+                      "md": "16px",
+                      "margin": "64px",
+                      "xl": "32px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "headline-sm": ["DM Sans"],
+                      "button-text": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "display-lg": ["DM Sans"],
+                      "body-sm": ["Inter"],
+                      "headline-lg": ["DM Sans"],
+                      "headline-md": ["DM Sans"],
+                      "label-md": ["Inter"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                      "button-text": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                      "label-md": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .emergency-pulse {
+            animation: pulse-red 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-red {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(0.98); }
+        }
+        .bg-emergency {
+            background-color: #B71C1C;
+        }
+        .text-emergency {
+            color: #B71C1C;
+        }
+        .status-animate::after {
+            content: '';
+            animation: ellipsis 1.5s infinite;
+        }
+        @keyframes ellipsis {
+            0% { content: ''; }
+            33% { content: '.'; }
+            66% { content: '..'; }
+            100% { content: '...'; }
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-hidden">
+<!-- TopNavBar (Suppressed for focused SOS journey, but header remains for branding/exit) -->
+<header class="fixed top-0 w-full z-50 bg-white border-b border-outline-variant h-16 flex justify-between items-center px-lg">
+<div class="flex items-center gap-md">
+<button class="p-sm hover:bg-surface-container rounded-lg transition-colors" onclick="window.history.back()">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<span class="font-headline-md text-headline-md font-bold text-primary">MechHub</span>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-xs px-md py-xs bg-error-container rounded-full">
+<span class="material-symbols-outlined text-emergency text-[18px]">gpp_maybe</span>
+<span class="font-label-md text-label-md text-on-error-container uppercase tracking-widest">Emergency Protocol Active</span>
+</div>
+</div>
+</header>
+<main class="pt-16 h-screen w-full flex flex-col md:flex-row">
+<!-- Sidebar - Left Panel (Contextual) -->
+<div class="w-full md:w-[420px] bg-white border-r border-outline-variant p-lg flex flex-col gap-lg z-10 overflow-y-auto">
+<!-- Critical Broadcast Section -->
+<section class="flex flex-col gap-md">
+<h1 class="font-headline-lg text-headline-lg text-emergency">Critical Assistance</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Your current location and vehicle profile are being shared with emergency dispatchers.</p>
+<button class="emergency-pulse w-full bg-emergency text-white py-xl rounded-xl flex flex-col items-center justify-center gap-sm shadow-xl hover:brightness-110 transition-all active:scale-95" id="sos-button">
+<span class="material-symbols-outlined text-[48px]" style="font-variation-settings: 'FILL' 1;">emergency_share</span>
+<span class="font-button-text text-[20px] uppercase tracking-tighter">BROADCAST EMERGENCY</span>
+</button>
+</section>
+<!-- Status Bar / Real-time Feedback -->
+<section class="bg-surface-container-low border border-outline-variant p-md rounded-lg flex flex-col gap-sm">
+<div class="flex items-center gap-md">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emergency opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-emergency"></span>
+</span>
+<p class="font-label-md text-label-md text-on-surface status-animate">Notifying nearest 3 mechanics</p>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-secondary text-[18px] animate-spin">sync</span>
+<p class="font-label-md text-label-md text-on-surface-variant status-animate">Connecting to Emergency Services</p>
+</div>
+</section>
+<!-- Incident Type Quick-Tap -->
+<section class="flex flex-col gap-md">
+<h3 class="font-headline-sm text-headline-sm">Identify Incident</h3>
+<div class="grid grid-cols-1 gap-sm">
+<!-- Accident -->
+<button class="flex items-center justify-between p-md border border-outline-variant rounded-lg hover:bg-surface-container transition-all group">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-error-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-emergency" style="font-variation-settings: 'FILL' 1;">car_crash</span>
+</div>
+<div class="text-left">
+<p class="font-button-text text-body-md">Accident</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Collision or structural impact</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary">chevron_right</span>
+</button>
+<!-- Mechanical Failure -->
+<button class="flex items-center justify-between p-md border border-outline-variant rounded-lg hover:bg-surface-container transition-all group">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-secondary-container/20 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">precision_manufacturing</span>
+</div>
+<div class="text-left">
+<p class="font-button-text text-body-md">Mechanical Failure</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Engine, brake, or steering issue</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary">chevron_right</span>
+</button>
+<!-- Medical -->
+<button class="flex items-center justify-between p-md border border-outline-variant rounded-lg hover:bg-surface-container transition-all group">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-emergency/10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-emergency" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+</div>
+<div class="text-left">
+<p class="font-button-text text-body-md">Medical</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Immediate health assistance needed</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Vehicle Details Mini-Card -->
+<section class="mt-auto pt-lg border-t border-outline-variant">
+<div class="flex items-center gap-md bg-surface-container p-sm rounded-lg">
+<img class="w-16 h-12 object-cover rounded shadow-sm" data-alt="A professional photograph of a sleek dark grey executive sedan parked in a high-tech workshop setting with bright cool white lighting. The image emphasizes the metallic textures and safety engineering of the vehicle. The overall atmosphere is dependable, corporate, and modern, aligning with a premium logistics service aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-o174F449WyRJuaRpYCQ-SsLOsZH_jz95ZWuTkb-DFb4yDFvJUIva7QG2kyNI4ccDhxGYw-8eV7BRC5LEWqGMCv9pK1lTVwyXlsb3aI-pjBBKKHlygJVLEXj8q3bymTM-C8bbLlrl3W_RcT8cg-ic30du9b5-AT5TICe2MYTtV9AJHzU6dqjguPdBRUb-pJa9vL4tXRY1E7h2BSpEx4vmWobfmY5lM8siqjKJrlPo4PMcNVn4MkFqCVwoKwFJfFWBxhuzlXKMNjE"/>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Primary Vehicle</p>
+<p class="font-button-text text-body-md">Porsche 911 [ST-2024]</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Panel - Interactive Map -->
+<div class="flex-1 relative bg-surface-dim overflow-hidden">
+<div class="absolute inset-0 z-0 bg-cover bg-center" data-location="New York City" id="map-overlay" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCFwNdy1TzwbIDnwVhdJp6Y8MAFrLhkPu_gQbyumlu7Q7J27OFD4CfWQxg7lMB8IjcSddgsgehcqXxaJ76YeK5GYgcf2FrrPjgvl2EIDDztUU8KLf4YSzO017flix2hAhMahfTXMMzK5D_S7zZY3rPJnkrSXhMCMEI_IZrFNIDyM4PsM5OEMlLY6pzcaigvXvBcXadmDU6zoD2vNVSeHmnxwQqv_u75Hi5IRO0DsmDRhxjWkbUqYmVwxz6u0ycViy3WRKiCuwmFRVk')">
+</div>
+<!-- Map UI Overlays -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="relative">
+<!-- Beacon Effect -->
+<div class="absolute -inset-12">
+<div class="absolute inset-0 rounded-full bg-emergency opacity-20 animate-ping"></div>
+<div class="absolute inset-4 rounded-full bg-emergency opacity-30 animate-pulse"></div>
+</div>
+<!-- User Marker -->
+<div class="relative w-12 h-12 bg-emergency rounded-full flex items-center justify-center border-4 border-white shadow-2xl pointer-events-auto">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">person_pin_circle</span>
+</div>
+</div>
+</div>
+<!-- Mechanic Markers (Simulated) -->
+<div class="absolute top-1/4 right-1/3 mechanic-marker">
+<div class="bg-white px-md py-xs rounded-full flex items-center gap-xs shadow-md border border-outline-variant">
+<span class="material-symbols-outlined text-secondary text-[16px]" style="font-variation-settings: 'FILL' 1;">build</span>
+<span class="font-label-md text-label-md">Dispatch #102 - 3.2km</span>
+</div>
+</div>
+<!-- Floating Map Controls -->
+<div class="absolute right-lg bottom-xl flex flex-col gap-sm">
+<button class="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow-md hover:bg-surface-container">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow-md hover:bg-surface-container">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="w-12 h-12 bg-emergency text-white rounded-lg flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">my_location</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Footer - UX Law Strip -->
+<footer class="fixed bottom-0 w-full h-10 bg-[#FFF9E6] border-t border-[#E0C040] flex justify-center items-center px-margin z-40">
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 MechHub Logistics. <span class="font-bold">Applied: Hick's Law</span> (Minimized choices to critical paths for high-stress scenarios)</p>
+</footer>
+<script>
+        // Micro-interaction for the SOS broadcast button
+        const sosBtn = document.getElementById('sos-button');
+        let isBroadcasting = false;
+
+        sosBtn.addEventListener('click', () => {
+            if(!isBroadcasting) {
+                isBroadcasting = true;
+                sosBtn.classList.remove('emergency-pulse');
+                sosBtn.innerHTML = `
+                    <span class="material-symbols-outlined text-[48px] animate-spin">autorenew</span>
+                    <span class="font-button-text text-[20px] uppercase tracking-tighter">BROADCASTING ACTIVE</span>
+                `;
+                sosBtn.classList.add('bg-on-surface', 'cursor-wait');
+                
+                // Simulate successful contact after 3 seconds
+                setTimeout(() => {
+                    sosBtn.innerHTML = `
+                        <span class="material-symbols-outlined text-[48px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+                        <span class="font-button-text text-[20px] uppercase tracking-tighter">SIGNAL RECEIVED</span>
+                    `;
+                    sosBtn.classList.replace('bg-on-surface', 'bg-[#1B5E20]');
+                }, 3000);
+            }
+        });
+
+        // Toggle Active Mechanic Marker Visibility periodically
+        const marker = document.querySelector('.mechanic-marker');
+        setInterval(() => {
+            marker.style.opacity = marker.style.opacity === '0.5' ? '1' : '0.5';
+            marker.style.transition = 'opacity 1s ease-in-out';
+        }, 2000);
+    </script>
+</body></html>

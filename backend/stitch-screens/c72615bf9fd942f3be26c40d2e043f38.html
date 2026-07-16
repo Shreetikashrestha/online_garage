@@ -1,0 +1,69 @@
+# Online Garage: Frontend Product Requirement Document (PRD)
+
+## 1. Project Overview
+**Online Garage** is a high-fidelity, trust-centric service marketplace connecting vehicle owners with verified mechanics. The platform focuses on transparency, real-time tracking, and professional-grade precision.
+
+## 2. Design System (Visual Identity)
+*   **Theme:** Light Mode (Primary).
+*   **Color Palette:**
+    *   **Surface:** `#f9f9f7` (Clean, off-white background).
+    *   **Primary Charcoal:** `#222222` (Headings, primary buttons).
+    *   **Safety Red:** `#c00000` (SOS actions, high-priority alerts).
+    *   **Success Green:** `#2e7d32` (Verified badges, status indicators).
+    *   **Warning Yellow:** `#FFF9E6` background with `#E0C040` borders (Informational banners).
+*   **Typography:** DM Sans (Professional, legible, modern).
+*   **Principles:** Hick's Law (reducing complexity), Miller's Law (chunking information), and the Peak-End Rule (positive resolution).
+
+## 3. Core User Flows & Screen Map
+
+### Flow 1: Onboarding & Identity
+1.  **Landing Page:** Value proposition (Mechanical, Towing, Spare Parts), trust metrics, and global SOS trigger.
+2.  **Registration (3-Step):**
+    *   Step 1: Personal Info.
+    *   Step 2: Vehicle Profile (Make, Model, Year, Plate, VIN).
+    *   Step 3: Identity Verification (Government ID upload for "Pay After Service" eligibility).
+
+### Flow 2: Service Booking (The Funnel)
+1.  **Dashboard:** Central hub showing active incidents, recent bookings, and quick-action cards for services.
+2.  **Problem Picker:** Categorized selection (Mechanical, Tyre, Towing, Leak, Part Replacement).
+3.  **Vehicle Selection:** Multi-vehicle selection logic (Main vs. Secondary).
+4.  **Mechanic Discovery:** Proximity-based results with ratings, specialist badges, and live map view.
+5.  **Mechanic Profile:** Deep-dive into technician credentials, certifications, reviews, and specialized pricing.
+6.  **Service Review & Booking:** Final summary of labor, travel fees, and parts before payment.
+7.  **Payment Gateway:** Two-tier logic based on verification status (Verified = Pay After Service; Unverified = Escrow Pay Now).
+
+### Flow 3: Fulfillment & Tracking
+1.  **Live Tracking:** Real-time map with WebSocket-driven mechanic coordinates and estimated arrival.
+2.  **Service Timeline:** Chronological log of diagnostic confirmed, parts prep, and active repair status.
+3.  **Booking Confirmation:** Post-purchase summary with safety features and tracking share options.
+
+### Flow 4: Spare Parts Marketplace
+1.  **Parts Catalogue:** VIN-compatible search for Front Brake Pads, Air Filters, Spark Plugs, etc.
+2.  **Part Detail:** Technical specifications, installation time, and "Genuine" certification.
+3.  **Parts Checkout:** Scheduling installation with a certified mobile technician.
+
+### Flow 5: SOS & Emergency (High Priority)
+1.  **SOS Dispatch:** Immediate location detection and emergency service broadcasting.
+2.  **Medical Dispatch:** Proximity detection for Trauma Centers and "Slide to Dispatch" ambulance confirmation.
+3.  **Accident Protocol:** Safety checklist, coordinator voice-call integration, and incident documentation.
+4.  **Mechanical SOS:** Priority dispatch for engine/thermal criticality with remote visual tech inspection.
+
+### Flow 6: Management Suite
+1.  **Order History:** Comprehensive list of all past service interactions.
+2.  **Service History Timeline:** A technical audit trail of every repair performed on a vehicle.
+3.  **Invoices:** Digital billing records with line-item transparency.
+4.  **Account Settings:** Managing profile, vehicles, and verification status.
+
+## 4. Key Component Library
+*   **TopNavBar:** Global search, SOS trigger, and profile access.
+*   **SideNavBar:** Navigation between Dashboard, Garage, History, and Invoices.
+*   **Action Cards:** Context-aware cards for service selection.
+*   **Status Badges:** "Verified Master Tech," "Reliable," "Fastest Response."
+*   **Map Module:** Interactive Google/Mapbox integration for live tracking.
+*   **Safety Slider:** "Slide to Confirm" interaction pattern for high-stakes actions.
+
+## 5. Technical Requirements for Frontend AI
+*   **Responsive:** Desktop-first (as designed) with mobile-responsive breakpoints.
+*   **Framework:** React with Tailwind CSS for layout.
+*   **Icons:** Material Symbols (rounded) for technical clarity.
+*   **Accessibility:** ARIA labels for status logs and high-contrast text for critical safety information.

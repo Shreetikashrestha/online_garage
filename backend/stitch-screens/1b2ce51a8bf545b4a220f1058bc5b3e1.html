@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order History | Online Garage</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#dadad8",
+                    "on-secondary-fixed-variant": "#144686",
+                    "inverse-primary": "#c8c6c5",
+                    "tertiary-fixed": "#e6e2e0",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#5f5e5e",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed-dim": "#aac7ff",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "error": "#ba1a1a",
+                    "tertiary": "#0c0c0b",
+                    "primary-fixed": "#e5e2e1",
+                    "on-secondary-container": "#154686",
+                    "outline": "#747878",
+                    "inverse-surface": "#2f3130",
+                    "on-background": "#1a1c1b",
+                    "outline-variant": "#c4c7c7",
+                    "surface-container-highest": "#e2e3e1",
+                    "primary-container": "#222222",
+                    "on-primary-fixed-variant": "#474746",
+                    "inverse-on-surface": "#f1f1ef",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#d6e3ff",
+                    "secondary-container": "#8fb7fe",
+                    "surface-container-low": "#f4f4f2",
+                    "surface-container": "#eeeeec",
+                    "on-tertiary": "#ffffff",
+                    "primary": "#0b0c0c",
+                    "on-primary-fixed": "#1b1c1c",
+                    "on-primary-container": "#8a8989",
+                    "tertiary-fixed-dim": "#c9c6c4",
+                    "on-tertiary-container": "#8c8987",
+                    "surface-bright": "#f9f9f7",
+                    "secondary": "#335e9f",
+                    "on-error": "#ffffff",
+                    "surface-container-high": "#e8e8e6",
+                    "on-tertiary-fixed": "#1c1b1a",
+                    "background": "#f9f9f7",
+                    "on-tertiary-fixed-variant": "#484645",
+                    "surface-variant": "#e2e3e1",
+                    "on-surface": "#1a1c1b",
+                    "on-secondary-fixed": "#001b3e",
+                    "on-surface-variant": "#444748",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#232221",
+                    "on-error-container": "#93000a",
+                    "surface": "#f9f9f7"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "margin": "64px",
+                    "xl": "32px",
+                    "sm": "8px",
+                    "xxl": "48px",
+                    "xs": "4px",
+                    "lg": "24px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "button-text": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["DM Sans"],
+                    "body-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-sm": ["DM Sans"],
+                    "headline-lg": ["DM Sans"],
+                    "headline-md": ["DM Sans"]
+            },
+            "fontSize": {
+                    "button-text": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "label-md": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #F7F7F5;
+            color: #1a1c1b;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #DDDBD5;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-hidden">
+<!-- SideNavBar (Shared Component) -->
+<aside class="fixed left-0 top-0 h-full w-[280px] bg-tertiary dark:bg-tertiary-container border-r border-outline-variant flex flex-col h-full overflow-y-auto px-4 py-8 z-50">
+<div class="mb-xxl flex items-center gap-3">
+<div class="w-10 h-10 bg-secondary rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary" style="font-variation-settings: 'FILL' 1;">garage</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-tertiary">Online Garage</h1>
+<p class="font-body-sm text-body-sm text-on-tertiary-fixed-variant">Professional Workshop</p>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<!-- Navigation Items Mapping -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-tertiary-fixed-variant hover:bg-surface-variant/20 hover:text-on-tertiary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-tertiary-fixed-variant hover:bg-surface-variant/20 hover:text-on-tertiary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">directions_car</span>
+<span>My Vehicles</span>
+</a>
+<!-- Active State: Order History -->
+<a class="flex items-center gap-3 px-4 py-3 border-l-4 border-secondary text-on-tertiary font-bold bg-surface-variant/10 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history</span>
+<span>Order History</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-tertiary-fixed-variant hover:bg-surface-variant/20 hover:text-on-tertiary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">extension</span>
+<span>Compatibility</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-tertiary-fixed-variant hover:bg-surface-variant/20 hover:text-on-tertiary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span>Invoices</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-tertiary-fixed-variant hover:bg-surface-variant/20 hover:text-on-tertiary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Account Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-8 border-t border-outline-variant/20 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-variant/30 overflow-hidden">
+<img alt="Workshop Manager Profile" class="w-full h-full object-cover" data-alt="A professional portrait of a workshop manager in a modern garage environment. He is wearing a clean charcoal grey mechanic's uniform with a professional embroidered logo. The lighting is bright and clear, reflecting a high-end corporate workshop style with soft shadows and a focused, reliable expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGefNmPTyxW2Nmjkf4NtrJ5viMHGj815loHlqX54ir4GloZ2tNJ4oEt0YXkuYWHYQ1J_TPDaHxZqkccTcMrtMGA7UgNbtHM4jUBUx9qxd9r2iHavMo0BWuQ1gTfRuT3ML3gt_yLJItPCjjsUYglonWPlnjOBW7P3QAuzFtnSSnEptVjdvWxTne1jMrBDqM52JsHJ5GJSp1Y9M43_fbjSh2pMweUT29_41evKidNOGqO0Ubm0Vk_oDfa4_-rru5vAv-tHu9TPwSxVU"/>
+</div>
+<div>
+<p class="text-on-tertiary font-bold text-body-sm">Alex Rivera</p>
+<p class="text-on-tertiary-fixed-variant text-label-md">Manager ID: #9942</p>
+</div>
+</div>
+</aside>
+<!-- TopNavBar (Shared Component) -->
+<header class="fixed top-0 right-0 w-[calc(100%-280px)] h-16 bg-surface dark:bg-surface-container-lowest border-b border-outline-variant flex justify-between items-center px-lg z-40">
+<div class="flex items-center gap-md">
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary">Order History</h2>
+<div class="hidden md:flex gap-md ml-lg">
+<a class="text-on-surface-variant font-label-md hover:text-secondary transition-all" href="#">Dashboard</a>
+<a class="text-on-surface-variant font-label-md hover:text-secondary transition-all" href="#">Vehicles</a>
+<a class="text-on-surface-variant font-label-md hover:text-secondary transition-all" href="#">Support</a>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg pl-10 pr-4 py-2 text-body-sm focus:border-secondary focus:ring-0 transition-all" placeholder="Search orders..." type="text"/>
+</div>
+<button class="bg-[#B71C1C] text-white px-md py-2 rounded-[5px] font-button-text text-button-text hover:opacity-90 active:scale-95 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">emergency_home</span> SOS Help
+            </button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-[280px] mt-16 p-lg h-[calc(100vh-104px)] overflow-y-auto custom-scrollbar">
+<!-- Filter Bar -->
+<div class="bg-white border border-outline-variant rounded-lg p-md mb-lg flex flex-wrap items-center justify-between gap-md shadow-sm">
+<div class="flex flex-wrap items-center gap-md">
+<div class="flex flex-col gap-1">
+<span class="font-label-md text-on-surface-variant">SERVICE TYPE</span>
+<select class="bg-surface-container-low border border-outline-variant rounded-[5px] px-md py-2 text-body-sm min-w-[160px] focus:border-secondary outline-none">
+<option>All Services</option>
+<option>Mechanical</option>
+<option>Towing</option>
+<option>Spare Parts</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-md text-on-surface-variant">DATE RANGE</span>
+<div class="flex items-center gap-2">
+<input class="bg-surface-container-low border border-outline-variant rounded-[5px] px-md py-2 text-body-sm focus:border-secondary outline-none" type="date"/>
+<span class="text-on-surface-variant">to</span>
+<input class="bg-surface-container-low border border-outline-variant rounded-[5px] px-md py-2 text-body-sm focus:border-secondary outline-none" type="date"/>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-md text-on-surface-variant">VEHICLE</span>
+<select class="bg-surface-container-low border border-outline-variant rounded-[5px] px-md py-2 text-body-sm min-w-[160px] focus:border-secondary outline-none">
+<option>All Vehicles</option>
+<option>Toyota Hilux (MH-12-8822)</option>
+<option>Mahindra Thar (KA-01-4433)</option>
+</select>
+</div>
+</div>
+<button class="mt-4 sm:mt-0 flex items-center gap-2 px-lg py-2 border border-outline-variant rounded-[5px] hover:bg-surface-container transition-colors text-body-md font-semibold">
+<span class="material-symbols-outlined text-[18px]">filter_list</span> Apply Filters
+            </button>
+</div>
+<!-- Orders Table Card -->
+<div class="bg-white border border-outline-variant rounded-lg overflow-hidden shadow-sm">
+<div class="px-lg py-md border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest">
+<h3 class="font-headline-sm text-headline-sm text-primary">Service Logs</h3>
+<button class="text-secondary font-label-md flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-[16px]">download</span> Export CSV
+                </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Date</th>
+<th class="px-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Service Type</th>
+<th class="px-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Vehicle Details</th>
+<th class="px-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Service Provider</th>
+<th class="px-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Amount</th>
+<th class="px-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="px-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Entry 1 -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors">
+<td class="px-lg py-4">
+<div class="text-body-md font-semibold">Oct 12, 2023</div>
+<div class="text-label-md text-on-surface-variant">10:45 AM</div>
+</td>
+<td class="px-lg py-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">build</span>
+<span class="text-body-md">Mechanical</span>
+</div>
+</td>
+<td class="px-lg py-4">
+<div class="text-body-md font-medium">Toyota Hilux</div>
+<div class="text-label-md text-on-surface-variant">White • MH-12-AE-8822</div>
+</td>
+<td class="px-lg py-4">
+<div class="text-body-md">Apex Auto Solutions</div>
+<div class="text-label-md text-on-surface-variant">Verified Workshop</div>
+</td>
+<td class="px-lg py-4">
+<div class="text-body-md font-bold">₹14,500.00</div>
+</td>
+<td class="px-lg py-4">
+<span class="px-3 py-1 bg-[#1B5E20]/10 text-[#1B5E20] rounded-full text-label-md font-bold uppercase tracking-tight">Completed</span>
+</td>
+<td class="px-lg py-4 text-right">
+<button class="p-2 hover:bg-surface-container rounded-lg transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Entry 2 -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors">
+<td class="px-lg py-4">
+<div class="text-body-md font-semibold">Oct 08, 2023</div>
+<div class="text-label-md text-on-surface-variant">02:15 PM</div>
+</td>
+<td class="px-lg py-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">art_track</span>
+<span class="text-body-md">Towing</span>
+</div>
+</td>
+<td class="px-lg py-4">
+<div class="text-body-md font-medium">Mahindra Thar</div>
+<div class="text-label-md text-on-surface-variant">Black • KA-01-MT-4433</div>
+</td>
+<td class="px-lg py-4">
+<div class="text-body-md">Rapid Rescue Towing</div>
+<div class="text-label-md text-on-surface-variant">Emergency Unit</div>
+</td>
+<td class="px-lg py-4">
+<div class="text-body-md font-bold">₹4,200.00</div>
+</td>
+<td class="px-lg py-4">
+<span class="px-3 py-1 bg-[#1B5E20]/10 text-[#1B5E20] rounded-full text-label-md font-bold uppercase tracking-tight">Completed</span>
+</td>
+<td class="px-lg py-4 text-right">
+<button class="p-2 hover:bg-surface-container rounded-lg transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Entry 3 -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors">
+<td class="px-lg py-4">
+<div class="text-body-md font-semibold">Sep 28, 2023</div>
+<div class="text-label-md text-on-surface-variant">11:30 AM</div>
+</td>
+<td class="px-lg py-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">settings_input_component</span>
+<span class="text-body-md">Spare Parts</span>
+</div>
+</td>
+<td class="px-lg py-4">
+<div class="text-body-md font-medium">Toyota Hilux</div>
+<div class="text-label-md text-on-surface-variant">White • MH-12-AE-8822</div>
+</td>
+<td class="px-lg py-4">
+<div class="text-body-md">Genuine Motors Hub</div>
+<div class="text-label-md text-on-surface-variant">Retail Partner</div>
+</td>
+<td class="px-lg py-4">
+<div class="text-body-md font-bold">₹8,900.00</div>
+</td>
+<td class="px-lg py-4">
+<span class="px-3 py-1 bg-[#B71C1C]/10 text-[#B71C1C] rounded-full text-label-md font-bold uppercase tracking-tight">Refunded</span>
+</td>
+<td class="px-lg py-4 text-right">
+<button class="p-2 hover:bg-surface-container rounded-lg transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Entry 4 -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors">
+<td class="px-lg py-4">
+<div class="text-body-md font-semibold">Sep 15, 2023</div>
+<div class="text-label-md text-on-surface-variant">09:00 AM</div>
+</td>
+<td class="px-lg py-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">build</span>
+<span class="text-body-md">Mechanical</span>
+</div>
+</td>
+<td class="px-lg py-4">
+<div class="text-body-md font-medium">Mahindra Thar</div>
+<div class="text-label-md text-on-surface-variant">Black • KA-01-MT-4433</div>
+</td>
+<td class="px-lg py-4">
+<div class="text-body-md">Precision Gearbox Works</div>
+<div class="text-label-md text-on-surface-variant">Verified Workshop</div>
+</td>
+<td class="px-lg py-4">
+<div class="text-body-md font-bold">₹22,100.00</div>
+</td>
+<td class="px-lg py-4">
+<span class="px-3 py-1 bg-[#1B5E20]/10 text-[#1B5E20] rounded-full text-label-md font-bold uppercase tracking-tight">Completed</span>
+</td>
+<td class="px-lg py-4 text-right">
+<button class="p-2 hover:bg-surface-container rounded-lg transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">visibility</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-lg py-md border-t border-outline-variant flex items-center justify-between">
+<p class="text-body-sm text-on-surface-variant">Showing 4 of 128 orders</p>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1 border border-outline-variant rounded-[5px] disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="px-3 py-1 bg-primary text-white border border-primary rounded-[5px]">1</button>
+<button class="px-3 py-1 border border-outline-variant rounded-[5px]">2</button>
+<button class="px-3 py-1 border border-outline-variant rounded-[5px]">3</button>
+<span class="px-2">...</span>
+<button class="px-3 py-1 border border-outline-variant rounded-[5px]">32</button>
+<button class="px-3 py-1 border border-outline-variant rounded-[5px]">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Featured Breakdown (Bento Style) -->
+<div class="mt-lg grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="bg-white border border-outline-variant rounded-lg p-lg shadow-sm">
+<div class="flex items-center justify-between mb-md">
+<span class="font-label-md text-on-surface-variant">TOTAL SPENT (Q3)</span>
+<span class="material-symbols-outlined text-secondary">payments</span>
+</div>
+<div class="text-headline-lg font-bold">₹49,700</div>
+<div class="text-body-sm text-[#1B5E20] mt-2 flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> 12% from last quarter
+                </div>
+</div>
+<div class="bg-white border border-outline-variant rounded-lg p-lg shadow-sm">
+<div class="flex items-center justify-between mb-md">
+<span class="font-label-md text-on-surface-variant">MOST USED SERVICE</span>
+<span class="material-symbols-outlined text-secondary">build</span>
+</div>
+<div class="text-headline-lg font-bold">Mechanical</div>
+<div class="text-body-sm text-on-surface-variant mt-2">64% of total orders</div>
+</div>
+<div class="bg-primary text-white border border-primary rounded-lg p-lg shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="relative z-10">
+<div class="flex items-center justify-between mb-md">
+<span class="font-label-md text-primary-fixed">UPCOMING SERVICE</span>
+<span class="material-symbols-outlined text-secondary-fixed">event</span>
+</div>
+<div class="text-headline-sm font-bold">Toyota Hilux Oil Change</div>
+<div class="text-body-sm text-primary-fixed mt-2">Scheduled for Oct 25, 2023</div>
+</div>
+<button class="mt-lg relative z-10 w-full py-2 bg-secondary text-white rounded-[5px] font-button-text hover:brightness-110 transition-all">Reschedule</button>
+<!-- Decorative element -->
+<div class="absolute -right-8 -bottom-8 opacity-10 rotate-12">
+<span class="material-symbols-outlined text-[120px]">garage</span>
+</div>
+</div>
+</div>
+</main>
+<!-- UX Law Strip -->
+<div class="fixed bottom-0 left-0 w-full h-[40px] bg-[#FFF9E6] border-t border-[#E0C040] flex items-center justify-center z-[60]">
+<span class="text-body-sm text-[#856404] font-medium uppercase tracking-widest">Applied: Serial Position Effect (Key actions at edges of lists)</span>
+</div>
+<!-- Micro-interaction Script -->
+<script>
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.style.boxShadow = '0 4px 12px rgba(0,0,0,0.05)';
+            });
+            row.addEventListener('mouseleave', () => {
+                row.style.boxShadow = 'none';
+            });
+        });
+    </script>
+</body></html>

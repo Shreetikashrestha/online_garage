@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout & Installation | Online Garage</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=DM+Sans:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@100..900&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#c8c6c5",
+                    "inverse-surface": "#2f3130",
+                    "secondary": "#335e9f",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-variant": "#e2e3e1",
+                    "on-tertiary-container": "#8c8987",
+                    "surface-bright": "#f9f9f7",
+                    "surface-container": "#eeeeec",
+                    "secondary-fixed-dim": "#aac7ff",
+                    "on-tertiary-fixed": "#1c1b1a",
+                    "on-primary-fixed-variant": "#474746",
+                    "tertiary-fixed": "#e6e2e0",
+                    "on-primary-fixed": "#1b1c1c",
+                    "on-surface-variant": "#444748",
+                    "surface-tint": "#5f5e5e",
+                    "on-secondary-fixed": "#001b3e",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed-variant": "#484645",
+                    "on-secondary-fixed-variant": "#144686",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#d6e3ff",
+                    "inverse-on-surface": "#f1f1ef",
+                    "outline": "#747878",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "inverse-primary": "#c8c6c5",
+                    "on-primary-container": "#8a8989",
+                    "primary-container": "#222222",
+                    "background": "#f9f9f7",
+                    "outline-variant": "#c4c7c7",
+                    "secondary-container": "#8fb7fe",
+                    "tertiary-fixed-dim": "#c9c6c4",
+                    "tertiary": "#0c0c0b",
+                    "surface-container-low": "#f4f4f2",
+                    "surface-container-high": "#e8e8e6",
+                    "primary": "#0b0c0c",
+                    "on-error": "#ffffff",
+                    "tertiary-container": "#232221",
+                    "on-surface": "#1a1c1b",
+                    "surface-container-highest": "#e2e3e1",
+                    "primary-fixed": "#e5e2e1",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#154686",
+                    "on-background": "#1a1c1b",
+                    "surface-dim": "#dadad8",
+                    "surface": "#f9f9f7"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "xl": "32px",
+                    "margin": "64px",
+                    "xxl": "48px",
+                    "md": "16px",
+                    "xs": "4px",
+                    "sm": "8px",
+                    "lg": "24px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "button-text": ["Inter"],
+                    "headline-md": ["DM Sans"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["DM Sans"],
+                    "body-sm": ["Inter"],
+                    "display-lg": ["DM Sans"],
+                    "headline-sm": ["DM Sans"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "button-text": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .step-active { color: #335e9f; }
+        .step-done { color: #1B5E20; }
+        .workshop-border { border: 1px solid #DDDBD5; }
+        .glass-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); }
+        body { background-color: #F7F7F5; }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-gutter h-16 max-w-[1440px] mx-auto bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-xl">
+<span class="font-headline-lg text-headline-lg font-bold text-primary dark:text-inverse-primary">Online Garage</span>
+<nav class="hidden md:flex gap-md">
+<a class="font-button-text text-button-text text-on-surface-variant dark:text-surface-variant hover:text-secondary transition-colors duration-200" href="#">Dashboard</a>
+<a class="font-button-text text-button-text text-secondary dark:text-secondary-fixed-dim border-b-2 border-secondary" href="#">Parts Store</a>
+<a class="font-button-text text-button-text text-on-surface-variant dark:text-surface-variant hover:text-secondary transition-colors duration-200" href="#">My Vehicles</a>
+<a class="font-button-text text-button-text text-on-surface-variant dark:text-surface-variant hover:text-secondary transition-colors duration-200" href="#">History</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex gap-sm mr-md">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant">shopping_cart</span>
+</div>
+<button class="bg-[#B71C1C] text-white px-md py-xs rounded-[5px] font-bold text-button-text flex items-center gap-xs">
+                🚨 SOS Help
+            </button>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-[280px] z-40 py-lg px-md flex flex-col bg-tertiary dark:bg-tertiary shadow-md mt-16">
+<div class="flex items-center gap-md mb-xxl">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a highly skilled workshop mechanic wearing a clean black uniform with the Online Garage logo. The lighting is crisp and industrial, set against a background of high-end automotive tools and organized storage. The aesthetic is clean, corporate, and authoritative." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4rbJ3EAT7EgZPV8vmNgG6Ws2tUsUgv0cWCJfJ7go6wU8ckM0d0390mzdX0Dpr5LFDadVwYtSkr0CuRhHz0Qo0M55WiIFBwbdxJhcJXLtsbJsy4Fwna0mZEqkl3i1baWFxw4gQZBUWRInYpkMDugn83Pi8nidlNZFVcRr_X6dyDmTkRKwQGZqoJulwC4zf6BXVGWtXA3sG2P-NPSs001Rj1Hnc5UDZDFkbwUDoAlTiiYUPcxUAe5l-_bvu-GR9lw2KosJL3PCYBZQ"/>
+</div>
+<div>
+<p class="font-headline-md text-headline-md text-on-tertiary text-[18px]">Pro Service</p>
+<p class="font-body-sm text-body-sm text-on-tertiary-container">Certified Center</p>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-xs">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-tertiary-container hover:bg-primary-container transition-all" href="#">
+<span class="material-symbols-outlined">precision_manufacturing</span>
+<span class="font-label-md text-label-md">Catalog</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-tertiary-container hover:bg-primary-container transition-all" href="#">
+<span class="material-symbols-outlined">build</span>
+<span class="font-label-md text-label-md">Service</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg border-l-4 border-secondary text-on-tertiary bg-primary-container" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-tertiary-container hover:bg-primary-container transition-all" href="#">
+<span class="material-symbols-outlined">verified</span>
+<span class="font-label-md text-label-md">Warranty</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-tertiary-container hover:bg-primary-container transition-all" href="#">
+<span class="material-symbols-outlined">help_center</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+</nav>
+<button class="bg-[#222222] text-white py-md rounded-[5px] font-button-text text-button-text mb-xl mt-md">
+            New Appointment
+        </button>
+<div class="border-t border-on-tertiary-container/20 pt-md flex flex-col gap-xs">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-tertiary-container hover:bg-primary-container transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-tertiary-container hover:bg-primary-container transition-all" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-[280px] mt-16 p-margin max-w-[1160px] pb-xxl">
+<!-- Progress Stepper -->
+<div class="mb-xxl flex justify-between items-center max-w-4xl mx-auto px-lg">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px] text-green-700">check</span>
+</div>
+<span class="font-label-md text-label-md text-on-tertiary-container">Selection</span>
+</div>
+<div class="flex-1 h-[1px] bg-outline-variant mx-md"></div>
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px] text-green-700">check</span>
+</div>
+<span class="font-label-md text-label-md text-on-tertiary-container">Details</span>
+</div>
+<div class="flex-1 h-[1px] bg-outline-variant mx-md"></div>
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-secondary flex items-center justify-center">
+<span class="font-label-md text-label-md text-white">3</span>
+</div>
+<span class="font-label-md text-label-md text-secondary">Schedule</span>
+</div>
+<div class="flex-1 h-[1px] bg-outline-variant mx-md"></div>
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center">
+<span class="font-label-md text-label-md text-on-surface-variant">4</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Confirm</span>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-lg">
+<!-- Left Column: Selection & Calendar -->
+<div class="col-span-8 flex flex-col gap-lg">
+<!-- Selected Part Card -->
+<section class="bg-white p-lg rounded-lg workshop-border">
+<div class="flex justify-between items-start mb-lg">
+<div class="flex gap-lg">
+<div class="w-24 h-24 bg-surface-container-low rounded-lg overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A high-performance automotive high-flow air filter shown in a studio lighting setup. The filter features a red pleat design with a chrome housing, reflecting sharp industrial light. The background is a clean, neutral grey to emphasize the mechanical precision and quality of the part. Technical, clean, and high-utility aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfqLPLDHcubpm6P3Cw9Csy9SZw4_HKi477pP3jUQCHo5yJjf2wklLSurxE4L4DXOGHvJdQK0Eo8rcdTS-J2midhZBADxV7WYdwXVK67FOrrMK3b2XA2Q_7-DJAlC8KzCYaWkCT7ry2B8K_oe4J4DKTBGdkQcwnr8nYpj_lMcL0IZQ-5tt4uB9xlniLVVG8Im4ItQNXi24GMMz3kL5srK8wNQqLtxIzopnXdHXdvK8TrlPdlNsgLnOL7SEwZiqLdkKNUwKuD_Q3N_E"/>
+</div>
+<div>
+<div class="flex items-center gap-sm mb-xs">
+<span class="px-3 py-1 rounded-full bg-[#1B5E20]/10 text-[#1B5E20] font-label-md text-[10px] uppercase tracking-wider">Verified Part</span>
+<span class="font-label-md text-on-surface-variant">SKU: HAF-4092-G</span>
+</div>
+<h2 class="font-headline-md text-headline-md mb-xs">High-Flow Air Filter</h2>
+<p class="text-on-surface-variant font-body-sm">Performance series, improved airflow for V6/V8 engines.</p>
+</div>
+</div>
+<span class="font-headline-md text-headline-md text-secondary">$89.50</span>
+</div>
+<div class="grid grid-cols-2 gap-md p-sm bg-surface-container-low rounded-lg">
+<button class="flex items-center justify-center gap-sm py-md px-lg rounded-[5px] bg-white border-2 border-secondary text-secondary font-button-text">
+<span class="material-symbols-outlined">shopping_basket</span>
+                            Order Only
+                        </button>
+<button class="flex items-center justify-center gap-sm py-md px-lg rounded-[5px] bg-primary-container text-white font-button-text">
+<span class="material-symbols-outlined">build</span>
+                            Order + Install
+                        </button>
+</div>
+</section>
+<!-- Installation Calendar -->
+<section class="bg-white p-lg rounded-lg workshop-border">
+<div class="flex items-center gap-sm mb-lg">
+<span class="material-symbols-outlined text-secondary">calendar_today</span>
+<h3 class="font-headline-sm text-headline-sm">Select Installation Date</h3>
+</div>
+<div class="flex flex-col md:flex-row gap-xl">
+<!-- Simplified Calendar UI -->
+<div class="flex-1">
+<div class="flex justify-between items-center mb-md px-sm">
+<span class="font-bold text-body-md">November 2024</span>
+<div class="flex gap-sm">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary">chevron_left</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary">chevron_right</button>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-xs mb-md text-center">
+<div class="text-[10px] font-bold text-on-tertiary-container">S</div>
+<div class="text-[10px] font-bold text-on-tertiary-container">M</div>
+<div class="text-[10px] font-bold text-on-tertiary-container">T</div>
+<div class="text-[10px] font-bold text-on-tertiary-container">W</div>
+<div class="text-[10px] font-bold text-on-tertiary-container">T</div>
+<div class="text-[10px] font-bold text-on-tertiary-container">F</div>
+<div class="text-[10px] font-bold text-on-tertiary-container">S</div>
+</div>
+<div class="grid grid-cols-7 gap-xs text-center">
+<!-- Calendar Grid (Placeholders for logic) -->
+<div class="py-2 text-on-surface-variant/40">27</div>
+<div class="py-2 text-on-surface-variant/40">28</div>
+<div class="py-2 text-on-surface-variant/40">29</div>
+<div class="py-2 text-on-surface-variant/40">30</div>
+<div class="py-2 text-on-surface-variant/40">31</div>
+<div class="py-2 hover:bg-surface-container rounded cursor-pointer">1</div>
+<div class="py-2 hover:bg-surface-container rounded cursor-pointer">2</div>
+<div class="py-2 hover:bg-surface-container rounded cursor-pointer">3</div>
+<div class="py-2 hover:bg-surface-container rounded cursor-pointer">4</div>
+<div class="py-2 hover:bg-surface-container rounded cursor-pointer">5</div>
+<div class="py-2 hover:bg-surface-container rounded cursor-pointer">6</div>
+<div class="py-2 hover:bg-surface-container rounded cursor-pointer">7</div>
+<div class="py-2 hover:bg-surface-container rounded cursor-pointer">8</div>
+<div class="py-2 hover:bg-surface-container rounded cursor-pointer">9</div>
+<div class="py-2 bg-secondary text-white rounded font-bold">10</div>
+<div class="py-2 hover:bg-surface-container rounded cursor-pointer">11</div>
+<div class="py-2 hover:bg-surface-container rounded cursor-pointer">12</div>
+<div class="py-2 hover:bg-surface-container rounded cursor-pointer">13</div>
+<div class="py-2 hover:bg-surface-container rounded cursor-pointer">14</div>
+<div class="py-2 hover:bg-surface-container rounded cursor-pointer">15</div>
+<div class="py-2 hover:bg-surface-container rounded cursor-pointer">16</div>
+<div class="py-2 hover:bg-surface-container rounded cursor-pointer">17</div>
+</div>
+</div>
+<!-- Time Slots -->
+<div class="flex-1 flex flex-col gap-md">
+<h4 class="font-label-md text-label-md uppercase tracking-widest text-on-tertiary-container">Available Time Slots</h4>
+<div class="flex flex-col gap-sm">
+<label class="flex items-center justify-between p-md border border-outline-variant rounded-lg hover:border-secondary cursor-pointer transition-all">
+<div class="flex items-center gap-md">
+<input class="text-secondary focus:ring-secondary" name="timeslot" type="radio"/>
+<div>
+<p class="font-bold text-body-md">Morning</p>
+<p class="text-body-sm text-on-surface-variant">08:00 AM - 12:00 PM</p>
+</div>
+</div>
+<span class="text-[12px] font-bold text-green-700">Popular</span>
+</label>
+<label class="flex items-center justify-between p-md border border-secondary bg-secondary/5 rounded-lg cursor-pointer transition-all">
+<div class="flex items-center gap-md">
+<input checked="" class="text-secondary focus:ring-secondary" name="timeslot" type="radio"/>
+<div>
+<p class="font-bold text-body-md">Afternoon</p>
+<p class="text-body-sm text-on-surface-variant">01:00 PM - 05:00 PM</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary">check_circle</span>
+</label>
+<label class="flex items-center justify-between p-md border border-outline-variant rounded-lg hover:border-secondary cursor-pointer transition-all opacity-50">
+<div class="flex items-center gap-md">
+<input class="text-secondary" disabled="" name="timeslot" type="radio"/>
+<div>
+<p class="font-bold text-body-md">Evening</p>
+<p class="text-body-sm text-on-surface-variant">06:00 PM - 09:00 PM</p>
+</div>
+</div>
+<span class="text-[12px] font-bold text-error">Fully Booked</span>
+</label>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Summary -->
+<div class="col-span-4 flex flex-col gap-lg">
+<!-- Order Summary Card -->
+<section class="bg-white p-lg rounded-lg workshop-border shadow-sm sticky top-24">
+<h3 class="font-headline-sm text-headline-sm mb-lg border-b border-outline-variant pb-md">Order Summary</h3>
+<div class="space-y-md mb-lg">
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant">Parts Subtotal</span>
+<span class="font-bold">$89.50</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant">Installation Labor</span>
+<span class="font-bold">$45.00</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant">Travel Fee</span>
+<span class="text-[#1B5E20] font-bold">FREE</span>
+</div>
+</div>
+<div class="border-t-2 border-dashed border-outline-variant pt-lg mb-xl">
+<div class="flex justify-between items-center">
+<span class="font-headline-md text-headline-md">Grand Total</span>
+<span class="font-headline-lg text-headline-lg text-primary">$134.50</span>
+</div>
+</div>
+<div class="flex flex-col gap-sm mb-lg">
+<div class="flex items-center gap-sm text-[#1B5E20] bg-[#1B5E20]/5 p-sm rounded-lg">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+<span class="font-label-md text-label-md">Genuine Certified Parts</span>
+</div>
+<div class="flex items-center gap-sm text-[#1A4A8A] bg-[#1A4A8A]/5 p-sm rounded-lg">
+<span class="material-symbols-outlined text-[20px]">security</span>
+<span class="font-label-md text-label-md">12-Month / 12k Mile Warranty</span>
+</div>
+</div>
+<button class="w-full bg-[#222222] text-white py-lg rounded-[5px] font-button-text text-button-text flex items-center justify-center gap-md hover:opacity-90 transition-opacity">
+                        Confirm & Schedule
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<p class="text-center text-body-sm text-on-surface-variant mt-md">Secure Checkout powered by GaragePay</p>
+</section>
+</div>
+</div>
+</main>
+<!-- Footer / UX Law Strip -->
+<footer class="fixed bottom-0 left-0 w-full z-50 h-[40px] flex items-center justify-between px-gutter bg-[#FFF9E6] border-t border-[#E0C040]">
+<div class="flex gap-md font-body-sm text-body-sm">
+<a class="text-on-surface-variant hover:underline" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:underline" href="#">Privacy Policy</a>
+</div>
+<p class="font-body-sm text-body-sm text-[#5d4037] font-bold">Applied: Hick's Law</p>
+<p class="font-label-md text-label-md text-on-surface-variant">© 2024 Online Garage Workshop Grade Systems.</p>
+</footer>
+<script>
+        // Simple micro-interaction for date selection
+        document.querySelectorAll('.grid-cols-7 > div:not(.font-bold):not(.text-on-surface-variant\\/40)').forEach(day => {
+            day.addEventListener('click', function() {
+                document.querySelectorAll('.grid-cols-7 > div').forEach(d => {
+                    d.classList.remove('bg-secondary', 'text-white', 'font-bold');
+                    if(!d.classList.contains('text-on-surface-variant/40') && !d.classList.contains('font-bold')) {
+                        d.classList.add('hover:bg-surface-container', 'cursor-pointer');
+                    }
+                });
+                this.classList.add('bg-secondary', 'text-white', 'font-bold');
+                this.classList.remove('hover:bg-surface-container');
+            });
+        });
+    </script>
+</body></html>

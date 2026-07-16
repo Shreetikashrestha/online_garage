@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MechHub | Emergency Dispatch</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#c4c7c7",
+                    "tertiary-container": "#232221",
+                    "on-primary-fixed-variant": "#474746",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#2f3130",
+                    "error": "#ba1a1a",
+                    "secondary": "#335e9f",
+                    "on-primary-container": "#8a8989",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#eeeeec",
+                    "surface-bright": "#f9f9f7",
+                    "secondary-fixed-dim": "#aac7ff",
+                    "inverse-primary": "#c8c6c5",
+                    "surface-tint": "#5f5e5e",
+                    "surface-container-high": "#e8e8e6",
+                    "surface-dim": "#dadad8",
+                    "primary-container": "#222222",
+                    "primary": "#0b0c0c",
+                    "tertiary-fixed-dim": "#c9c6c4",
+                    "on-tertiary-fixed": "#1c1b1a",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "on-tertiary-fixed-variant": "#484645",
+                    "on-secondary-container": "#154686",
+                    "background": "#f9f9f7",
+                    "secondary-fixed": "#d6e3ff",
+                    "secondary-container": "#8fb7fe",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed": "#1b1c1c",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#f4f4f2",
+                    "surface": "#f9f9f7",
+                    "on-surface": "#1a1c1b",
+                    "on-background": "#1a1c1b",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e2e3e1",
+                    "outline": "#747878",
+                    "tertiary": "#0c0c0b",
+                    "surface-variant": "#e2e3e1",
+                    "on-tertiary-container": "#8c8987",
+                    "inverse-on-surface": "#f1f1ef",
+                    "on-surface-variant": "#444748",
+                    "on-secondary-fixed-variant": "#144686",
+                    "primary-fixed": "#e5e2e1",
+                    "tertiary-fixed": "#e6e2e0",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#001b3e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "xl": "32px",
+                    "md": "16px",
+                    "gutter": "24px",
+                    "margin": "64px",
+                    "sm": "8px",
+                    "lg": "24px",
+                    "xxl": "48px",
+                    "xs": "4px"
+            },
+            "fontFamily": {
+                    "button-text": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-sm": ["DM Sans"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["DM Sans"],
+                    "display-lg": ["DM Sans"],
+                    "body-sm": ["Inter"],
+                    "headline-md": ["DM Sans"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "button-text": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .emergency-shimmer {
+            background: linear-gradient(90deg, #ba1a1a 0%, #e53935 50%, #ba1a1a 100%);
+            background-size: 200% auto;
+            animation: shimmer 2s linear infinite;
+        }
+        @keyframes shimmer {
+            to { background-position: 200% center; }
+        }
+        .active-ring {
+            animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen overflow-hidden">
+<!-- TopNavBar (Fixed) -->
+<header class="fixed top-0 w-full h-[54px] z-50 bg-surface border-b-[1.5px] border-outline-variant">
+<div class="flex justify-between items-center px-lg h-full max-w-[1440px] mx-auto">
+<div class="font-headline-sm text-headline-sm font-bold text-primary">MechHub</div>
+<nav class="hidden md:flex gap-gutter items-center h-full">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Services</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Workshops</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Pricing</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Fleet</a>
+</nav>
+<div class="flex items-center gap-md">
+<button class="bg-[#B71C1C] text-white px-md py-xs rounded-lg font-button-text text-button-text hover:opacity-90 active:scale-[0.98] transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">emergency</span>
+                    Get Help Now
+                </button>
+</div>
+</div>
+</header>
+<!-- SideNavBar (Account Focused but Contextually Suppressed/Ghosted for Emergency) -->
+<aside class="fixed left-0 top-0 h-full w-[280px] z-40 bg-tertiary border-r-[1.5px] border-outline shadow-md flex flex-col pt-[64px] transition-transform duration-300 md:translate-x-0 -translate-x-full">
+<div class="px-lg mb-xl">
+<div class="flex items-center gap-md mb-sm">
+<div class="w-10 h-10 rounded-full bg-tertiary-container border border-outline overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a corporate male user with a clean-cut appearance, wearing a dark grey polo shirt. The lighting is soft and even, against a neutral studio background, reflecting a professional and trustworthy profile image for a high-end service platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6HPlh6mSGrkDjroKACSEusBCiktQnTMfRjzh1RvlVujzTYYNqY16k2r6PqXw4FXXRMJ017wLcQ4e4HopYhFr5vfPA_-NIroGDyXv7d4GCc3XUBBe5ycpjXcbEWquJPWpVNu3g4UhzYWUpRFHaIXN5Sv34dHqU_K7WgsVLmC6h5TsAR_44RdrMT7TpGKz8rN0_-ZxwKqoJKuS4iuA8GqfCGczG22oIrW1EYOxNieVgBvGtKdrVwXVvK8N5E3OPNhD3_sKZ3uWJ3vY"/>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-tertiary">Alex Rivera</h3>
+<p class="font-label-md text-label-md text-on-tertiary-container">Premium Member</p>
+</div>
+</div>
+</div>
+<nav class="flex-1">
+<a class="flex items-center gap-md text-on-tertiary border-l-4 border-secondary-container bg-tertiary-container px-4 py-3 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-md text-on-tertiary-container hover:text-on-tertiary px-4 py-3 font-label-md text-label-md transition-all" href="#">
+<span class="material-symbols-outlined">directions_car</span> My Vehicles
+            </a>
+<a class="flex items-center gap-md text-on-tertiary-container hover:text-on-tertiary px-4 py-3 font-label-md text-label-md transition-all" href="#">
+<span class="material-symbols-outlined">history</span> Booking History
+            </a>
+<a class="flex items-center gap-md text-on-tertiary-container hover:text-on-tertiary px-4 py-3 font-label-md text-label-md transition-all" href="#">
+<span class="material-symbols-outlined">payments</span> Payments
+            </a>
+<a class="flex items-center gap-md text-on-tertiary-container hover:text-on-tertiary px-4 py-3 font-label-md text-label-md transition-all" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+</nav>
+<div class="p-lg">
+<a class="flex items-center gap-md text-on-tertiary-container hover:text-on-tertiary font-label-md text-label-md mb-sm" href="#">
+<span class="material-symbols-outlined">help</span> Help Center
+            </a>
+<a class="flex items-center gap-md text-on-tertiary-container hover:text-on-tertiary font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">logout</span> Sign Out
+            </a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-0 md:ml-[280px] pt-[54px] pb-[40px] h-screen flex flex-col">
+<!-- Emergency Status Banner -->
+<div class="emergency-shimmer w-full px-lg py-md flex flex-wrap items-center justify-between shadow-lg">
+<div class="flex items-center gap-md">
+<div class="bg-white/20 p-2 rounded-full">
+<span class="material-symbols-outlined text-white animate-pulse" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-white font-bold leading-tight uppercase tracking-wider">Accident Reported</h2>
+<p class="font-label-md text-label-md text-white/90">INCIDENT ID: #MH-9021-X • DISPATCHED 4m 12s AGO</p>
+</div>
+</div>
+<div class="flex items-center gap-xl">
+<div class="text-right hidden sm:block">
+<p class="font-label-md text-label-md text-white/80 uppercase">Response Priority</p>
+<p class="font-headline-sm text-headline-sm text-white font-bold">URGENT (LVL 1)</p>
+</div>
+<div class="h-10 w-[1px] bg-white/20 hidden sm:block"></div>
+<div class="text-right">
+<p class="font-label-md text-label-md text-white/80 uppercase">Est. Arrival</p>
+<p class="font-headline-sm text-headline-sm text-white font-bold">~ 8 MINS</p>
+</div>
+</div>
+</div>
+<div class="flex-1 grid grid-cols-1 lg:grid-cols-12 overflow-hidden">
+<!-- Left Side: Interactive Map Center Stage -->
+<div class="lg:col-span-8 relative bg-surface-container overflow-hidden group">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover" data-alt="A highly detailed satellite-style map of a metropolitan city street junction at night. The view is top-down, with sharp street layouts in muted dark greys and navy blues. A glowing blue pulse marks the user's location, while two stylized emergency vehicle icons in bright red are shown approaching the intersection. The aesthetic is professional, clean, and high-contrast for readability." data-location="New York" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2bXnPXMbiJjFwHYweFdo4vm2rAwGFSK0e33A1lfh3JDK4J9pwT0hkVRxgsXP7QcVtS8p1ga5FnLwFcHp5AI5T3VlYAb2jKHTIJXXBbRCbttZ5l6yRS88lF4KBrA58vtR4-68XQSjSxGxLSyqbbsYQVzNM5qdsYkNVVqGDaU0SABTvXvyJPDuEw3t4CnbEcT74WSv4o4bD-AeXGagmvQFV6UYPjUmz9moN6owJxQn4M1WcslFH0VTm1bZok4D4YlhEzIrtyo4ngnQ"/>
+</div>
+<!-- Overlay Elements -->
+<div class="absolute top-md left-md flex flex-col gap-sm z-10">
+<div class="bg-white/95 backdrop-blur-sm border border-outline-variant p-sm rounded-lg shadow-sm flex items-center gap-md">
+<div class="w-8 h-8 rounded bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">my_location</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface">5th Ave &amp; W 34th St, New York, NY</p>
+</div>
+</div>
+<div class="absolute bottom-md right-md z-10 flex flex-col gap-sm">
+<button class="bg-white border border-outline-variant w-10 h-10 flex items-center justify-center rounded-lg shadow-md hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface">add</span>
+</button>
+<button class="bg-white border border-outline-variant w-10 h-10 flex items-center justify-center rounded-lg shadow-md hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface">remove</span>
+</button>
+</div>
+<!-- Unit Highlight Tracking -->
+<div class="absolute top-1/2 left-1/3 transform -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none">
+<div class="relative">
+<div class="absolute inset-0 bg-[#B71C1C] rounded-full active-ring"></div>
+<div class="relative bg-[#B71C1C] text-white p-2 rounded-xl shadow-xl flex items-center gap-2 border-2 border-white">
+<span class="material-symbols-outlined">airport_shuttle</span>
+<span class="font-label-md text-[10px] font-bold">M1-AMB</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side: Emergency Coordinator & Details -->
+<div class="lg:col-span-4 border-l border-outline-variant bg-surface flex flex-col overflow-y-auto">
+<!-- Emergency Coordinator Profile -->
+<div class="p-lg border-b border-outline-variant bg-surface-container-lowest">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-md">Emergency Coordinator</h3>
+<div class="flex items-center gap-md mb-lg">
+<div class="relative">
+<div class="w-16 h-16 rounded-full bg-surface-container border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a professional female emergency coordinator in her early 40s. She is wearing a headset and a professional black uniform with a silver dispatcher badge. The background is a slightly blurred command center with monitor glows. She has a calm, focused, and reassuring expression, conveying trust and immediate assistance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfN0VjsVx4eUJJyFdkBtpygBTji9SWXcih1zqQdjrgTUqYjxXl8ljDMAwboDWrGuPQ5zAuzyM1ovazMa8BXgP5_3BBN70nAFdcO_qTj5uQNSvPZSKg5_VheTdlCb5ClGxSXtkaFrsS2dVgc8jMIv0x9HNYqA8c09rVfvdM1-cPAc4U7LElcR6HuwUygHs8gXOrLd2jNYmBPjPqvOLzgujl_2-IlUN-0LJFQ1soY6lsdqo3DwKIl6-QDcMhevTECH6bDthq1sKrcU0"/>
+</div>
+<div class="absolute bottom-0 right-0 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></div>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Sarah Mitchell</h4>
+<p class="font-label-md text-label-md text-on-surface-variant">Incident Lead Dispatcher</p>
+</div>
+</div>
+<button class="w-full py-md bg-secondary text-white rounded-lg font-button-text text-button-text flex items-center justify-center gap-md hover:shadow-lg transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">call</span>
+                        Initiate Voice Call
+                    </button>
+<button class="w-full mt-sm py-md border border-outline-variant text-on-surface rounded-lg font-button-text text-button-text flex items-center justify-center gap-md hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined">chat_bubble</span>
+                        Secure Text Message
+                    </button>
+</div>
+<!-- Vehicle & Insurance -->
+<div class="p-lg">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-md">Vehicle &amp; Responder Info</h3>
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-md">
+<div class="flex justify-between items-start mb-md">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Active Vehicle</p>
+<p class="font-headline-sm text-headline-sm font-bold">Tesla Model 3</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">White • ABC-1234 • NY</p>
+</div>
+<span class="bg-[#1B5E201A] text-[#1B5E20] px-3 py-1 rounded-full text-[10px] font-bold uppercase">Verified</span>
+</div>
+<div class="h-[1px] bg-outline-variant/30 mb-md"></div>
+<div class="space-y-sm">
+<div class="flex justify-between">
+<span class="font-label-md text-on-surface-variant">Insurance Provider</span>
+<span class="font-label-md font-bold text-on-surface">State Farm Elite</span>
+</div>
+<div class="flex justify-between">
+<span class="font-label-md text-on-surface-variant">Policy Number</span>
+<span class="font-label-md font-bold text-on-surface">POL-882194-00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Immediate Safety Steps -->
+<div class="p-lg mt-auto">
+<div class="bg-[#B71C1C0D] border border-[#B71C1C26] rounded-xl p-lg">
+<h3 class="font-headline-sm text-headline-sm text-[#B71C1C] font-bold mb-md">Safety Checklist</h3>
+<ul class="space-y-md">
+<li class="flex items-start gap-md group cursor-pointer">
+<div class="w-6 h-6 border-2 border-[#B71C1C55] rounded flex-shrink-0 flex items-center justify-center group-hover:border-[#B71C1C] transition-colors">
+<span class="material-symbols-outlined text-[18px] text-[#B71C1C] opacity-0 group-[.checked]:opacity-100 transition-opacity">check</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">Check all occupants for injuries</span>
+</li>
+<li class="flex items-start gap-md group cursor-pointer">
+<div class="w-6 h-6 border-2 border-[#B71C1C55] rounded flex-shrink-0 flex items-center justify-center group-hover:border-[#B71C1C] transition-colors">
+<span class="material-symbols-outlined text-[18px] text-[#B71C1C] opacity-0 group-[.checked]:opacity-100 transition-opacity">check</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">Turn on hazard lights immediately</span>
+</li>
+<li class="flex items-start gap-md group cursor-pointer">
+<div class="w-6 h-6 border-2 border-[#B71C1C55] rounded flex-shrink-0 flex items-center justify-center group-hover:border-[#B71C1C] transition-colors">
+<span class="material-symbols-outlined text-[18px] text-[#B71C1C] opacity-0 group-[.checked]:opacity-100 transition-opacity">check</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">Exit vehicle only if safe to do so</span>
+</li>
+<li class="flex items-start gap-md group cursor-pointer">
+<div class="w-6 h-6 border-2 border-[#B71C1C55] rounded flex-shrink-0 flex items-center justify-center group-hover:border-[#B71C1C] transition-colors">
+<span class="material-symbols-outlined text-[18px] text-[#B71C1C] opacity-0 group-[.checked]:opacity-100 transition-opacity">check</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">Wait for dispatch confirmation</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- UX Law Strip (Fixed) -->
+<footer class="fixed bottom-0 w-full h-[40px] z-[60] bg-[#FFF9E6] border-t border-[#E0C040] flex items-center justify-center px-md">
+<p class="font-body-sm text-body-sm text-tertiary">Applied: Hick's Law - Reducing choices for faster decision making during crisis.</p>
+</footer>
+<script>
+        // Simple micro-interaction for checklist items
+        document.querySelectorAll('li.group').forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('checked');
+                const checkIcon = item.querySelector('.material-symbols-outlined');
+                if(item.classList.contains('checked')) {
+                    checkIcon.style.opacity = '1';
+                    item.querySelector('span').style.textDecoration = 'line-through';
+                    item.querySelector('span').style.opacity = '0.5';
+                } else {
+                    checkIcon.style.opacity = '0';
+                    item.querySelector('span').style.textDecoration = 'none';
+                    item.querySelector('span').style.opacity = '1';
+                }
+            });
+        });
+
+        // Toggle Sidebar on mobile
+        document.addEventListener('keydown', function(e) {
+            if(e.key === 'Escape') {
+                document.querySelector('aside').classList.toggle('-translate-x-full');
+            }
+        });
+    </script>
+</body></html>

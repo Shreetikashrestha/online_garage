@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Invoices | Online Garage</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "surface-dim": "#dadad8",
+                "on-secondary-fixed-variant": "#144686",
+                "inverse-primary": "#c8c6c5",
+                "tertiary-fixed": "#e6e2e0",
+                "on-primary": "#ffffff",
+                "surface-tint": "#5f5e5e",
+                "surface-container-lowest": "#ffffff",
+                "secondary-fixed-dim": "#aac7ff",
+                "primary-fixed-dim": "#c8c6c5",
+                "error": "#ba1a1a",
+                "tertiary": "#0c0c0b",
+                "primary-fixed": "#e5e2e1",
+                "on-secondary-container": "#154686",
+                "outline": "#747878",
+                "inverse-surface": "#2f3130",
+                "on-background": "#1a1c1b",
+                "outline-variant": "#c4c7c7",
+                "surface-container-highest": "#e2e3e1",
+                "primary-container": "#222222",
+                "on-primary-fixed-variant": "#474746",
+                "inverse-on-surface": "#f1f1ef",
+                "error-container": "#ffdad6",
+                "secondary-fixed": "#d6e3ff",
+                "secondary-container": "#8fb7fe",
+                "surface-container-low": "#f4f4f2",
+                "surface-container": "#eeeeec",
+                "on-tertiary": "#ffffff",
+                "primary": "#0b0c0c",
+                "on-primary-fixed": "#1b1c1c",
+                "on-primary-container": "#8a8989",
+                "tertiary-fixed-dim": "#c9c6c4",
+                "on-tertiary-container": "#8c8987",
+                "surface-bright": "#f9f9f7",
+                "secondary": "#335e9f",
+                "on-error": "#ffffff",
+                "surface-container-high": "#e8e8e6",
+                "on-tertiary-fixed": "#1c1b1a",
+                "background": "#f9f9f7",
+                "on-tertiary-fixed-variant": "#484645",
+                "surface-variant": "#e2e3e1",
+                "on-surface": "#1a1c1b",
+                "on-secondary-fixed": "#001b3e",
+                "on-surface-variant": "#444748",
+                "on-secondary": "#ffffff",
+                "tertiary-container": "#232221",
+                "on-error-container": "#93000a",
+                "surface": "#f9f9f7"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "spacing": {
+                "md": "16px",
+                "margin": "64px",
+                "xl": "32px",
+                "sm": "8px",
+                "xxl": "48px",
+                "xs": "4px",
+                "lg": "24px",
+                "gutter": "24px"
+            },
+            "fontFamily": {
+                "button-text": ["Inter"],
+                "label-md": ["Inter"],
+                "body-lg": ["Inter"],
+                "display-lg": ["DM Sans"],
+                "body-md": ["Inter"],
+                "body-sm": ["Inter"],
+                "headline-sm": ["DM Sans"],
+                "headline-lg": ["DM Sans"],
+                "headline-md": ["DM Sans"]
+            },
+            "fontSize": {
+                "button-text": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                "label-md": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f9f9f7;
+            font-family: 'Inter', sans-serif;
+            color: #1a1c1b;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .invoice-row:hover {
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.05);
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body class="overflow-hidden">
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-full w-[280px] bg-tertiary dark:bg-tertiary-container border-r border-outline-variant flex flex-col h-full overflow-y-auto px-4 py-8 z-20">
+<div class="mb-10 px-4">
+<h1 class="font-headline-md text-headline-md font-bold text-on-tertiary">Online Garage</h1>
+<p class="text-on-tertiary-fixed-variant font-body-sm text-body-sm mt-1">Professional Workshop</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-tertiary-fixed-variant hover:bg-surface-variant/20 hover:text-on-tertiary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-tertiary-fixed-variant hover:bg-surface-variant/20 hover:text-on-tertiary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">directions_car</span>
+<span class="font-body-md text-body-md">My Vehicles</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-tertiary-fixed-variant hover:bg-surface-variant/20 hover:text-on-tertiary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-body-md text-body-md">Order History</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-tertiary-fixed-variant hover:bg-surface-variant/20 hover:text-on-tertiary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">extension</span>
+<span class="font-body-md text-body-md">Compatibility</span>
+</a>
+<!-- Active Navigation State -->
+<a class="flex items-center gap-3 px-4 py-3 border-l-4 border-secondary text-on-tertiary font-bold bg-surface-variant/10 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-body-md text-body-md">Invoices</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-tertiary-fixed-variant hover:bg-surface-variant/20 hover:text-on-tertiary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Account Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-4 pt-8 border-t border-surface-variant/10 flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg overflow-hidden bg-surface-container">
+<img alt="Workshop Manager Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKjpRsDPrTz9TUoDYIS8Vjn__dvVm6KLvYUkdp2Xi382ZyrOrltABZv9t70rWh2Wf-SR8Fl0tKeqbJWA68DPlLfC4RsgNzAeNHgh4KrVVNyNSYxCwVWXw0IJEaUSVAiBOhPWq4iulYH9L_sBD7BE_fotk4iY0RVGCPXOvBiCJxLcqrzUxWgh7Qa6d1bcoYBB-KiNTz64ylMP7PBIcUa2w8HuyGjCMW4Ou4SoykWaF7iQrAvYr9wmzuFcgo2wdC2AMDW3TBpeYDhfA"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-tertiary">Alex Garage</p>
+<p class="text-[10px] text-on-tertiary-fixed-variant uppercase tracking-wider">Manager</p>
+</div>
+</div>
+</aside>
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 right-0 w-[calc(100%-280px)] h-16 bg-surface dark:bg-surface-container-lowest border-b border-outline-variant flex justify-between items-center px-lg z-10">
+<div class="flex items-center gap-8">
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary">Invoices</h2>
+<nav class="hidden md:flex gap-6">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-all" href="#">Dashboard</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-all" href="#">Vehicles</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-all" href="#">Support</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<input class="bg-surface-container-low border border-outline-variant rounded-[5px] pl-10 pr-4 py-1.5 text-sm focus:border-secondary focus:ring-0 w-64 transition-all" placeholder="Search invoices..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">search</span>
+</div>
+<button class="bg-[#B71C1C] text-white px-4 py-2 rounded-[5px] font-button-text text-button-text flex items-center gap-2 hover:brightness-110 active:scale-[0.98] transition-all shadow-md">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">emergency_home</span>
+                🚨 SOS Help
+            </button>
+</div>
+</header>
+<!-- Main Canvas Area -->
+<main class="ml-[280px] pt-16 h-screen overflow-y-auto">
+<div class="p-margin max-w-[1440px] mx-auto">
+<!-- Summary Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-xl">
+<!-- Total Spending Card -->
+<div class="bg-white border border-outline-variant p-lg rounded-lg flex flex-col justify-between h-40">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Total Lifetime Spending</p>
+<h3 class="font-display-lg text-display-lg mt-2 text-primary">$12,482.50</h3>
+</div>
+<div class="flex items-center gap-2 text-[#1B5E20]">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span class="text-xs font-semibold">12% from last quarter</span>
+</div>
+</div>
+<!-- Outstanding Card -->
+<div class="bg-white border border-outline-variant p-lg rounded-lg flex flex-col justify-between h-40 relative overflow-hidden">
+<div class="z-10">
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Outstanding Balance</p>
+<h3 class="font-display-lg text-display-lg mt-2 text-[#B71C1C]">$420.00</h3>
+</div>
+<div class="z-10">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-[#B71C1C]/10 text-[#B71C1C]">
+                            2 Overdue Invoices
+                        </span>
+</div>
+<!-- Subtle graphic background decoration -->
+<div class="absolute -right-4 -bottom-4 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-9xl">warning</span>
+</div>
+</div>
+<!-- Active Service Card -->
+<div class="bg-primary text-white p-lg rounded-lg flex flex-col justify-between h-40">
+<div>
+<p class="font-label-md text-label-md text-on-primary-fixed-variant uppercase tracking-widest text-surface-variant/60">Last Service Date</p>
+<h3 class="font-headline-lg text-headline-lg mt-2">Oct 24, 2023</h3>
+</div>
+<button class="text-white text-xs font-bold underline flex items-center gap-1 hover:text-secondary-container transition-colors">
+                        View Service Logs <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Invoices Table Container -->
+<div class="bg-white border border-outline-variant rounded-lg overflow-hidden">
+<div class="px-lg py-md border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest">
+<h4 class="font-headline-sm text-headline-sm">Invoice History</h4>
+<div class="flex gap-2">
+<button class="flex items-center gap-2 px-3 py-1.5 border border-outline-variant rounded-lg text-sm font-semibold hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-md">filter_list</span> Filter
+                        </button>
+<button class="flex items-center gap-2 px-3 py-1.5 border border-outline-variant rounded-lg text-sm font-semibold hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-md">calendar_today</span> This Year
+                        </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low">
+<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant border-b border-outline-variant">Invoice ID</th>
+<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant border-b border-outline-variant">Date</th>
+<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant border-b border-outline-variant">Status</th>
+<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant border-b border-outline-variant">Amount</th>
+<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant border-b border-outline-variant text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 (Overdue) -->
+<tr class="invoice-row transition-all duration-200">
+<td class="px-lg py-5 font-bold font-body-md text-body-md">#INV-88219</td>
+<td class="px-lg py-5 font-body-md text-body-md">Nov 02, 2023</td>
+<td class="px-lg py-5">
+<span class="px-3 py-1 rounded-full bg-[#B71C1C]/10 text-[#B71C1C] text-[11px] font-bold uppercase tracking-wider">Overdue</span>
+</td>
+<td class="px-lg py-5 font-bold font-body-md text-body-md">$245.00</td>
+<td class="px-lg py-5 text-right">
+<button class="bg-primary text-white px-4 py-1.5 rounded-[5px] text-xs font-bold hover:bg-secondary transition-all active:scale-95 flex items-center gap-2 ml-auto">
+                                        Pay Now
+                                    </button>
+</td>
+</tr>
+<!-- Row 2 (Paid) -->
+<tr class="invoice-row transition-all duration-200">
+<td class="px-lg py-5 font-bold font-body-md text-body-md">#INV-88104</td>
+<td class="px-lg py-5 font-body-md text-body-md">Oct 14, 2023</td>
+<td class="px-lg py-5">
+<span class="px-3 py-1 rounded-full bg-[#1B5E20]/10 text-[#1B5E20] text-[11px] font-bold uppercase tracking-wider">Paid</span>
+</td>
+<td class="px-lg py-5 font-bold font-body-md text-body-md">$1,220.00</td>
+<td class="px-lg py-5 text-right">
+<button class="text-on-surface-variant hover:text-primary flex items-center gap-1 ml-auto transition-colors">
+<span class="material-symbols-outlined text-lg">download</span>
+<span class="font-button-text text-xs">PDF</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 (Paid) -->
+<tr class="invoice-row transition-all duration-200">
+<td class="px-lg py-5 font-bold font-body-md text-body-md">#INV-87955</td>
+<td class="px-lg py-5 font-body-md text-body-md">Sep 28, 2023</td>
+<td class="px-lg py-5">
+<span class="px-3 py-1 rounded-full bg-[#1B5E20]/10 text-[#1B5E20] text-[11px] font-bold uppercase tracking-wider">Paid</span>
+</td>
+<td class="px-lg py-5 font-bold font-body-md text-body-md">$86.00</td>
+<td class="px-lg py-5 text-right">
+<button class="text-on-surface-variant hover:text-primary flex items-center gap-1 ml-auto transition-colors">
+<span class="material-symbols-outlined text-lg">download</span>
+<span class="font-button-text text-xs">PDF</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 (Paid) -->
+<tr class="invoice-row transition-all duration-200">
+<td class="px-lg py-5 font-bold font-body-md text-body-md">#INV-87501</td>
+<td class="px-lg py-5 font-body-md text-body-md">Aug 12, 2023</td>
+<td class="px-lg py-5">
+<span class="px-3 py-1 rounded-full bg-[#1B5E20]/10 text-[#1B5E20] text-[11px] font-bold uppercase tracking-wider">Paid</span>
+</td>
+<td class="px-lg py-5 font-bold font-body-md text-body-md">$3,420.00</td>
+<td class="px-lg py-5 text-right">
+<button class="text-on-surface-variant hover:text-primary flex items-center gap-1 ml-auto transition-colors">
+<span class="material-symbols-outlined text-lg">download</span>
+<span class="font-button-text text-xs">PDF</span>
+</button>
+</td>
+</tr>
+<!-- Row 5 (Overdue) -->
+<tr class="invoice-row transition-all duration-200">
+<td class="px-lg py-5 font-bold font-body-md text-body-md">#INV-87222</td>
+<td class="px-lg py-5 font-body-md text-body-md">Jul 05, 2023</td>
+<td class="px-lg py-5">
+<span class="px-3 py-1 rounded-full bg-[#B71C1C]/10 text-[#B71C1C] text-[11px] font-bold uppercase tracking-wider">Overdue</span>
+</td>
+<td class="px-lg py-5 font-bold font-body-md text-body-md">$175.00</td>
+<td class="px-lg py-5 text-right">
+<button class="bg-primary text-white px-4 py-1.5 rounded-[5px] text-xs font-bold hover:bg-secondary transition-all active:scale-95 flex items-center gap-2 ml-auto">
+                                        Pay Now
+                                    </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-lg py-md bg-surface-container-low border-t border-outline-variant flex justify-between items-center">
+<p class="text-sm text-on-surface-variant">Showing <span class="font-bold">1-5</span> of <span class="font-bold">24</span> invoices</p>
+<div class="flex gap-2">
+<button class="p-2 border border-outline-variant rounded bg-white text-on-surface-variant disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-2 border border-outline-variant rounded bg-white text-on-surface-variant">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Promotion / Action Area -->
+<div class="mt-xl grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+<div class="bg-secondary-container p-lg rounded-lg flex items-center gap-6 group hover:shadow-lg transition-shadow cursor-pointer">
+<div class="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-secondary-container">Garage Care Subscription</h4>
+<p class="font-body-sm text-body-sm text-on-secondary-container/80 mt-1">Get 15% off all invoices with our annual maintenance plan. Proactive care for your vehicle.</p>
+<button class="mt-3 font-button-text text-button-text text-on-secondary-container flex items-center gap-2 group-hover:gap-4 transition-all">
+                            Learn More <span class="material-symbols-outlined">east</span>
+</button>
+</div>
+</div>
+<div class="bg-tertiary-container p-lg rounded-lg flex items-center gap-6 group hover:shadow-lg transition-shadow cursor-pointer">
+<div class="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center text-on-tertiary">
+<span class="material-symbols-outlined text-4xl">contact_support</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-tertiary">Billing Questions?</h4>
+<p class="font-body-sm text-body-sm text-on-tertiary/60 mt-1">Chat with our finance department about invoice discrepancies or custom payment plans.</p>
+<button class="mt-3 font-button-text text-button-text text-on-tertiary flex items-center gap-2 group-hover:gap-4 transition-all">
+                            Open Ticket <span class="material-symbols-outlined">contact_mail</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- UX Law Strip -->
+<div class="fixed bottom-0 left-0 w-full h-[40px] bg-[#FFF9E6] border-t border-[#E0C040] flex items-center justify-center z-50">
+<p class="font-body-sm text-body-sm text-[#856404] tracking-tight">Applied: <span class="font-bold">Aesthetic-Usability Effect</span> — Professional invoice management builds long-term user trust.</p>
+</div>
+<!-- Notification Micro-interaction script -->
+<script>
+        document.querySelectorAll('.invoice-row').forEach(row => {
+            row.addEventListener('click', () => {
+                console.log('Invoice details opened');
+                // Simple visual feedback could be added here
+            });
+        });
+    </script>
+</body></html>

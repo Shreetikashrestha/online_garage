@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Account Settings | Online Garage</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=DM+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#dadad8",
+                    "on-secondary-fixed-variant": "#144686",
+                    "inverse-primary": "#c8c6c5",
+                    "tertiary-fixed": "#e6e2e0",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#5f5e5e",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed-dim": "#aac7ff",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "error": "#ba1a1a",
+                    "tertiary": "#0c0c0b",
+                    "primary-fixed": "#e5e2e1",
+                    "on-secondary-container": "#154686",
+                    "outline": "#747878",
+                    "inverse-surface": "#2f3130",
+                    "on-background": "#1a1c1b",
+                    "outline-variant": "#c4c7c7",
+                    "surface-container-highest": "#e2e3e1",
+                    "primary-container": "#222222",
+                    "on-primary-fixed-variant": "#474746",
+                    "inverse-on-surface": "#f1f1ef",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#d6e3ff",
+                    "secondary-container": "#8fb7fe",
+                    "surface-container-low": "#f4f4f2",
+                    "surface-container": "#eeeeec",
+                    "on-tertiary": "#ffffff",
+                    "primary": "#0b0c0c",
+                    "on-primary-fixed": "#1b1c1c",
+                    "on-primary-container": "#8a8989",
+                    "tertiary-fixed-dim": "#c9c6c4",
+                    "on-tertiary-container": "#8c8987",
+                    "surface-bright": "#f9f9f7",
+                    "secondary": "#335e9f",
+                    "on-error": "#ffffff",
+                    "surface-container-high": "#e8e8e6",
+                    "on-tertiary-fixed": "#1c1b1a",
+                    "background": "#f9f9f7",
+                    "on-tertiary-fixed-variant": "#484645",
+                    "surface-variant": "#e2e3e1",
+                    "on-surface": "#1a1c1b",
+                    "on-secondary-fixed": "#001b3e",
+                    "on-surface-variant": "#444748",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#232221",
+                    "on-error-container": "#93000a",
+                    "surface": "#f9f9f7"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "margin": "64px",
+                    "xl": "32px",
+                    "sm": "8px",
+                    "xxl": "48px",
+                    "xs": "4px",
+                    "lg": "24px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "button-text": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["DM Sans"],
+                    "body-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-sm": ["DM Sans"],
+                    "headline-lg": ["DM Sans"],
+                    "headline-md": ["DM Sans"]
+            },
+            "fontSize": {
+                    "button-text": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "label-md": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #f9f9f7;
+            color: #1a1c1b;
+            font-family: 'Inter', sans-serif;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid #DDDBD5;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+<!-- SIDEBAR NAVIGATION -->
+<aside class="fixed left-0 top-0 h-full w-[280px] bg-tertiary dark:bg-tertiary-container border-r border-outline-variant flex flex-col h-full overflow-y-auto px-4 py-8 z-50">
+<div class="mb-xxl px-2">
+<h1 class="font-headline-md text-headline-md font-bold text-on-tertiary">Online Garage</h1>
+<p class="font-body-sm text-body-sm text-on-tertiary-fixed-variant opacity-70">Professional Workshop</p>
+</div>
+<nav class="flex-grow space-y-1">
+<!-- Dashboard -->
+<a class="flex items-center gap-3 px-4 py-3 rounded transition-colors duration-200 text-on-tertiary-fixed-variant hover:bg-surface-variant/20 hover:text-on-tertiary" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<!-- My Vehicles -->
+<a class="flex items-center gap-3 px-4 py-3 rounded transition-colors duration-200 text-on-tertiary-fixed-variant hover:bg-surface-variant/20 hover:text-on-tertiary" href="#">
+<span class="material-symbols-outlined">directions_car</span>
+<span class="font-body-md text-body-md">My Vehicles</span>
+</a>
+<!-- Order History -->
+<a class="flex items-center gap-3 px-4 py-3 rounded transition-colors duration-200 text-on-tertiary-fixed-variant hover:bg-surface-variant/20 hover:text-on-tertiary" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-body-md text-body-md">Order History</span>
+</a>
+<!-- Compatibility -->
+<a class="flex items-center gap-3 px-4 py-3 rounded transition-colors duration-200 text-on-tertiary-fixed-variant hover:bg-surface-variant/20 hover:text-on-tertiary" href="#">
+<span class="material-symbols-outlined">extension</span>
+<span class="font-body-md text-body-md">Compatibility</span>
+</a>
+<!-- Invoices -->
+<a class="flex items-center gap-3 px-4 py-3 rounded transition-colors duration-200 text-on-tertiary-fixed-variant hover:bg-surface-variant/20 hover:text-on-tertiary" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-body-md text-body-md">Invoices</span>
+</a>
+<!-- Account Settings (ACTIVE) -->
+<a class="flex items-center gap-3 px-4 py-3 border-l-4 border-secondary text-on-tertiary font-bold bg-surface-variant/10 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Account Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-8 border-t border-outline-variant/20 px-2 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden">
+<img alt="Workshop Manager Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a workshop manager with a confident and friendly expression, set against a blurred background of a modern automotive garage. The person is wearing a clean charcoal work shirt, suggesting expertise and reliability. The lighting is soft and professional, emphasizing a modern corporate aesthetic within a technical field." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnXkH0JzAfdjCeCLWwKqSoRT3VAOMCK3BYUxAYuL88i22WuJYUf0UK9AEZd3WrLlF9BaTiOLPfWc-wYRpuAQeXnjVXVU5e7_mSxGBW4_vzqUZ32AZ5xdVPO-HfT8hylhDQrs-37k3ii11QqWajyO2t8JdOJToCKrIhuyCHGV9JjqEgtpfL1jAZUqgZEI-jNK9suRNO5nCPvPTrJF2narQ0kMW95CkblYZyOYcvNrJ9DHauFNplaPUPpEoYDVwsZ9whS4Bhym0DUbQ"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-tertiary">Alex Carter</p>
+<p class="font-body-sm text-body-sm text-on-tertiary-fixed-variant text-[10px]">Senior Tech</p>
+</div>
+</div>
+</aside>
+<!-- TOP NAVIGATION -->
+<header class="fixed top-0 right-0 w-[calc(100%-280px)] h-16 bg-surface dark:bg-surface-container-lowest border-b border-outline-variant flex justify-between items-center px-lg z-40">
+<div class="flex items-center gap-xl">
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary">Account Settings</h2>
+<nav class="hidden md:flex gap-md">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-all" href="#">Dashboard</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-all" href="#">Vehicles</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-all" href="#">Support</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 border border-outline-variant rounded-[5px] bg-surface-container-low text-body-sm focus:outline-none focus:border-secondary transition-all" placeholder="Search settings..." type="text"/>
+</div>
+<button class="bg-[#B71C1C] text-white font-button-text text-button-text px-4 py-2 rounded-[5px] hover:scale-[0.98] transition-all">
+                🚨 SOS Help
+            </button>
+</div>
+</header>
+<!-- MAIN CONTENT -->
+<main class="ml-[280px] pt-24 px-xxl pb-xxl max-w-[1160px]">
+<!-- HEADER SECTION -->
+<div class="mb-xl flex justify-between items-end">
+<div>
+<h3 class="font-headline-lg text-headline-lg text-primary mb-xs">Profile &amp; Privacy</h3>
+<p class="text-on-surface-variant font-body-md text-body-md">Manage your technical credentials and garage security protocols.</p>
+</div>
+<div class="flex items-center gap-sm bg-[#1B5E20]/10 text-[#1B5E20] px-4 py-2 rounded-full border border-[#1B5E20]/20">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-label-md text-label-md uppercase tracking-wider">Verified Professional</span>
+</div>
+</div>
+<!-- BENTO LAYOUT -->
+<div class="bento-grid">
+<!-- Profile Information (Large) -->
+<section class="col-span-8 glass-card rounded-lg p-lg flex flex-col">
+<div class="flex justify-between items-start mb-lg">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-primary">Profile Information</h4>
+<p class="text-body-sm text-on-surface-variant">Public identity for workshop collaborations.</p>
+</div>
+<button class="text-secondary font-label-md hover:underline">Edit details</button>
+</div>
+<div class="grid grid-cols-2 gap-lg mb-lg">
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant block">Full Name</label>
+<div class="px-md py-3 bg-surface-container-low border border-outline-variant rounded-[5px] font-body-md">Alex Carter</div>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant block">Official Email</label>
+<div class="px-md py-3 bg-surface-container-low border border-outline-variant rounded-[5px] font-body-md">a.carter@onlinegarage.com</div>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant block">Phone Number</label>
+<div class="px-md py-3 bg-surface-container-low border border-outline-variant rounded-[5px] font-body-md">+1 (555) 012-3456</div>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant block">Workshop ID</label>
+<div class="px-md py-3 bg-surface-container-low border border-outline-variant rounded-[5px] font-body-md text-on-surface-variant italic">#OG-772-CARTER</div>
+</div>
+</div>
+<div class="mt-auto pt-lg border-t border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-[#1B5E20]">check_circle</span>
+<p class="text-body-sm">Your credentials have been verified by Garage HQ.</p>
+</div>
+<a class="text-[#1A4A8A] font-button-text hover:underline text-sm flex items-center gap-1" href="#">
+                        Re-verify status <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+</a>
+</div>
+</section>
+<!-- Security Highlights (Small Side) -->
+<section class="col-span-4 glass-card rounded-lg p-lg border-l-4 border-error">
+<div class="mb-md">
+<h4 class="font-headline-sm text-headline-sm text-primary">Security Health</h4>
+<p class="text-body-sm text-on-surface-variant">Last login: 2 hours ago from London, UK</p>
+</div>
+<div class="space-y-md">
+<div class="flex items-center justify-between p-md bg-surface-container rounded-lg">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">fingerprint</span>
+<span class="font-body-sm">Biometric Unlock</span>
+</div>
+<div class="w-8 h-4 bg-secondary rounded-full relative cursor-pointer">
+<div class="absolute right-0.5 top-0.5 w-3 h-3 bg-white rounded-full"></div>
+</div>
+</div>
+<div class="flex items-center justify-between p-md bg-surface-container rounded-lg">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">vpn_key</span>
+<span class="font-body-sm">Session Timeout</span>
+</div>
+<span class="text-label-md font-bold text-on-surface-variant">30 MIN</span>
+</div>
+</div>
+<button class="w-full mt-lg bg-primary text-white font-button-text text-button-text py-3 rounded-[5px] hover:opacity-90 transition-opacity">
+                    Update Security Protocol
+                </button>
+</section>
+<!-- Notification Preferences (Medium) -->
+<section class="col-span-5 glass-card rounded-lg p-lg">
+<h4 class="font-headline-sm text-headline-sm text-primary mb-md">Notification Hub</h4>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="mt-1">
+<input checked="" class="w-4 h-4 text-secondary border-outline-variant rounded focus:ring-secondary" type="checkbox"/>
+</div>
+<div>
+<p class="font-label-md text-label-md">Critical Alerts</p>
+<p class="text-body-sm text-on-surface-variant">High-priority vehicle safety warnings and SOS pings.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="mt-1">
+<input checked="" class="w-4 h-4 text-secondary border-outline-variant rounded focus:ring-secondary" type="checkbox"/>
+</div>
+<div>
+<p class="font-label-md text-label-md">Order Updates</p>
+<p class="text-body-sm text-on-surface-variant">Status changes on parts, inventory and repair schedules.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="mt-1">
+<input class="w-4 h-4 text-secondary border-outline-variant rounded focus:ring-secondary" type="checkbox"/>
+</div>
+<div>
+<p class="font-label-md text-label-md">Marketing &amp; Tips</p>
+<p class="text-body-sm text-on-surface-variant">Occasional workshop optimization advice and partner news.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Password & 2FA (Medium-Large) -->
+<section class="col-span-7 glass-card rounded-lg p-lg">
+<div class="flex items-center gap-3 mb-lg">
+<div class="w-10 h-10 bg-[#1A4A8A]/10 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-[#1A4A8A]">shield_lock</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-primary">Security Enforcement</h4>
+<p class="text-body-sm text-on-surface-variant">Passwords and two-factor authentication.</p>
+</div>
+</div>
+<div class="space-y-lg">
+<div class="flex items-center justify-between pb-md border-b border-outline-variant">
+<div>
+<p class="font-label-md text-label-md">Password</p>
+<p class="text-body-sm text-on-surface-variant">Last changed 45 days ago.</p>
+</div>
+<button class="border border-outline px-4 py-2 font-button-text text-sm rounded-[5px] hover:bg-surface-container transition-colors">Change Password</button>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="font-label-md text-label-md">Two-Factor Authentication (2FA)</p>
+<p class="text-body-sm text-on-surface-variant">Active via Authenticator App.</p>
+</div>
+<button class="bg-[#1B5E20]/10 text-[#1B5E20] border border-[#1B5E20]/20 px-4 py-2 font-button-text text-sm rounded-[5px]">Manage 2FA</button>
+</div>
+</div>
+</section>
+</div>
+<!-- FOOTER INFO BOX -->
+<div class="mt-xl p-lg bg-[#F1F1EF] border border-[#DDDBD5] rounded-lg flex items-center gap-lg">
+<span class="material-symbols-outlined text-primary scale-125">info</span>
+<div>
+<p class="font-label-md text-label-md">Data Privacy &amp; Storage</p>
+<p class="text-body-sm text-on-surface-variant">Your workshop data is encrypted using AES-256 standards. We never share your technical diagnostics with third parties without explicit consent. <a class="text-secondary underline" href="#">Read Privacy Policy</a></p>
+</div>
+</div>
+</main>
+<!-- UX LAW STRIP -->
+<footer class="fixed bottom-0 left-0 w-full h-[40px] bg-[#FFF9E6] border-t border-[#E0C040] flex items-center justify-center z-[60]">
+<p class="font-body-sm text-body-sm text-[#856404] font-semibold">Applied: Miller's Law (Organized settings into 7±2 manageable semantic clusters)</p>
+</footer>
+<!-- INTERACTION SCRIPTS -->
+<script>
+        // Simple micro-interaction for hover states
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.boxShadow = '0px 4px 12px rgba(0,0,0,0.05)';
+                card.style.transform = 'translateY(-2px)';
+                card.style.transition = 'all 0.3s ease';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.boxShadow = 'none';
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>

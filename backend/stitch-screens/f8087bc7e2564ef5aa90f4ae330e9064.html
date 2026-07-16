@@ -1,0 +1,59 @@
+# Online Garage: State Transition & Prototyping Map
+
+## 1. Global Navigation & Core States
+- **Authentication State:** `Logged Out` (Landing, Registration) | `Logged In` (Dashboard, Booking, Management).
+- **Verification State:** `Unverified` (Mandatory Escrow, No discounts) | `Verified` (Pay After Service, 10% discount).
+- **Emergency State:** `Normal` | `SOS Active` (Priority UI, Dispatch tracking).
+
+## 2. Interaction Flows & Transitions
+
+### A. The Onboarding Flow (User Activation)
+1. **Landing Page** `{{DATA:SCREEN:SCREEN_82}}`
+   - Action: Click "Get Started" -> `Transition: Registration`
+   - Action: Click "SOS Help" -> `Transition: SOS Selection`
+2. **Registration (Step 1: Personal)** `{{DATA:SCREEN:SCREEN_52}}`
+   - Action: Click "Continue" -> `Transition: Add Vehicle`
+3. **Add Vehicle Form (Step 2: Profile)** `{{DATA:SCREEN:SCREEN_80}}`
+   - Action: Click "Continue" -> `Transition: Identity Verification`
+   - Action: Click "Skip" -> `Transition: Dashboard` (Sets user to `Unverified`)
+4. **Identity Verification (Step 3: ID Upload)** `{{DATA:SCREEN:SCREEN_141}}`
+   - Action: Click "Complete" -> `Transition: Dashboard` (Sets user to `Verified`)
+
+### B. The Booking Funnel (Standard Service)
+1. **Dashboard** `{{DATA:SCREEN:SCREEN_110}}`
+   - Action: Click "Mechanical" -> `Transition: Problem Picker`
+2. **Problem Picker** `{{DATA:SCREEN:SCREEN_49}}`
+   - Action: Click Category -> `Transition: Vehicle Selection`
+3. **Vehicle Selection** `{{DATA:SCREEN:SCREEN_120}}`
+   - Action: Select Vehicle -> `Transition: Mechanic Selection`
+4. **Mechanic Selection** `{{DATA:SCREEN:SCREEN_51}}`
+   - Action: Click "Select" -> `Transition: Booking Review`
+5. **Booking Review** `{{DATA:SCREEN:SCREEN_151}}`
+   - Action: Click "Proceed" -> `Transition: Payment Options`
+6. **Payment Options** `{{DATA:SCREEN:SCREEN_73}}`
+   - **Logic Check:** 
+     - If `Verified`: Enable "Pay After Service" + 10% Discount.
+     - If `Unverified`: Highlight "Pay Now" + "Verify ID to unlock Post-pay" link.
+   - Action: Confirm Payment -> `Transition: Booking Confirmed`
+7. **Booking Confirmed** `{{DATA:SCREEN:SCREEN_50}}`
+   - Action: Click "Track" -> `Transition: Live Tracking`
+
+### C. Emergency SOS Flow (High Priority)
+1. **SOS Selection** `{{DATA:SCREEN:SCREEN_131}}`
+   - Action: Select "Medical" -> `Transition: Hospital Detection`
+   - Action: Select "Accident" -> `Transition: Accident Dispatch`
+   - Action: Select "Mechanical" -> `Transition: Mechanical Failure Dispatch`
+2. **Hospital Detection** `{{DATA:SCREEN:SCREEN_134}}`
+   - Action: "Slide to Confirm" -> `Transition: Ambulance Dispatch`
+3. **Ambulance Dispatch** `{{DATA:SCREEN:SCREEN_40}}`
+   - Action: Slide -> `State: Active Dispatch`
+
+### D. Management Suite (Post-Service)
+1. **Dashboard** -> `Transition: Order History` `{{DATA:SCREEN:SCREEN_35}}`
+2. **Order History** -> `Transition: Invoices` `{{DATA:SCREEN:SCREEN_153}}`
+3. **Global Nav** -> `Transition: Account Settings` `{{DATA:SCREEN:SCREEN_72}}`
+
+## 3. Data Flow & Escrow Logic
+- **Escrow Trigger:** Initiated on `Unverified` Payment Confirmation.
+- **Funds Release:** Triggered by `User Approval` on `Repair Summary` screen.
+- **Discount Logic:** `Total = (Base + Labor + Parts) * 0.9` applied globally for `Verified` users.

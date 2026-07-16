@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Select Mechanic | Online Garage</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#5f5e5e",
+                        "surface-container": "#eeeeec",
+                        "primary-fixed": "#e5e2e1",
+                        "inverse-primary": "#c8c6c5",
+                        "outline": "#747878",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface": "#f9f9f7",
+                        "on-surface-variant": "#444748",
+                        "tertiary-container": "#232221",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "tertiary": "#0c0c0b",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#c4c7c7",
+                        "secondary-fixed-dim": "#aac7ff",
+                        "secondary": "#335e9f",
+                        "on-tertiary-container": "#8c8987",
+                        "surface-container-highest": "#e2e3e1",
+                        "secondary-container": "#8fb7fe",
+                        "on-background": "#1a1c1b",
+                        "background": "#f9f9f7",
+                        "tertiary-fixed-dim": "#c9c6c4",
+                        "on-tertiary-fixed-variant": "#484645",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "primary": "#0b0c0c",
+                        "surface-variant": "#e2e3e1",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#f1f1ef",
+                        "on-primary-fixed-variant": "#474746",
+                        "primary-container": "#222222",
+                        "surface-bright": "#f9f9f7",
+                        "secondary-fixed": "#d6e3ff",
+                        "surface-dim": "#dadad8",
+                        "surface-container-low": "#f4f4f2",
+                        "on-tertiary-fixed": "#1c1b1a",
+                        "on-secondary-container": "#154686",
+                        "tertiary-fixed": "#e6e2e0",
+                        "surface-container-high": "#e8e8e6",
+                        "on-secondary-fixed-variant": "#144686",
+                        "on-surface": "#1a1c1b",
+                        "on-primary-fixed": "#1b1c1c",
+                        "on-primary-container": "#8a8989",
+                        "inverse-surface": "#2f3130",
+                        "on-secondary-fixed": "#001b3e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin": "64px",
+                        "gutter": "24px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "xxl": "48px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "button-text": ["Inter"],
+                        "display-lg": ["DM Sans"],
+                        "body-sm": ["Inter"],
+                        "headline-sm": ["DM Sans"],
+                        "headline-lg": ["DM Sans"],
+                        "headline-md": ["DM Sans"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "button-text": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .active-step-ring {
+            box-shadow: 0 0 0 4px rgba(51, 94, 159, 0.1);
+        }
+        body {
+            background-color: #F7F7F5;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface antialiased">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin h-16 bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-md">
+<span class="font-headline-md text-headline-md font-bold text-primary">Online Garage</span>
+</div>
+<nav class="hidden md:flex gap-xl">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#">Problems</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#">Vehicle</a>
+<a class="font-body-md text-body-md text-secondary font-bold border-b-2 border-secondary" href="#">Services</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#">Confirm</a>
+</nav>
+<button class="bg-[#B71C1C] text-white font-bold px-md py-sm rounded-[5px] flex items-center gap-xs text-button-text">
+<span class="material-symbols-outlined text-[18px]">emergency_home</span> SOS Help
+        </button>
+</header>
+<main class="pt-xxl pb-xxl px-margin max-w-[1440px] mx-auto mt-16">
+<!-- Progress Stepper -->
+<div class="mb-xxl w-full max-w-4xl mx-auto">
+<div class="flex items-center justify-between relative">
+<!-- Line -->
+<div class="absolute top-1/2 left-0 w-full h-[2px] bg-outline-variant -z-10 -translate-y-1/2"></div>
+<div class="absolute top-1/2 left-0 h-[2px] bg-secondary -z-10 -translate-y-1/2" style="width: 66%;"></div>
+<!-- Step 1 -->
+<div class="flex flex-col items-center gap-sm bg-surface px-sm">
+<div class="w-10 h-10 rounded-full bg-secondary text-white flex items-center justify-center font-bold">
+<span class="material-symbols-outlined">check</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Problems</span>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center gap-sm bg-surface px-sm">
+<div class="w-10 h-10 rounded-full bg-secondary text-white flex items-center justify-center font-bold">
+<span class="material-symbols-outlined">check</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Vehicle</span>
+</div>
+<!-- Step 3 (Active) -->
+<div class="flex flex-col items-center gap-sm bg-surface px-sm">
+<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold border-4 border-secondary/20 ring-2 ring-primary">
+                        3
+                    </div>
+<span class="font-label-md text-label-md text-primary font-bold">Mechanic</span>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center gap-sm bg-surface px-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center font-bold border border-outline-variant">
+                        4
+                    </div>
+<span class="font-label-md text-label-md text-on-surface-variant">Confirm</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col lg:flex-row gap-gutter">
+<!-- Sidebar Filters -->
+<aside class="w-full lg:w-[280px] space-y-lg">
+<div class="bg-white border border-outline-variant p-lg rounded-xl shadow-sm">
+<h3 class="font-headline-sm text-headline-sm mb-md">Filters</h3>
+<div class="space-y-md">
+<div>
+<label class="font-label-md text-label-md block mb-xs text-on-surface-variant uppercase tracking-wider">Sort By</label>
+<select class="w-full bg-surface border border-outline-variant rounded-[5px] p-sm font-body-md focus:border-secondary outline-none">
+<option>Recommended</option>
+<option>Lowest Price</option>
+<option>Highest Rating</option>
+<option>Proximity</option>
+</select>
+</div>
+<hr class="border-outline-variant"/>
+<div>
+<label class="font-label-md text-label-md block mb-xs text-on-surface-variant uppercase tracking-wider">Service Range</label>
+<div class="flex items-center gap-sm">
+<input class="w-full accent-secondary" max="50" min="1" type="range"/>
+<span class="font-body-sm text-body-sm whitespace-nowrap">20 km</span>
+</div>
+</div>
+<hr class="border-outline-variant"/>
+<div class="space-y-sm">
+<label class="font-label-md text-label-md block text-on-surface-variant uppercase tracking-wider">Specialties</label>
+<label class="flex items-center gap-sm font-body-sm">
+<input checked="" class="rounded border-outline-variant text-secondary focus:ring-secondary" type="checkbox"/>
+                                Toyota Specialist
+                            </label>
+<label class="flex items-center gap-sm font-body-sm">
+<input class="rounded border-outline-variant text-secondary focus:ring-secondary" type="checkbox"/>
+                                German Engines
+                            </label>
+<label class="flex items-center gap-sm font-body-sm">
+<input class="rounded border-outline-variant text-secondary focus:ring-secondary" type="checkbox"/>
+                                EV/Hybrid Tech
+                            </label>
+</div>
+</div>
+</div>
+</aside>
+<!-- Mechanic List Content -->
+<div class="flex-1 space-y-md">
+<div class="flex justify-between items-center mb-md">
+<h2 class="font-headline-md text-headline-md">Available Mechanics <span class="text-on-surface-variant font-normal">(12)</span></h2>
+</div>
+<!-- Mechanic Card 1 -->
+<div class="bg-white border border-outline-variant rounded-xl p-lg flex flex-col md:flex-row gap-lg items-start md:items-center hover:shadow-md transition-shadow">
+<div class="relative">
+<img alt="Raj Kumar profile" class="w-24 h-24 rounded-full object-cover border-2 border-outline-variant" data-alt="A professional male mechanic named Raj Kumar with a friendly expression, wearing a clean charcoal grey workshop uniform. He is standing in a brightly lit, high-tech automotive garage with tools neatly organized in the background. The style is crisp and modern, emphasizing trust and professional mechanical expertise." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuZsJscoYOKgT4vnqWLjjGe-jnP2A-t-_n7HIhXk1qWBvl05Y5kOST2SjfWzAq-LVzxE3FR4xVvI_yDHrBQvI4phwzKYE4uQkeATY4ywPpodv3YtlzR-9McAFhcA-TvcYPj5bfTSJIEYq_sxDeXw2Xc70FImNU99thyKhExlZdG13pHbsUdJfJjhx9FgABC7fLweYBJMQwbrt28VtMr4DOPIsoulL8rnIcL0QDa1atlGjGm8_jWCU1EPHFgffwKTY1W9MMi5o-wis"/>
+<div class="absolute -bottom-1 -right-1 bg-[#1B5E20] text-white p-[2px] rounded-full border-2 border-white">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="flex-1 space-y-xs">
+<div class="flex flex-wrap items-center gap-sm">
+<h3 class="font-headline-sm text-headline-sm">Raj Kumar</h3>
+<span class="bg-[#1B5E20]/10 text-[#1B5E20] px-md py-[2px] rounded-full font-label-md text-[10px] uppercase">Verified ID</span>
+<span class="bg-[#1A4A8A]/10 text-[#1A4A8A] px-md py-[2px] rounded-full font-label-md text-[10px] uppercase">Reliable</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant font-body-sm">
+<span class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-yellow-600 text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                                4.9 (124 reviews)
+                            </span>
+<span class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">home_repair_service</span>
+                                Toyota Specialist
+                            </span>
+<span class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">distance</span>
+                                1.2 km away
+                            </span>
+</div>
+<p class="text-on-surface-variant text-body-sm max-w-xl">15+ years of experience in Japanese imports and hybrid drivetrain diagnostics. Known for precise engine tuning and transparent pricing.</p>
+</div>
+<div class="w-full md:w-auto flex flex-col items-end gap-sm border-t md:border-t-0 md:border-l border-outline-variant pt-md md:pt-0 md:pl-lg">
+<div class="text-right">
+<span class="text-on-surface-variant text-label-md uppercase">Est. Total</span>
+<p class="font-headline-md text-headline-md text-primary">$85.00</p>
+</div>
+<button class="w-full md:w-32 bg-primary text-white font-bold py-sm rounded-[5px] hover:bg-opacity-90 transition-all text-button-text">Select</button>
+</div>
+</div>
+<!-- Mechanic Card 2 -->
+<div class="bg-white border border-outline-variant rounded-xl p-lg flex flex-col md:flex-row gap-lg items-start md:items-center hover:shadow-md transition-shadow">
+<div class="relative">
+<img alt="Suresh Paudel profile" class="w-24 h-24 rounded-full object-cover border-2 border-outline-variant" data-alt="A portrait of an experienced male mechanic named Suresh Paudel, smiling confidently. He is in his mid-40s, wearing a professional navy blue work shirt with a name tag. The background features a blurred modern car dealership service area with soft natural light streaming in, creating a warm, dependable atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkEbe2LrJCI4we0GAP8iUd2Yv5mW7xbYWx6hjeeank91NTOcZwUkXARXcDHtSOuk_n62-ZH-XB4XKPrglKAli4qCGPpUcC289OYgeNUXXfFNmlR_M4U_N3TIzbbet0K034Lif_vI2IkcvDswOpeKH7pg5s7clM7Ug1kJM3ZHuZJvH9xOMh8ox6XpcX7ndWW5JU1YAwbSozlyxUHzfifs_F9rA-Lhm21H6LwMLZpHd8ZOwXP_IYUPRg6oP-Ka385T99AjHSh827BA4"/>
+</div>
+<div class="flex-1 space-y-xs">
+<div class="flex flex-wrap items-center gap-sm">
+<h3 class="font-headline-sm text-headline-sm">Suresh Paudel</h3>
+<span class="bg-[#1B5E20]/10 text-[#1B5E20] px-md py-[2px] rounded-full font-label-md text-[10px] uppercase">Verified ID</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant font-body-sm">
+<span class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-yellow-600 text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                                4.7 (89 reviews)
+                            </span>
+<span class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">home_repair_service</span>
+                                Brake &amp; Suspension Specialist
+                            </span>
+<span class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">distance</span>
+                                3.5 km away
+                            </span>
+</div>
+<p class="text-on-surface-variant text-body-sm max-w-xl">Certified master technician specializing in European braking systems and luxury suspension maintenance.</p>
+</div>
+<div class="w-full md:w-auto flex flex-col items-end gap-sm border-t md:border-t-0 md:border-l border-outline-variant pt-md md:pt-0 md:pl-lg">
+<div class="text-right">
+<span class="text-on-surface-variant text-label-md uppercase">Est. Total</span>
+<p class="font-headline-md text-headline-md text-primary">$110.00</p>
+</div>
+<button class="w-full md:w-32 bg-primary text-white font-bold py-sm rounded-[5px] hover:bg-opacity-90 transition-all text-button-text">Select</button>
+</div>
+</div>
+<!-- Mechanic Card 3 -->
+<div class="bg-white border border-outline-variant rounded-xl p-lg flex flex-col md:flex-row gap-lg items-start md:items-center hover:shadow-md transition-shadow">
+<div class="relative">
+<img alt="Anjali Sharma profile" class="w-24 h-24 rounded-full object-cover border-2 border-outline-variant" data-alt="A focused female auto technician named Anjali Sharma looking directly into the camera. She has her hair tied back and is wearing a sleek, dark workshop uniform. The lighting is bright and industrial, highlighting the high-trust environment of a modern garage. The visual style is clean and high-utility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVoB3GZ5mzDPQ1hu9lvQOrOEbSkzX5wxa7fyPzIz-kZ8o50j2uYDD3s-i0ltd22iL7Kjckga4lXoKHy3DKTXBCImrLpGQkx8supjGqjEdnhl6zkn-iYtORKAdwVSOqALw8UhpcecXvqQKeElwnAFCWF0w1b71tasqhxlV3i9GZ1QKJFwf8KPMrdqV6NJQjBySzS7keE9Xcm_l6fstym8_uYYcb77EAJ3sHYHu-02Kq2Oo3t0A2OWNHMquM8s1yUFlWoBM7Ee9kU50"/>
+<div class="absolute -bottom-1 -right-1 bg-[#1B5E20] text-white p-[2px] rounded-full border-2 border-white">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="flex-1 space-y-xs">
+<div class="flex flex-wrap items-center gap-sm">
+<h3 class="font-headline-sm text-headline-sm">Anjali Sharma</h3>
+<span class="bg-[#1B5E20]/10 text-[#1B5E20] px-md py-[2px] rounded-full font-label-md text-[10px] uppercase">Verified ID</span>
+<span class="bg-[#1B1B1B]/10 text-primary px-md py-[2px] rounded-full font-label-md text-[10px] uppercase">Fastest Response</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant font-body-sm">
+<span class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-yellow-600 text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                                4.8 (42 reviews)
+                            </span>
+<span class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">home_repair_service</span>
+                                Electrical &amp; Sensors
+                            </span>
+<span class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">distance</span>
+                                0.8 km away
+                            </span>
+</div>
+<p class="text-on-surface-variant text-body-sm max-w-xl">Specialist in modern ECU diagnostics, sensor calibration, and complex electrical wiring issues.</p>
+</div>
+<div class="w-full md:w-auto flex flex-col items-end gap-sm border-t md:border-t-0 md:border-l border-outline-variant pt-md md:pt-0 md:pl-lg">
+<div class="text-right">
+<span class="text-on-surface-variant text-label-md uppercase">Est. Total</span>
+<p class="font-headline-md text-headline-md text-primary">$95.00</p>
+</div>
+<button class="w-full md:w-32 bg-primary text-white font-bold py-sm rounded-[5px] hover:bg-opacity-90 transition-all text-button-text">Select</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- UX Law Strip -->
+<div class="fixed bottom-0 left-0 w-full h-10 bg-[#FFF9E6] border-t border-[#E0C040] flex items-center justify-center z-[100]">
+<span class="font-body-sm text-body-sm text-[#5C4D14]">Applied: Fitts's Law (Primary CTAs positioned for rapid selection)</span>
+</div>
+<!-- Footer -->
+<footer class="w-full py-md px-margin flex flex-col md:flex-row justify-between items-center gap-md bg-surface-container-lowest border-t border-outline-variant mb-10">
+<div class="flex flex-col items-center md:items-start">
+<span class="font-label-md text-label-md font-bold text-primary">Online Garage</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">© 2024 Online Garage. All Rights Reserved. Mechanical Precision &amp; Safety Guaranteed.</span>
+</div>
+<div class="flex gap-md">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:underline hover:text-secondary" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:underline hover:text-secondary" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:underline hover:text-secondary" href="#">Trust Center</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:underline hover:text-secondary" href="#">Contact Support</a>
+</div>
+</footer>
+<script>
+        // Simple Micro-interaction: Active Step Logic & Selection Effect
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => {
+                btn.style.transform = 'scale(0.96)';
+                btn.style.opacity = '0.9';
+            });
+            btn.addEventListener('mouseup', () => {
+                btn.style.transform = 'scale(1)';
+                btn.style.opacity = '1';
+            });
+        });
+
+        // Search highlight emulation
+        const selectButtons = document.querySelectorAll('button:not([class*="bg-[#B71C1C]"])');
+        selectButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const parent = button.closest('.bg-white');
+                parent.style.borderColor = '#335e9f';
+                parent.style.backgroundColor = '#f4faff';
+                setTimeout(() => {
+                    alert('Mechanic selected. Moving to final confirmation...');
+                }, 300);
+            });
+        });
+    </script>
+</body></html>

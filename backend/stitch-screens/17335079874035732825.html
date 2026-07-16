@@ -1,0 +1,366 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Service Details &amp; Review | Online Garage</title>
+<!-- Google Fonts: DM Sans & Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#5f5e5e",
+                        "surface-container": "#eeeeec",
+                        "primary-fixed": "#e5e2e1",
+                        "inverse-primary": "#c8c6c5",
+                        "outline": "#747878",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface": "#f9f9f7",
+                        "on-surface-variant": "#444748",
+                        "tertiary-container": "#232221",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "tertiary": "#0c0c0b",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#c4c7c7",
+                        "secondary-fixed-dim": "#aac7ff",
+                        "secondary": "#335e9f",
+                        "on-tertiary-container": "#8c8987",
+                        "surface-container-highest": "#e2e3e1",
+                        "secondary-container": "#8fb7fe",
+                        "on-background": "#1a1c1b",
+                        "background": "#f9f9f7",
+                        "tertiary-fixed-dim": "#c9c6c4",
+                        "on-tertiary-fixed-variant": "#484645",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "primary": "#0b0c0c",
+                        "surface-variant": "#e2e3e1",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#f1f1ef",
+                        "on-primary-fixed-variant": "#474746",
+                        "primary-container": "#222222",
+                        "surface-bright": "#f9f9f7",
+                        "secondary-fixed": "#d6e3ff",
+                        "surface-dim": "#dadad8",
+                        "surface-container-low": "#f4f4f2",
+                        "on-tertiary-fixed": "#1c1b1a",
+                        "on-secondary-container": "#154686",
+                        "tertiary-fixed": "#e6e2e0",
+                        "surface-container-high": "#e8e8e6",
+                        "on-secondary-fixed-variant": "#144686",
+                        "on-surface": "#1a1c1b",
+                        "on-primary-fixed": "#1b1c1c",
+                        "on-primary-container": "#8a8989",
+                        "inverse-surface": "#2f3130",
+                        "on-secondary-fixed": "#001b3e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin": "64px",
+                        "gutter": "24px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "xxl": "48px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "button-text": ["Inter"],
+                        "display-lg": ["DM Sans"],
+                        "body-sm": ["Inter"],
+                        "headline-sm": ["DM Sans"],
+                        "headline-lg": ["DM Sans"],
+                        "headline-md": ["DM Sans"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "button-text": ["16px", { "lineHeight": "1", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-step {
+            @apply border-secondary text-secondary font-bold;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin h-16 bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-xl">
+<span class="font-headline-md text-headline-md font-bold text-primary">Online Garage</span>
+<div class="hidden md:flex gap-lg">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#">Problems</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#">Vehicle</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#">Services</a>
+<a class="font-body-md text-body-md text-secondary font-bold border-b-2 border-secondary" href="#">Confirm</a>
+</div>
+</div>
+<button class="bg-[#B71C1C] text-white px-md py-xs rounded-[5px] font-bold text-body-md shadow-sm active:opacity-80 active:scale-95 transition-all">
+            🚨 SOS Help
+        </button>
+</nav>
+<!-- Main Canvas -->
+<main class="flex-grow pt-24 pb-xxl px-margin max-w-[1440px] mx-auto w-full">
+<!-- Progress Stepper -->
+<div class="flex items-center justify-center mb-xl">
+<div class="flex items-center w-full max-w-3xl">
+<div class="flex flex-col items-center flex-1">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold mb-xs">
+<span class="material-symbols-outlined">check</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Vehicle</span>
+</div>
+<div class="h-[2px] bg-secondary-container flex-grow mb-6"></div>
+<div class="flex flex-col items-center flex-1">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold mb-xs">
+<span class="material-symbols-outlined">check</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Problem</span>
+</div>
+<div class="h-[2px] bg-secondary-container flex-grow mb-6"></div>
+<div class="flex flex-col items-center flex-1">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold mb-xs">
+<span class="material-symbols-outlined">check</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Service</span>
+</div>
+<div class="h-[2px] bg-secondary-container flex-grow mb-6"></div>
+<div class="flex flex-col items-center flex-1">
+<div class="w-10 h-10 rounded-full bg-primary text-white border-4 border-secondary-container flex items-center justify-center font-bold mb-xs">
+                        4
+                    </div>
+<span class="font-label-md text-label-md text-primary font-bold">Review</span>
+</div>
+</div>
+</div>
+<!-- Content Layout: Bento Grid -->
+<div class="bento-grid">
+<!-- Summary Column -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-lg">
+<!-- Mechanic & Vehicle Info -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- Mechanic Card -->
+<div class="bg-white border border-outline-variant p-lg rounded-xl shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="absolute top-4 right-4 bg-[#1B5E20]/10 text-[#1B5E20] px-3 py-1 rounded-full text-label-md font-label-md flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+                            Verified
+                        </div>
+<h3 class="font-headline-sm text-headline-sm mb-md">Selected Mechanic</h3>
+<div class="flex items-center gap-md">
+<div class="w-16 h-16 rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A professional male mechanic wearing a clean dark navy uniform with an Online Garage logo. He is smiling confidently in a modern, well-lit automotive workshop environment with high-end tools visible in the background. The lighting is soft and natural, emphasizing a high-trust, professional aesthetic consistent with a premium service platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2Zd6ViQxu3HvWAtGFa_SZTXiqMcgjUJ5QoEfDwRHeFJdqBeMU36x7DvzWy75eYEq8T4EuynfhNa9DqGltboDSlCRX89Wlw_FyFKhzAaijYUE0OGqDGO0UV_T5O1UlT63Nk_HqcgSN484aslQA6CUpGxfVb9QON7aQMImZAF7yF0cPG0DLaVLJOeQufmbKwi34_CAxzYdlISjIi5v0aJwxkEZV5kr0PxLqJHzhkA-Y7NDXmgTxc7m627C2iYLy9_EXfZwSB0Gamwk">
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-primary">Raj Kumar</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Master Technician • 12 yrs exp.</p>
+<div class="flex items-center mt-xs text-[#E0C040]">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star_half</span>
+<span class="ml-1 text-on-surface font-bold text-label-md">4.9 (124 reviews)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Vehicle Card -->
+<div class="bg-white border border-outline-variant p-lg rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<h3 class="font-headline-sm text-headline-sm mb-md">Your Vehicle</h3>
+<div class="flex items-center gap-md">
+<div class="w-24 h-16 bg-surface-container rounded-lg overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-contain" data-alt="A sleek, modern metallic silver sedan parked in a minimalist studio environment. The car is clean and polished, reflecting soft studio lighting that highlights its sharp design lines and premium finish. The background is a clean, neutral grey, maintaining the professional and authoritative visual language of high-end automotive service platforms." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeaWHulKOwMQF5un1herkhVC3tISsGMDdfxugKm3UBxfFR-zfFMd4dxC0cwcAhBSy71G-JjNRIxSYgISVJYjECYwIWsWzRiUVdIaaARe_iNSP5UelvsT9XVFmfj6V1T4HYNhuPIkY-DoxbZpffI0O8mXCe4CSilK7zVXWIHO7IFcv6dGkf4-T91ouwdYvsmbItQy5wopyOfQpJthF4z9x4y5QV2hY0wrMGobtY42rG2-mPoZ1uLeZSSzoIEraOFhHSU5UNyFv866A">
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-primary">2021 BMW M3</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Plate: <span class="bg-surface-container px-2 py-0.5 rounded text-primary font-bold">BK-449-OG</span></p>
+<p class="font-label-md text-label-md text-[#1A4A8A] mt-xs">Service: Engine Diagnostic</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Date & Time Selection -->
+<div class="bg-white border border-outline-variant p-lg rounded-xl shadow-sm border-secondary">
+<h3 class="font-headline-sm text-headline-sm mb-md">Booking Options</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Preferred Date</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline">calendar_today</span>
+<input class="w-full pl-12 pr-4 py-3 border border-outline-variant rounded-[5px] focus:outline-none focus:border-secondary transition-all bg-surface font-body-md" type="date" value="2024-11-20">
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Preferred Time</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline">schedule</span>
+<select class="w-full pl-12 pr-4 py-3 border border-outline-variant rounded-[5px] focus:outline-none focus:border-secondary transition-all bg-surface font-body-md appearance-none">
+<option>09:00 AM - 11:00 AM</option>
+<option selected="">11:00 AM - 01:00 PM</option>
+<option>02:00 PM - 04:00 PM</option>
+<option>04:00 PM - 06:00 PM</option>
+</select>
+</div>
+</div>
+</div>
+<div class="mt-md flex items-start gap-sm bg-surface-container-low p-md rounded-lg">
+<span class="material-symbols-outlined text-[#1A4A8A]">info</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">The mechanic will arrive within a 20-minute window of your selected time. We will notify you via SMS when they are 5 minutes away.</p>
+</div>
+</div>
+<!-- Trust Signals Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg mb-md">
+<div class="flex items-center gap-md p-md bg-white border border-outline-variant rounded-lg">
+<div class="w-10 h-10 rounded-full bg-[#1B5E20]/10 text-[#1B5E20] flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-primary">Workshop Guarantee</p>
+<p class="text-[10px] text-on-surface-variant">12-month parts &amp; labor warranty.</p>
+</div>
+</div>
+<div class="flex items-center gap-md p-md bg-white border border-outline-variant rounded-lg">
+<div class="w-10 h-10 rounded-full bg-[#1A4A8A]/10 text-[#1A4A8A] flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">lock</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-primary">Secure Payment</p>
+<p class="text-[10px] text-on-surface-variant">256-bit SSL encrypted checkout.</p>
+</div>
+</div>
+<div class="flex items-center gap-md p-md bg-white border border-outline-variant rounded-lg">
+<div class="w-10 h-10 rounded-full bg-[#E0C040]/10 text-[#E0C040] flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">price_check</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-primary">Price Lock</p>
+<p class="text-[10px] text-on-surface-variant">Final quote. No hidden surcharges.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Price Breakdown Column -->
+<div class="col-span-12 lg:col-span-4">
+<div class="sticky top-24 bg-primary text-white p-lg rounded-xl shadow-lg flex flex-col gap-lg h-fit">
+<h3 class="font-headline-sm text-headline-sm border-b border-outline/30 pb-md">Payment Summary</h3>
+<div class="flex flex-col gap-md">
+<div class="flex justify-between items-center font-body-md text-on-primary-container">
+<span class="">Service Subtotal</span>
+<span class="">$185.00</span>
+</div>
+<div class="flex justify-between items-center font-body-md text-on-primary-container">
+<span class="">Labor (Est. 1.5 hrs)</span>
+<span class="">$120.00</span>
+</div>
+<div class="flex justify-between items-center font-body-md text-on-primary-container">
+<span class="">Travel Fee</span>
+<span class="">$45.00</span>
+</div>
+<div class="flex justify-between items-center font-body-md text-on-primary-container">
+<span class="">Diagnostic Parts</span>
+<span class="">$0.00</span>
+</div>
+</div>
+<div class="border-t border-outline/30 pt-md mt-md">
+<div class="flex justify-between items-end">
+<div>
+<p class="font-label-md text-label-md text-on-primary-container uppercase tracking-widest">Order Total</p>
+<p class="text-[12px] text-on-primary-container/60 italic">Includes all taxes and fees</p>
+</div>
+<p class="font-display-lg text-display-lg text-white">$350.00</p>
+</div>
+</div>
+<div class="flex flex-col gap-md mt-xl">
+<button class="w-full bg-secondary text-white py-lg rounded-[5px] font-bold text-button-text hover:bg-secondary-container hover:text-on-secondary-container transition-all shadow-md active:scale-95">
+                            Proceed to Payment
+                        </button>
+<button class="w-full bg-transparent border border-outline/50 text-white py-md rounded-[5px] font-bold text-body-md hover:bg-white/10 transition-all">
+                            Edit Booking
+                        </button>
+</div>
+<p class="text-center text-[12px] text-on-primary-container/50 mt-md">
+                        By clicking "Proceed to Payment" you agree to our Terms of Service and Privacy Policy.
+                    </p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-md px-margin flex flex-col md:flex-row justify-between items-center gap-md bg-surface-container-lowest border-t border-outline-variant">
+<div class="flex flex-col md:flex-row items-center gap-md">
+<span class="font-label-md text-label-md font-bold text-on-surface">Online Garage</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">© 2024 Online Garage. All Rights Reserved. Mechanical Precision &amp; Safety Guaranteed.</span>
+</div>
+<div class="flex gap-lg">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:underline hover:text-secondary" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:underline hover:text-secondary" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:underline hover:text-secondary" href="#">Trust Center</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:underline hover:text-secondary" href="#">Contact Support</a>
+</div>
+</footer>
+<!-- UX Law Strip -->
+<div class="fixed bottom-0 left-0 w-full h-[40px] bg-[#FFF9E6] border-t border-[#E0C040] flex items-center justify-center z-[100]">
+<p class="font-body-sm text-body-sm text-[#7A5A00]">Applied: <strong>Hick's Law</strong> – Reducing choices by summarizing final details before the complex payment transaction.</p>
+</div>
+<!-- Micro-interaction Scripts -->
+<script>
+        // Simple hover effect for summary cards
+        document.querySelectorAll('.bg-white.border-outline-variant').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.classList.add('border-secondary');
+            });
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('border-secondary');
+            });
+        });
+
+        // CTA button interaction
+        const payBtn = document.querySelector('button.bg-secondary');
+        payBtn.addEventListener('click', () => {
+            payBtn.innerHTML = '<span class="flex items-center gap-2"><span class="animate-spin material-symbols-outlined">sync</span> Processing...</span>';
+            setTimeout(() => {
+                payBtn.innerHTML = 'Proceed to Payment';
+                alert('Secure checkout initiated. Redirecting to payment provider...');
+            }, 1500);
+        });
+    </script>
+
+
+</body></html>

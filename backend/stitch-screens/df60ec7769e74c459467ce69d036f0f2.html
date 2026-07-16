@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MechHub | Identity Verification</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f4f4f2",
+                        "on-background": "#1a1c1b",
+                        "surface-container": "#eeeeec",
+                        "primary": "#0b0c0c",
+                        "outline-variant": "#c4c7c7",
+                        "surface-container-highest": "#e2e3e1",
+                        "tertiary-fixed": "#e6e2e0",
+                        "secondary-fixed": "#d6e3ff",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#222222",
+                        "on-secondary-container": "#154686",
+                        "on-secondary-fixed-variant": "#144686",
+                        "on-tertiary-fixed": "#1c1b1a",
+                        "surface-dim": "#dadad8",
+                        "inverse-surface": "#2f3130",
+                        "tertiary-fixed-dim": "#c9c6c4",
+                        "on-tertiary-fixed-variant": "#484645",
+                        "on-tertiary-container": "#8c8987",
+                        "secondary-fixed-dim": "#aac7ff",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "outline": "#747878",
+                        "inverse-primary": "#c8c6c5",
+                        "tertiary-container": "#232221",
+                        "on-primary-fixed": "#1b1c1c",
+                        "inverse-on-surface": "#f1f1ef",
+                        "surface-bright": "#f9f9f7",
+                        "surface-tint": "#5f5e5e",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "background": "#f9f9f7",
+                        "surface": "#f9f9f7",
+                        "on-secondary-fixed": "#001b3e",
+                        "on-primary-fixed-variant": "#474746",
+                        "on-surface": "#1a1c1b",
+                        "error-container": "#ffdad6",
+                        "secondary": "#335e9f",
+                        "tertiary": "#0c0c0b",
+                        "primary-fixed": "#e5e2e1",
+                        "on-surface-variant": "#444748",
+                        "surface-container-high": "#e8e8e6",
+                        "on-primary-container": "#8a8989",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#8fb7fe",
+                        "surface-variant": "#e2e3e1",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xxl": "48px",
+                        "gutter": "24px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "margin": "64px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "headline-sm": ["DM Sans"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["DM Sans"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["DM Sans"],
+                        "button-text": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["DM Sans"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "button-text": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f7f7f5;
+            color: #1a1c1b;
+        }
+        .flat-card {
+            background-color: #ffffff;
+            border: 1px solid #DDDBD5;
+            border-radius: 8px;
+        }
+        .upload-zone:hover {
+            border-color: #1A4A8A;
+            background-color: #f0f7ff;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-body-md text-body-md">
+<!-- TopNavBar Suppression: Page is linear/transactional (Onboarding Step 3) -->
+<!-- Shell Layout -->
+<div class="flex flex-1 pt-0 pb-[40px]">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-[280px] bg-primary dark:bg-primary-container flex flex-col py-xl shadow-md z-40">
+<div class="px-lg mb-xxl">
+<h1 class="font-headline-lg text-headline-lg text-on-primary">MechHub</h1>
+</div>
+<div class="px-lg mb-xl">
+<p class="font-headline-sm text-headline-sm text-on-primary">Registration</p>
+<p class="font-body-sm text-body-sm text-primary-fixed-dim opacity-70">Step 3 of 3</p>
+</div>
+<nav class="flex-1 space-y-xs px-md">
+<div class="flex items-center gap-md px-md py-sm opacity-50 cursor-not-allowed">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</div>
+<div class="flex items-center gap-md px-md py-sm opacity-50 cursor-not-allowed">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-body-md text-body-md">Bookings</span>
+</div>
+<div class="flex items-center gap-md px-md py-sm opacity-50 cursor-not-allowed">
+<span class="material-symbols-outlined">directions_car</span>
+<span class="font-body-md text-body-md">Vehicles</span>
+</div>
+<!-- Identity is Active -->
+<div class="flex items-center gap-md px-md py-sm border-l-4 border-secondary text-on-primary font-bold bg-white/10 translate-x-1 duration-200">
+<span class="material-symbols-outlined">verified_user</span>
+<span class="font-body-md text-body-md">Identity</span>
+</div>
+</nav>
+<div class="mt-auto px-lg">
+<button class="w-full py-md bg-[#B71C1C] text-white font-button-text text-button-text rounded-[5px] flex items-center justify-center gap-sm hover:opacity-90 transition-opacity">
+<span>🚨 SOS Help</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-[280px] flex-1 flex flex-row gap-gutter p-xxl max-w-[1440px] mx-auto w-full">
+<!-- Left Column: Verification Action -->
+<div class="flex-[2] space-y-xl">
+<header>
+<h2 class="font-headline-lg text-headline-lg mb-sm">Verify Identity</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                        Upload a government-issued ID to verify your identity. This is required for post-service payments and ensuring workshop security.
+                    </p>
+</header>
+<!-- Drag & Drop Zone -->
+<div class="flat-card p-xxl border-dashed border-2 flex flex-col items-center justify-center text-center group cursor-pointer transition-all upload-zone" id="uploadContainer">
+<input accept=".jpg,.png,.pdf" class="hidden" id="fileInput" type="file"/>
+<div class="w-20 h-20 rounded-full bg-surface-container flex items-center justify-center mb-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[40px] text-secondary">cloud_upload</span>
+</div>
+<p class="font-headline-sm text-headline-sm mb-xs">Drag and drop your ID</p>
+<p class="font-body-md text-body-md text-on-surface-variant mb-xl">or click to browse from your device</p>
+<div class="flex gap-md text-label-md font-label-md">
+<span class="px-md py-xs bg-surface-container rounded-full text-on-surface-variant">JPG, PNG, PDF</span>
+<span class="px-md py-xs bg-surface-container rounded-full text-on-surface-variant">Up to 10MB</span>
+</div>
+</div>
+<div class="flex flex-col gap-md pt-xl">
+<button class="w-full max-w-md py-md bg-[#222222] text-white font-button-text text-button-text rounded-[5px] hover:bg-black transition-colors active:scale-[0.98]">
+                        Complete registration
+                    </button>
+<div class="flex flex-col gap-xs">
+<button class="text-secondary font-bold text-left hover:underline w-fit">
+                            Verify later
+                        </button>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">Unverified accounts pay at booking</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Info & Emergency Sidebar -->
+<div class="flex-1 space-y-lg">
+<!-- What Happens Next -->
+<section class="flat-card p-lg space-y-md">
+<h3 class="font-headline-sm text-headline-sm flex items-center gap-sm">
+<span class="material-symbols-outlined">timeline</span>
+                        What happens next
+                    </h3>
+<ul class="space-y-md">
+<li class="flex gap-md">
+<span class="flex-shrink-0 w-8 h-8 rounded-full bg-secondary/10 text-secondary flex items-center justify-center font-bold">1</span>
+<div>
+<p class="font-label-md text-label-md uppercase text-on-surface-variant">Instant Action</p>
+<p class="font-body-md text-body-md">Personal agent assignment to your profile.</p>
+</div>
+</li>
+<li class="flex gap-md">
+<span class="flex-shrink-0 w-8 h-8 rounded-full bg-secondary/10 text-secondary flex items-center justify-center font-bold">2</span>
+<div>
+<p class="font-label-md text-label-md uppercase text-on-surface-variant">Verification</p>
+<p class="font-body-md text-body-md">4-hour manual review by our security team.</p>
+</div>
+</li>
+<li class="flex gap-md">
+<span class="flex-shrink-0 w-8 h-8 rounded-full bg-secondary/10 text-secondary flex items-center justify-center font-bold">3</span>
+<div>
+<p class="font-label-md text-label-md uppercase text-on-surface-variant">Completion</p>
+<p class="font-body-md text-body-md">Confirmation ticket sent to your email.</p>
+</div>
+</li>
+</ul>
+</section>
+<!-- Emergency Help Box -->
+<section class="flat-card p-lg border-error/30 bg-error-container/5 space-y-md">
+<div class="flex items-center gap-sm text-error">
+<span class="material-symbols-outlined">contact_support</span>
+<h3 class="font-headline-sm text-headline-sm">Need immediate help?</h3>
+</div>
+<p class="font-body-md text-body-md">Our emergency verification line is open 24/7 for urgent mechanical assistance.</p>
+<button class="w-full py-md bg-[#B71C1C] text-white font-button-text text-button-text rounded-[5px] flex items-center justify-center gap-sm hover:opacity-90 shadow-lg">
+                        Call SOS Help
+                    </button>
+</section>
+<!-- Visual Anchor Image -->
+<div class="relative h-[240px] rounded-xl overflow-hidden shadow-md">
+<img class="w-full h-full object-cover" data-alt="A macro photograph of a professional mechanic's workbench featuring high-precision tools and a biometric security scanner. The lighting is crisp and cool-toned, creating a trustworthy and high-tech atmosphere with deep charcoal shadows and polished metallic highlights. The overall aesthetic is industrial-modern, reinforcing themes of safety and technical reliability in a clean light-mode environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHDVHvnTQ2QK2z2lxS6ngy1zWMax0V2X3V0LCoDCaVumxptSbfOL3iDkT3VPU1Sz3SimcZ8jEq0QmNfqotUzxioMLTV2RamzpjPZR2vk7PQG1JJDyKem3OV82vX1Xy75tdcZQBJbk5vPybg_xrCPG-wsavPuANIXh2KiW5quVjGEUDXcVSXKU5Tz0JUj7Todz-69Tcs9z8e3QNy-qKL_SFq4O5g8nSxMMITlNB09k4zVQ7fYBY8UE4XHvm-NDXGQbamfuxrJEtdLc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-md">
+<span class="px-md py-xs bg-success/20 backdrop-blur-md rounded-full text-white text-label-md border border-white/20">
+                            Secure Data Encryption Enabled
+                        </span>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- UX Law Strip / Footer -->
+<footer class="fixed bottom-0 left-0 w-full z-50 h-[40px] bg-[#FFF9E6] border-t border-[#E0C040] flex items-center justify-center gap-md px-lg">
+<span class="font-body-sm text-body-sm text-[#E0C040] font-bold">Applied: Hick's Law</span>
+<div class="flex gap-md">
+<a class="font-body-sm text-body-sm text-on-tertiary-fixed-variant hover:opacity-80 transition-opacity" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-tertiary-fixed-variant hover:opacity-80 transition-opacity" href="#">Help Center</a>
+</div>
+</footer>
+<script>
+        const uploadZone = document.getElementById('uploadContainer');
+        const fileInput = document.getElementById('fileInput');
+
+        uploadZone.addEventListener('click', () => fileInput.click());
+
+        uploadZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadZone.classList.add('bg-secondary/5', 'border-secondary');
+        });
+
+        uploadZone.addEventListener('dragleave', () => {
+            uploadZone.classList.remove('bg-secondary/5', 'border-secondary');
+        });
+
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadZone.classList.remove('bg-secondary/5', 'border-secondary');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFileUpload(files[0]);
+            }
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleFileUpload(e.target.files[0]);
+            }
+        });
+
+        function handleFileUpload(file) {
+            // Simplified UI response for micro-interaction
+            const icon = uploadZone.querySelector('.material-symbols-outlined');
+            const text = uploadZone.querySelector('.font-headline-sm');
+            const subtext = uploadZone.querySelector('.font-body-md');
+            
+            icon.textContent = 'check_circle';
+            icon.classList.remove('text-secondary');
+            icon.classList.add('text-green-600');
+            text.textContent = file.name;
+            subtext.textContent = 'Ready for submission';
+            uploadZone.style.borderColor = '#1B5E20';
+        }
+    </script>
+</body></html>

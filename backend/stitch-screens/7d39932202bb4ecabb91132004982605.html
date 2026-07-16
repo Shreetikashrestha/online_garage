@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mechanic Profile Detail | MechHub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1ef;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c4c7c7;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #747878;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#0c0c0b",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "inverse-on-surface": "#f1f1ef",
+                    "on-secondary-fixed-variant": "#144686",
+                    "secondary-container": "#8fb7fe",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#eeeeec",
+                    "on-surface-variant": "#444748",
+                    "surface-container-high": "#e8e8e6",
+                    "error-container": "#ffdad6",
+                    "background": "#f9f9f7",
+                    "surface-container-low": "#f4f4f2",
+                    "surface": "#f9f9f7",
+                    "on-surface": "#1a1c1b",
+                    "on-background": "#1a1c1b",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-container": "#8c8987",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#1c1b1a",
+                    "tertiary-fixed": "#e6e2e0",
+                    "inverse-primary": "#c8c6c5",
+                    "surface-tint": "#5f5e5e",
+                    "inverse-surface": "#2f3130",
+                    "outline": "#747878",
+                    "on-tertiary-fixed-variant": "#484645",
+                    "tertiary-fixed-dim": "#c9c6c4",
+                    "on-secondary-fixed": "#001b3e",
+                    "on-primary-fixed": "#1b1c1c",
+                    "surface-dim": "#dadad8",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-highest": "#e2e3e1",
+                    "primary": "#0b0c0c",
+                    "surface-bright": "#f9f9f7",
+                    "primary-container": "#222222",
+                    "on-primary-fixed-variant": "#474746",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#e2e3e1",
+                    "outline-variant": "#c4c7c7",
+                    "on-primary": "#ffffff",
+                    "secondary": "#335e9f",
+                    "secondary-fixed-dim": "#aac7ff",
+                    "secondary-fixed": "#d6e3ff",
+                    "primary-fixed": "#e5e2e1",
+                    "on-secondary-container": "#154686",
+                    "on-primary-container": "#8a8989",
+                    "tertiary-container": "#232221"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "xxl": "48px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "margin": "64px",
+                    "xs": "4px",
+                    "xl": "32px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-sm": ["DM Sans"],
+                    "headline-md": ["DM Sans"],
+                    "button-text": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["DM Sans"],
+                    "display-lg": ["DM Sans"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "button-text": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "label-md": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-surface border-b border-outline-variant sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-lg py-sm max-w-[1440px] mx-auto">
+<div class="flex items-center gap-xl">
+<span class="font-headline-md text-headline-md font-bold text-primary">MechHub</span>
+<nav class="hidden md:flex gap-md">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#">Dashboard</a>
+<a class="font-body-md text-body-md text-secondary font-bold border-b-2 border-secondary" href="#">Services</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#">Schedule</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#">Messages</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="hidden lg:flex items-center bg-surface-container px-md py-xs rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant mr-xs">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm w-48" placeholder="Search mechanics..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-variant p-2 rounded-full transition-all">notifications</button>
+<button class="bg-[#B71C1C] text-white px-md py-2 rounded-[5px] font-bold text-body-sm hover:opacity-90 transition-opacity flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">emergency</span> SOS Help
+                </button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a workshop manager in a clean corporate uniform, high-end studio lighting, soft neutral background, realistic photography style, modern and authoritative vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBh-MMrwysItVB5wB-i-iG_cyv3FhAnyOgrZV8UgpTyCu9D9HL2W0x0pHZP4eKZDN6-hRQCKIG2jMuzjYRhFcZVkr4JNhmbc5MWclj_IMbbVypc2R94S8cEyBkrpIClN5JJwSAfHzUlIsNmxXcdueitQaycYW0zRqHKpcp984kGm0-Qe31pPjQ7PJNMdnkGNXhUTmkbmwEJeM4RvzOLoDz8bT08kKBUOl1SstxBj4IdcbCv1WNeVBpCZmdx7WTBFO09nQNXucjeZcY"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1440px] mx-auto px-lg py-xl flex gap-lg relative">
+<!-- Main Content Area (9 Columns) -->
+<div class="flex-grow w-2/3">
+<!-- Hero Section -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg mb-lg">
+<div class="flex flex-col md:flex-row gap-xl items-start">
+<div class="w-48 h-48 rounded-xl overflow-hidden flex-shrink-0 border-2 border-outline-variant shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A close-up professional portrait of Raj Kumar, a South Asian mechanic in his late 30s, wearing a clean charcoal grey technician uniform with a small embroidered logo. He is smiling confidently in a modern, well-lit automotive workshop. The lighting is crisp, highlighting the professional and trustworthy atmosphere of a high-end garage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC07iZfajxS30SsHiH0KnnvhWzSNpMFP8c1lWvZQcAKJjRJ28eSA1mRxrVMnks1Xnn-L-zUJKJc7gZe6eVn8DSx0sz_amUgAcjNoaoxI1QN9Q45ATPQkF4_ZzkaMIGXxpjTtOi1aBPfUrORi4tJVYe2sP7mbsGBDEMIZkP6nSgkDOPHA3oMETVttMwkYm1NQ2lbVwyVlKc8lDcmFR8k6BLEtqpRzwBqOQbr29Z3chelvoA-Nm_KKqT2-s7iO9kHp602MR4bAp9zl98"/>
+</div>
+<div class="flex-grow">
+<div class="flex items-center gap-md mb-xs">
+<h1 class="font-headline-lg text-headline-lg text-primary">Raj Kumar</h1>
+<span class="bg-[#1B5E20]/10 text-[#1B5E20] px-md py-1 rounded-full text-label-md font-bold flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px] fill-icon">verified</span> Verified Master Tech
+                            </span>
+</div>
+<div class="flex items-center gap-sm mb-md">
+<div class="flex text-[#FFC107]">
+<span class="material-symbols-outlined fill-icon">star</span>
+<span class="material-symbols-outlined fill-icon">star</span>
+<span class="material-symbols-outlined fill-icon">star</span>
+<span class="material-symbols-outlined fill-icon">star</span>
+<span class="material-symbols-outlined fill-icon">star_half</span>
+</div>
+<span class="font-bold text-body-md">4.9</span>
+<span class="text-on-surface-variant text-body-sm">(142 Reviews)</span>
+</div>
+<!-- Statistics Bar -->
+<div class="grid grid-cols-3 gap-md mt-xl border-t border-outline-variant pt-lg">
+<div class="flex flex-col">
+<span class="text-on-surface-variant text-label-md uppercase tracking-wider mb-1">Experience</span>
+<span class="font-headline-sm text-headline-sm text-primary">12+ Years</span>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface-variant text-label-md uppercase tracking-wider mb-1">Repairs Done</span>
+<span class="font-headline-sm text-headline-sm text-primary">1,200+</span>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface-variant text-label-md uppercase tracking-wider mb-1">Specialty</span>
+<span class="bg-secondary/10 text-secondary px-sm py-1 rounded-lg text-label-md font-bold text-center">Maruti Specialist</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Content Layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- About Section (Social Proof & Authority) -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg col-span-2">
+<h3 class="font-headline-sm text-headline-sm mb-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary">person_search</span>
+                        About the Specialist
+                    </h3>
+<p class="text-on-surface-variant text-body-md leading-relaxed mb-md">
+                        Master technician with over a decade of hands-on experience in high-precision automotive engineering. I specialize in Japanese imports, specifically Maruti, Honda, and Toyota systems. My workshop philosophy is built on <span class="text-primary font-semibold">transparency and technical integrity</span>—Raj explains every diagnostic finding before turning a wrench.
+                    </p>
+<div class="flex flex-wrap gap-sm">
+<span class="bg-surface-container border border-outline-variant px-md py-2 rounded-[5px] text-body-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">enable</span> Engine Diagnostics
+                        </span>
+<span class="bg-surface-container border border-outline-variant px-md py-2 rounded-[5px] text-body-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">precision_manufacturing</span> Japanese Imports
+                        </span>
+<span class="bg-surface-container border border-outline-variant px-md py-2 rounded-[5px] text-body-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">request_quote</span> Transparent Pricing
+                        </span>
+</div>
+</section>
+<!-- Specialized Services (Authority) -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg">
+<h3 class="font-headline-sm text-headline-sm mb-lg flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary">build_circle</span>
+                        Specialized Services
+                    </h3>
+<ul class="space-y-md">
+<li class="flex justify-between items-center p-md bg-surface border border-outline-variant rounded-lg group hover:border-secondary transition-colors cursor-default">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary">troubleshoot</span>
+<span class="font-body-md">Diagnostic Check</span>
+</div>
+<span class="font-bold text-primary">₹400</span>
+</li>
+<li class="flex justify-between items-center p-md bg-surface border border-outline-variant rounded-lg group hover:border-secondary transition-colors cursor-default">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary">settings</span>
+<span class="font-body-md">General Service</span>
+</div>
+<span class="font-bold text-primary">₹1,200</span>
+</li>
+<li class="flex justify-between items-center p-md bg-surface border border-outline-variant rounded-lg group hover:border-secondary transition-colors cursor-default">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary">car_repair</span>
+<span class="font-body-md">Brake Repair</span>
+</div>
+<span class="font-bold text-primary">₹800</span>
+</li>
+<li class="flex justify-between items-center p-md bg-surface border border-outline-variant rounded-lg group hover:border-secondary transition-colors cursor-default">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary">tune</span>
+<span class="font-body-md">Engine Tuning</span>
+</div>
+<span class="font-bold text-primary">₹2,500</span>
+</li>
+</ul>
+</section>
+<!-- Credentials & Certifications (Authority) -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg">
+<h3 class="font-headline-sm text-headline-sm mb-lg flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary">card_membership</span>
+                        Credentials
+                    </h3>
+<div class="grid grid-cols-2 gap-md">
+<div class="p-md border border-outline-variant rounded-lg bg-surface flex flex-col items-center text-center group hover:bg-secondary-fixed transition-all">
+<span class="material-symbols-outlined text-secondary text-[40px] mb-2">workspace_premium</span>
+<span class="font-bold text-body-sm">ASE Certified</span>
+<span class="text-on-surface-variant text-[10px] uppercase">Automotive Service Excellence</span>
+</div>
+<div class="p-md border border-outline-variant rounded-lg bg-surface flex flex-col items-center text-center group hover:bg-secondary-fixed transition-all">
+<span class="material-symbols-outlined text-secondary text-[40px] mb-2">corporate_fare</span>
+<span class="font-bold text-body-sm">Maruti Authorized</span>
+<span class="text-on-surface-variant text-[10px] uppercase">Brand Specific Training</span>
+</div>
+<div class="p-md border border-outline-variant rounded-lg bg-surface flex flex-col items-center text-center group hover:bg-secondary-fixed transition-all">
+<span class="material-symbols-outlined text-secondary text-[40px] mb-2">how_to_reg</span>
+<span class="font-bold text-body-sm">Identity Verified</span>
+<span class="text-on-surface-variant text-[10px] uppercase">Government ID Match</span>
+</div>
+<div class="p-md border border-outline-variant rounded-lg bg-surface flex flex-col items-center text-center group hover:bg-secondary-fixed transition-all">
+<span class="material-symbols-outlined text-secondary text-[40px] mb-2">safety_check</span>
+<span class="font-bold text-body-sm">Insured Pro</span>
+<span class="text-on-surface-variant text-[10px] uppercase">MechHub Policy #8921</span>
+</div>
+</div>
+</section>
+<!-- Customer Reviews (Social Proof) -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg col-span-2">
+<div class="flex justify-between items-end mb-lg">
+<h3 class="font-headline-sm text-headline-sm flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary">forum</span>
+                            Customer Experiences
+                        </h3>
+<a class="text-secondary font-bold text-body-sm hover:underline" href="#">View All 142 Reviews</a>
+</div>
+<div class="space-y-lg">
+<!-- Review 1 -->
+<div class="border-b border-outline-variant pb-md last:border-0 last:pb-0">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container border border-outline-variant flex items-center justify-center font-bold text-on-surface-variant">
+                                        AS
+                                    </div>
+<div>
+<span class="font-bold block text-body-sm">Amit Sharma</span>
+<div class="flex text-[#FFC107] scale-75 origin-left">
+<span class="material-symbols-outlined fill-icon">star</span>
+<span class="material-symbols-outlined fill-icon">star</span>
+<span class="material-symbols-outlined fill-icon">star</span>
+<span class="material-symbols-outlined fill-icon">star</span>
+<span class="material-symbols-outlined fill-icon">star</span>
+</div>
+</div>
+</div>
+<span class="text-on-surface-variant text-label-md">2 days ago</span>
+</div>
+<p class="text-on-surface-variant text-body-sm italic">"Excellent diagnostic skills. My car had a weird knocking sound that three other mechanics couldn't find. Raj identified it in 10 minutes."</p>
+</div>
+<!-- Review 2 -->
+<div class="border-b border-outline-variant pb-md last:border-0 last:pb-0">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container border border-outline-variant flex items-center justify-center font-bold text-on-surface-variant">
+                                        PV
+                                    </div>
+<div>
+<span class="font-bold block text-body-sm">Priya Varma</span>
+<div class="flex text-[#FFC107] scale-75 origin-left">
+<span class="material-symbols-outlined fill-icon">star</span>
+<span class="material-symbols-outlined fill-icon">star</span>
+<span class="material-symbols-outlined fill-icon">star</span>
+<span class="material-symbols-outlined fill-icon">star</span>
+<span class="material-symbols-outlined">star</span>
+</div>
+</div>
+</div>
+<span class="text-on-surface-variant text-label-md">1 week ago</span>
+</div>
+<p class="text-on-surface-variant text-body-sm italic">"Raj explained everything clearly and didn't try to upsell me on parts I didn't need. Highly professional and very clean workspace."</p>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Sidebar / Booking Card (Sticky) -->
+<aside class="w-1/3">
+<div class="sticky top-24 space-y-lg">
+<!-- Booking Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-sm">
+<div class="flex justify-between items-center mb-lg">
+<div class="flex flex-col">
+<span class="text-label-md uppercase text-on-surface-variant tracking-widest">Base Rate</span>
+<span class="font-headline-md text-headline-md text-primary">₹399/visit</span>
+</div>
+<div class="bg-[#1B5E20]/10 text-[#1B5E20] px-md py-1 rounded-full text-label-md font-bold flex items-center gap-xs">
+<span class="w-2 h-2 bg-[#1B5E20] rounded-full animate-pulse"></span> Available Now
+                        </div>
+</div>
+<div class="space-y-md mb-xl">
+<div class="flex items-center gap-md p-md bg-surface rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-secondary">location_on</span>
+<div class="flex flex-col">
+<span class="text-label-md text-on-surface-variant">Estimated Arrival</span>
+<span class="font-bold text-body-md">12 mins to your location</span>
+</div>
+</div>
+<div class="flex items-center gap-md p-md bg-surface rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-secondary">schedule</span>
+<div class="flex flex-col">
+<span class="text-label-md text-on-surface-variant">Next Slot</span>
+<span class="font-bold text-body-md">Today, 2:30 PM onwards</span>
+</div>
+</div>
+</div>
+<button class="w-full bg-primary-container text-white py-md rounded-[5px] font-bold text-button-text hover:opacity-90 transition-all flex items-center justify-center gap-sm mb-md shadow-md active:scale-95">
+<span class="material-symbols-outlined">calendar_today</span>
+                        Book Raj Kumar
+                    </button>
+<button class="w-full border border-outline text-on-surface py-md rounded-[5px] font-bold text-button-text hover:bg-surface-container transition-all flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined">chat</span>
+                        Message Specialist
+                    </button>
+<p class="text-center text-[10px] text-on-surface-variant mt-md uppercase tracking-tighter">
+                        Safe Tech Guarantee Included • Verified Professional
+                    </p>
+</div>
+<!-- Small Map Preview -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm h-48 relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A clean, minimalist vector map of an urban neighborhood with soft grey roads and a blue glowing location marker icon indicating the mechanic's current workshop position. The map design is modern, professional, and avoids visual clutter." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDSu0uihytJ3oe0nmsR9eeXiMwPR0hdmrmALM8snrJcF1whAr5aEGokJcmmq5RTkifGFNBEbljC_Jh51wc6I9vX9or-XYa3rhMEsLmCnRp5n5hYsr0C_qRbNrXdYM4_9oxX3SzyKAO1X0pKJEc8O0KwfConu6w0wixKWCb9g-zvUTWcTJ5T9xJvH-GQbE1tjYePWKmo2iXFq8hroFKnd_8uTFg3zIywqOR_ZeJjWVZjtwb83uKJTkO-uY9BniMNxCObWlOxaeCAHxY')"></div>
+<div class="absolute bottom-md left-md bg-surface px-md py-xs rounded-lg border border-outline-variant text-label-md font-bold shadow-md">
+                        Gurgaon, Sector 45
+                    </div>
+</div>
+</div>
+</aside>
+</main>
+<!-- UX Law Strip -->
+<footer class="fixed bottom-0 left-0 w-full z-50 bg-[#FFF9E6] border-t border-[#E0C040] h-[40px] flex items-center justify-center px-lg">
+<p class="font-body-sm text-body-sm text-[#7D6608] font-medium">
+            Applied: <span class="font-bold">Social Proof</span> (verified reviews) &amp; <span class="font-bold">Authority</span> (official certifications)
+        </p>
+</footer>
+<!-- Bottom Margin for Fixed Strip -->
+<div class="h-[40px]"></div>
+<script>
+        // Micro-interaction: Update booking button on hover
+        const bookBtn = document.querySelector('button.bg-primary-container');
+        if (bookBtn) {
+            bookBtn.addEventListener('mouseenter', () => {
+                bookBtn.classList.add('shadow-lg');
+            });
+            bookBtn.addEventListener('mouseleave', () => {
+                bookBtn.classList.remove('shadow-lg');
+            });
+        }
+    </script>
+</body></html>

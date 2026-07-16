@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Medical Emergency Dispatch | MechHub SOS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=DM+Sans:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@100..900&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#c9c6c4",
+                        "on-secondary-fixed-variant": "#144686",
+                        "surface-container": "#eeeeec",
+                        "outline-variant": "#c4c7c7",
+                        "secondary": "#335e9f",
+                        "on-background": "#1a1c1b",
+                        "surface-container-low": "#f4f4f2",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "surface-container-high": "#e8e8e6",
+                        "surface": "#f9f9f7",
+                        "surface-container-highest": "#e2e3e1",
+                        "secondary-container": "#8fb7fe",
+                        "secondary-fixed": "#d6e3ff",
+                        "surface-dim": "#dadad8",
+                        "primary-fixed": "#e5e2e1",
+                        "on-primary-fixed-variant": "#474746",
+                        "inverse-on-surface": "#f1f1ef",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#1c1b1a",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#484645",
+                        "on-surface-variant": "#444748",
+                        "primary-container": "#222222",
+                        "outline": "#747878",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#232221",
+                        "tertiary": "#0c0c0b",
+                        "on-primary-fixed": "#1b1c1c",
+                        "on-tertiary-container": "#8c8987",
+                        "tertiary-fixed": "#e6e2e0",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#f9f9f7",
+                        "on-surface": "#1a1c1b",
+                        "on-secondary-fixed": "#001b3e",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#8a8989",
+                        "background": "#f9f9f7",
+                        "surface-variant": "#e2e3e1",
+                        "primary": "#0b0c0c",
+                        "inverse-surface": "#2f3130",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#c8c6c5",
+                        "secondary-fixed-dim": "#aac7ff",
+                        "on-secondary-container": "#154686",
+                        "surface-tint": "#5f5e5e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "margin": "64px",
+                        "xxl": "48px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "headline-sm": ["DM Sans"],
+                        "button-text": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["DM Sans"],
+                        "headline-md": ["DM Sans"],
+                        "display-lg": ["DM Sans"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "button-text": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .emergency-pulse {
+            animation: pulse-red 2s infinite;
+        }
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(186, 26, 26, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(186, 26, 26, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(186, 26, 26, 0); }
+        }
+        .glass-effect {
+            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface selection:bg-secondary-container">
+<!-- TopNavBar (Shared Component) -->
+<header class="fixed top-0 w-full h-[54px] z-50 bg-surface border-b-[1.5px] border-outline-variant">
+<div class="flex justify-between items-center px-lg h-full max-w-[1440px] mx-auto">
+<div class="flex items-center gap-md">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">MechHub</span>
+<nav class="hidden md:flex gap-md ml-xl">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Services</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Workshops</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Pricing</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Fleet</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button class="bg-error text-on-error font-button-text text-button-text px-md py-xs rounded-lg flex items-center gap-xs emergency-pulse">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">emergency</span>
+                    Get Help Now
+                </button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-[54px] pb-[40px] min-h-screen flex flex-col items-center">
+<!-- Emergency Header Section -->
+<section class="w-full bg-error-container/20 py-xl border-b border-outline-variant">
+<div class="max-w-[1440px] mx-auto px-margin flex flex-col md:flex-row justify-between items-center gap-lg">
+<div class="flex items-center gap-lg">
+<div class="w-16 h-16 bg-error rounded-full flex items-center justify-center text-on-error shadow-lg">
+<span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+</div>
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary">Medical Dispatch Active</h1>
+<p class="font-body-md text-on-surface-variant">Advanced Life Support (ALS) Unit is en route to your GPS location.</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<div class="text-right">
+<span class="font-label-md text-label-md text-error uppercase tracking-widest block mb-xs">Live ETA</span>
+<div class="font-display-lg text-display-lg text-error tabular-nums leading-none">04:22</div>
+</div>
+</div>
+</div>
+</section>
+<div class="max-w-[1440px] w-full px-margin py-xl grid grid-cols-12 gap-gutter">
+<!-- Left Column: Map & Logistics -->
+<div class="col-span-12 lg:col-span-7 flex flex-col gap-gutter">
+<!-- Map Container -->
+<div class="relative bg-white border border-outline-variant rounded-xl overflow-hidden h-[400px] shadow-sm">
+<div class="absolute top-4 left-4 z-10 flex flex-col gap-sm">
+<div class="glass-effect p-md rounded-lg border border-outline-variant flex items-center gap-md shadow-md">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">my_location</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Your Location</p>
+<p class="font-body-sm text-body-sm font-bold">Interstate 95, Mile Marker 142</p>
+</div>
+</div>
+</div>
+<!-- Map Placeholder -->
+<div class="w-full h-full bg-surface-container" data-alt="A detailed digital map view showing a highway scene with a red emergency icon at a specific location. The map uses a clean, high-contrast light-mode aesthetic with neutral greys and whites, accented by a bright blue route line indicating the path of an approaching ambulance. The visual style is professional, technical, and high-utility, reminiscent of advanced logistics software." data-location="Miami, Florida" style="background-image: url('https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg')"></div>
+<!-- Nearest Trauma Center Overlay -->
+<div class="absolute bottom-4 right-4 left-4 z-10">
+<div class="glass-effect p-md rounded-lg border border-outline-variant flex justify-between items-center shadow-lg">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">local_hospital</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm">Jackson Memorial Trauma Center</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Level 1 Trauma • 3.2 miles away</p>
+</div>
+</div>
+<span class="bg-secondary/10 text-secondary px-md py-xs rounded-full font-label-md text-label-md">PRIMARY DESTINATION</span>
+</div>
+</div>
+</div>
+<!-- Hospital Notification Card -->
+<div class="bg-white border border-outline-variant rounded-xl p-lg flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-lg">
+<div class="w-12 h-12 bg-on-secondary-fixed-variant/10 rounded-lg flex items-center justify-center text-on-secondary-fixed-variant">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">patient_list</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm">Pre-transmit Medical Profile</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Send blood type, allergies, and emergency contacts to JACKSON MEMORIAL ER.</p>
+</div>
+</div>
+<button class="bg-primary text-on-primary px-xl py-md rounded-lg font-button-text text-button-text hover:bg-opacity-90 transition-all flex items-center gap-sm">
+<span class="material-symbols-outlined">send_to_mobile</span>
+                        Notify Hospital
+                    </button>
+</div>
+</div>
+<!-- Right Column: First Aid Protocols -->
+<div class="col-span-12 lg:col-span-5 flex flex-col gap-gutter">
+<div class="bg-primary-container text-on-primary-container rounded-xl p-lg shadow-md">
+<div class="flex items-center gap-md mb-md">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">priority_high</span>
+<h2 class="font-headline-md text-headline-md">Immediate First Aid</h2>
+</div>
+<p class="font-body-md text-on-primary-container opacity-80 mb-lg">Follow these protocols while waiting for the ALS unit. Tap a card for voice-guided instructions.</p>
+<div class="grid grid-cols-1 gap-md">
+<!-- Protocol Card 1 -->
+<button class="group bg-surface-container-highest text-on-surface text-left p-md rounded-lg border-l-4 border-error hover:bg-white transition-all flex items-center justify-between">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-error text-[32px]">bloodtype</span>
+<div>
+<p class="font-headline-sm text-headline-sm">Severe Bleeding</p>
+<p class="font-body-sm text-body-sm opacity-70">Apply direct pressure & tourniquet</p>
+</div>
+</div>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+<!-- Protocol Card 2 -->
+<button class="group bg-surface-container-highest text-on-surface text-left p-md rounded-lg border-l-4 border-secondary hover:bg-white transition-all flex items-center justify-between">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-secondary text-[32px]">ecg_heart</span>
+<div>
+<p class="font-headline-sm text-headline-sm">CPR Assistance</p>
+<p class="font-body-sm text-body-sm opacity-70">Rhythmic chest compressions</p>
+</div>
+</div>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+<!-- Protocol Card 3 -->
+<button class="group bg-surface-container-highest text-on-surface text-left p-md rounded-lg border-l-4 border-on-surface-variant hover:bg-white transition-all flex items-center justify-between">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant text-[32px]">airline_seat_flat_angled</span>
+<div>
+<p class="font-headline-sm text-headline-sm">Spinal Safety</p>
+<p class="font-body-sm text-body-sm opacity-70">Keep patient still and stabilized</p>
+</div>
+</div>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Live Dispatch Log -->
+<div class="bg-white border border-outline-variant rounded-xl p-lg">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase mb-md">Dispatch Timeline</h3>
+<div class="space-y-md">
+<div class="flex gap-md border-l-2 border-secondary ml-2 pl-4 relative pb-md">
+<div class="absolute -left-[9px] top-0 w-4 h-4 bg-secondary rounded-full border-2 border-white"></div>
+<div>
+<p class="font-body-sm text-body-sm font-bold">Ambulance Dispatched</p>
+<p class="font-label-md text-label-md text-on-surface-variant">02:14 PM • Unit ALS-42</p>
+</div>
+</div>
+<div class="flex gap-md border-l-2 border-outline-variant ml-2 pl-4 relative pb-md">
+<div class="absolute -left-[9px] top-0 w-4 h-4 bg-outline-variant rounded-full border-2 border-white"></div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">911 Dispatch Synchronized</p>
+<p class="font-label-md text-label-md text-on-surface-variant">02:12 PM • Local Sheriff Notified</p>
+</div>
+</div>
+<div class="flex gap-md ml-2 pl-4 relative">
+<div class="absolute -left-[9px] top-0 w-4 h-4 bg-error rounded-full border-2 border-white"></div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">SOS Signal Received</p>
+<p class="font-label-md text-label-md text-on-surface-variant">02:11 PM • GPS Locked</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer / UX Law Strip (Shared Component) -->
+<footer class="fixed bottom-0 w-full h-[40px] z-[60] bg-[#FFF9E6] border-t border-[#E0C040] flex items-center justify-center px-md">
+<div class="flex items-center gap-xl text-tertiary">
+<span class="font-label-md text-label-md">MechHub SOS</span>
+<p class="font-body-sm text-body-sm">Applied: Hick's Law - Reducing choices for faster decision making.</p>
+<div class="flex items-center gap-md">
+<a class="font-body-sm text-body-sm opacity-80 hover:underline" href="#">Documentation</a>
+<a class="font-body-sm text-body-sm opacity-80 hover:underline" href="#">UX Research</a>
+</div>
+</div>
+</footer>
+<!-- Interactive Layer for Profile Transmission -->
+<div class="fixed top-20 right-8 z-[100] pointer-events-none" id="toast-container"></div>
+<script>
+        // Simple micro-interaction for the Notify Hospital button
+        document.querySelector('button:has(.material-symbols-outlined:contains("send_to_mobile"))')?.addEventListener('click', function() {
+            const btn = this;
+            const originalContent = btn.innerHTML;
+            
+            btn.disabled = true;
+            btn.innerHTML = `<span class="material-symbols-outlined animate-spin">sync</span> Transmitting...`;
+            btn.classList.add('opacity-50');
+
+            setTimeout(() => {
+                btn.innerHTML = `<span class="material-symbols-outlined">check_circle</span> Profile Sent`;
+                btn.classList.remove('bg-primary');
+                btn.classList.add('bg-success', 'text-white');
+                btn.style.backgroundColor = '#1B5E20';
+                
+                // Show a toast
+                const toast = document.createElement('div');
+                toast.className = 'bg-primary text-on-primary px-lg py-md rounded-xl shadow-xl flex items-center gap-md transform translate-y-0 transition-all duration-500 mb-4 pointer-events-auto border-l-4 border-secondary';
+                toast.innerHTML = `
+                    <span class="material-symbols-outlined text-secondary">info</span>
+                    <div>
+                        <p class="font-bold">Data Received by Jackson Memorial</p>
+                        <p class="text-sm opacity-80">Blood Type A+, No Allergies, ICE: Sarah (Wife)</p>
+                    </div>
+                `;
+                document.getElementById('toast-container').appendChild(toast);
+                
+                setTimeout(() => {
+                    toast.classList.add('opacity-0', 'translate-x-10');
+                    setTimeout(() => toast.remove(), 500);
+                }, 5000);
+            }, 1500);
+        });
+
+        // Simple countdown timer logic for realism
+        let seconds = 262; // 4:22
+        const timerDisplay = document.querySelector('.font-display-lg');
+        
+        const countdown = setInterval(() => {
+            seconds--;
+            if (seconds <= 0) {
+                clearInterval(countdown);
+                timerDisplay.innerText = "ARRIVING";
+                timerDisplay.classList.add('animate-pulse');
+            } else {
+                const mins = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                timerDisplay.innerText = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+            }
+        }, 1000);
+
+        // Helper for material icon text content finding
+        window.addEventListener('DOMContentLoaded', () => {
+            const icons = document.querySelectorAll('.material-symbols-outlined');
+            icons.forEach(icon => {
+                if(icon.innerText.includes('contains')) {
+                    // Fix for selector hack
+                }
+            });
+        });
+    </script>
+</body></html>

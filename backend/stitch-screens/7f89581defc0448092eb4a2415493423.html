@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MechHub - Secure Payment Options</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=DM+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f4f4f2",
+                    "on-background": "#1a1c1b",
+                    "surface-container": "#eeeeec",
+                    "primary": "#0b0c0c",
+                    "outline-variant": "#c4c7c7",
+                    "surface-container-highest": "#e2e3e1",
+                    "tertiary-fixed": "#e6e2e0",
+                    "secondary-fixed": "#d6e3ff",
+                    "on-secondary": "#ffffff",
+                    "primary-container": "#222222",
+                    "on-secondary-container": "#154686",
+                    "on-secondary-fixed-variant": "#144686",
+                    "on-tertiary-fixed": "#1c1b1a",
+                    "surface-dim": "#dadad8",
+                    "inverse-surface": "#2f3130",
+                    "tertiary-fixed-dim": "#c9c6c4",
+                    "on-tertiary-fixed-variant": "#484645",
+                    "on-tertiary-container": "#8c8987",
+                    "secondary-fixed-dim": "#aac7ff",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "outline": "#747878",
+                    "inverse-primary": "#c8c6c5",
+                    "tertiary-container": "#232221",
+                    "on-primary-fixed": "#1b1c1c",
+                    "inverse-on-surface": "#f1f1ef",
+                    "surface-bright": "#f9f9f7",
+                    "surface-tint": "#5f5e5e",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-tertiary": "#ffffff",
+                    "background": "#f9f9f7",
+                    "surface": "#f9f9f7",
+                    "on-secondary-fixed": "#001b3e",
+                    "on-primary-fixed-variant": "#474746",
+                    "on-surface": "#1a1c1b",
+                    "error-container": "#ffdad6",
+                    "secondary": "#335e9f",
+                    "tertiary": "#0c0c0b",
+                    "primary-fixed": "#e5e2e1",
+                    "on-surface-variant": "#444748",
+                    "surface-container-high": "#e8e8e6",
+                    "on-primary-container": "#8a8989",
+                    "error": "#ba1a1a",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#8fb7fe",
+                    "surface-variant": "#e2e3e1",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "xxl": "48px",
+                    "gutter": "24px",
+                    "sm": "8px",
+                    "xl": "32px",
+                    "xs": "4px",
+                    "md": "16px",
+                    "lg": "24px",
+                    "margin": "64px"
+            },
+            "fontFamily": {
+                    "body-sm": ["Inter"],
+                    "headline-sm": ["DM Sans"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["DM Sans"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["DM Sans"],
+                    "button-text": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["DM Sans"]
+            },
+            "fontSize": {
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "button-text": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .step-completed { @apply text-secondary font-bold; }
+        .step-active { @apply text-primary font-bold; }
+        .step-pending { @apply text-on-surface-variant opacity-50; }
+        
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #DDDBD5; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface selection:bg-secondary-fixed selection:text-on-secondary-fixed min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full h-[54px] z-50 bg-surface border-b-[1.5px] border-outline-variant">
+<div class="flex justify-between items-center px-lg h-full max-w-[1440px] mx-auto">
+<div class="font-headline-sm text-headline-sm font-bold text-primary">MechHub</div>
+<div class="hidden md:flex items-center space-x-xl">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Services</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Workshops</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Pricing</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Fleet</a>
+</div>
+<div class="flex items-center space-x-md">
+<button class="bg-[#B71C1C] text-white font-button-text text-button-text px-md py-2 rounded-[5px] flex items-center space-x-xs shadow-md active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="emergency">emergency</span>
+<span>🚨 SOS Help</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Content Canvas -->
+<main class="flex-grow pt-[54px] pb-[40px] max-w-[1440px] mx-auto w-full px-lg">
+<!-- Progress Tracker -->
+<div class="py-xl flex items-center justify-center space-x-xxl">
+<div class="flex items-center space-x-sm step-completed">
+<span class="material-symbols-outlined" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-md text-label-md">Step 1: Problem</span>
+</div>
+<div class="w-16 h-[1.5px] bg-outline-variant"></div>
+<div class="flex items-center space-x-sm step-completed">
+<span class="material-symbols-outlined" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-md text-label-md">Step 2: Mechanic</span>
+</div>
+<div class="w-16 h-[1.5px] bg-outline-variant"></div>
+<div class="flex items-center space-x-sm step-active">
+<span class="material-symbols-outlined" data-icon="payment">payment</span>
+<span class="font-label-md text-label-md">Step 3: Payment</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter py-md">
+<!-- Left Header -->
+<div class="md:col-span-12 mb-lg">
+<h1 class="font-headline-lg text-headline-lg text-primary">Choose Your Payment Path</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Secure your service booking. Options depend on your account verification status.</p>
+</div>
+<!-- Verified Path -->
+<div class="md:col-span-6">
+<div class="bg-surface-container-lowest border-2 border-[#1B5E20] rounded-xl p-lg h-full flex flex-col shadow-sm transition-all hover:shadow-md">
+<div class="flex justify-between items-start mb-md">
+<div>
+<span class="inline-block px-3 py-1 bg-[#1B5E20]/10 text-[#1B5E20] rounded-full font-label-md text-label-md mb-xs">Recommended</span>
+<h2 class="font-headline-md text-headline-md text-primary">Pay After Service</h2>
+</div>
+<span class="material-symbols-outlined text-[#1B5E20] text-[40px]" data-icon="verified_user">verified_user</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">
+                        For verified accounts, we hold your card details in a secure escrow. Funds are only released to the mechanic once you've inspected and approved the completed job.
+                    </p>
+<div class="bg-surface-container rounded-lg p-md mb-lg">
+<span class="font-label-md text-label-md text-on-surface-variant block mb-sm">Accepted Methods</span>
+<div class="flex flex-wrap gap-sm">
+<div class="flex items-center space-x-xs px-sm py-1 bg-surface rounded border border-outline-variant">
+<span class="material-symbols-outlined text-sm" data-icon="credit_card">credit_card</span>
+<span class="font-label-md text-label-md">Debit Card</span>
+</div>
+<div class="flex items-center space-x-xs px-sm py-1 bg-surface rounded border border-outline-variant">
+<span class="material-symbols-outlined text-sm" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-md text-label-md">Esewa/Khalti</span>
+</div>
+<div class="flex items-center space-x-xs px-sm py-1 bg-surface rounded border border-outline-variant">
+<span class="material-symbols-outlined text-sm" data-icon="payments">payments</span>
+<span class="font-label-md text-label-md">Cash on Delivery</span>
+</div>
+</div>
+</div>
+<div class="mt-auto">
+<a class="w-full bg-[#222222] text-white font-button-text text-button-text py-lg rounded-[5px] hover:bg-black transition-colors active:scale-[0.98] block text-center" href="booking-confirmed.html">
+                            Confirm — I'll pay after service
+                        </a>
+<p class="text-center font-label-md text-label-md text-on-surface-variant mt-sm">No immediate charge will be made.</p>
+</div>
+</div>
+</div>
+<!-- Unverified Path -->
+<div class="md:col-span-6">
+<div class="bg-surface-container-lowest border-2 border-[#B71C1C] rounded-xl p-lg h-full flex flex-col shadow-sm transition-all hover:shadow-md relative overflow-hidden">
+<div class="absolute -right-8 -top-8 opacity-5">
+<span class="material-symbols-outlined text-[160px]" data-icon="priority_high">priority_high</span>
+</div>
+<div class="flex justify-between items-start mb-md">
+<div>
+<span class="inline-block px-3 py-1 bg-[#B71C1C]/10 text-[#B71C1C] rounded-full font-label-md text-label-md mb-xs">Standard</span>
+<h2 class="font-headline-md text-headline-md text-primary">Pay at Booking Time</h2>
+</div>
+<span class="material-symbols-outlined text-[#B71C1C] text-[40px]" data-icon="lock_clock">lock_clock</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">
+                        As an unverified user, upfront payment is required to confirm your booking and dispatch the mechanic. This ensures technician safety and commitment.
+                    </p>
+<div class="flex-grow flex items-center justify-center mb-lg">
+<div class="text-center">
+<span class="font-label-md text-label-md text-on-surface-variant block uppercase tracking-widest mb-xs">Total Amount</span>
+<span class="font-display-lg text-display-lg text-primary">₹800</span>
+</div>
+</div>
+<div class="mt-auto space-y-md">
+<a class="w-full bg-[#B71C1C] text-white font-button-text text-button-text py-lg rounded-[5px] hover:bg-[#961717] transition-colors active:scale-[0.98] block text-center" href="booking-confirmed.html">
+                            Pay ₹800 Now
+                        </a>
+<div class="text-center">
+<a class="text-[#1A4A8A] font-label-md text-label-md hover:underline flex items-center justify-center space-x-xs" href="identity-verification.html">
+<span class="material-symbols-outlined text-sm" data-icon="badge">badge</span>
+<span>Verify your ID to unlock Pay After Service</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Booking Summary Snippet (Asymmetric Design) -->
+<div class="md:col-span-12 mt-lg">
+<div class="bg-white border border-outline-variant rounded-xl p-lg flex flex-col md:flex-row items-center justify-between">
+<div class="flex items-center space-x-lg mb-md md:mb-0">
+<div class="w-16 h-16 rounded-lg bg-surface-container overflow-hidden">
+<img alt="Mechanic profile" class="w-full h-full object-cover" data-alt="A professional car mechanic wearing a clean, modern dark grey uniform with a subtle MechHub logo on the chest. He is standing in a brightly lit, high-tech automotive workshop with polished concrete floors and organized tool racks. The lighting is crisp and cool, emphasizing a sense of professional reliability and trust. Professional architectural photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOW0bcYp0eU-ZuAMqG_Ykj6VW7iaAcZpsg0t14QDK83X4PRH_hbUPrr2DKhkK2SY--pwD-hCwj56vAcY56vzLvqf_QerU68MwqTN9PUbC_SHu_zDYZMMuaSQmyXmGamwFGEnr8uOO6bNkHSi3AcFXXW7BAf3NuyH39k7MrMmYsCbCZuQ6xEmMsVQYJPEru7ge2eowrYboJFK1bBGMKA2GOqwjws4Dl32JAKtNw2x-8rijrgNmVEQmFm5QHK5xNkqGV95ZgJxfkIak"/>
+</div>
+<div>
+<span class="font-label-md text-label-md text-[#1B5E20] font-bold">Selected Technician</span>
+<h3 class="font-headline-sm text-headline-sm">Rahul Sharma</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Expertise: Brake Systems • 4.8 Rating</p>
+</div>
+</div>
+<div class="text-right border-l-0 md:border-l border-outline-variant pl-0 md:pl-lg">
+<span class="font-label-md text-label-md text-on-surface-variant block">Service Location</span>
+<p class="font-body-md text-body-md font-semibold">Home Office, Sector 45</p>
+<span class="font-label-md text-label-md text-secondary block mt-xs">ETA: 24 mins</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer / UX Law Strip -->
+<footer class="fixed bottom-0 w-full h-[40px] z-[60] bg-[#FFF9E6] border-t border-[#E0C040] flex items-center justify-center px-md">
+<div class="flex items-center space-x-lg">
+<span class="font-label-md text-label-md text-tertiary">MechHub</span>
+<div class="h-4 w-[1px] bg-[#E0C040]"></div>
+<p class="font-body-sm text-body-sm text-tertiary text-center">
+                Applied: Hick's Law - Reducing choices to two clear paths for faster decision making.
+            </p>
+<div class="h-4 w-[1px] bg-[#E0C040]"></div>
+<div class="flex space-x-md">
+<a class="font-body-sm text-body-sm text-tertiary opacity-80 hover:underline" href="#">Documentation</a>
+<a class="font-body-sm text-body-sm text-tertiary opacity-80 hover:underline" href="#">UX Research</a>
+</div>
+</div>
+</footer>
+<!-- Micro-interaction Script -->
+<script>
+        document.querySelectorAll('button, a.bg-[#222222], a.bg-[#B71C1C]').forEach(button => {
+            button.addEventListener('mousedown', function() {
+                this.classList.add('scale-[0.98]');
+            });
+            button.addEventListener('mouseup', function() {
+                this.classList.remove('scale-[0.98]');
+            });
+            button.addEventListener('mouseleave', function() {
+                this.classList.remove('scale-[0.98]');
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MechHub | Emergency Dispatch</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=DM+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f4f4f2",
+                    "surface-container": "#eeeeec",
+                    "on-surface-variant": "#444748",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#474746",
+                    "inverse-surface": "#2f3130",
+                    "error": "#ba1a1a",
+                    "surface-tint": "#5f5e5e",
+                    "surface": "#f9f9f7",
+                    "primary-container": "#222222",
+                    "on-secondary-fixed-variant": "#144686",
+                    "on-primary-fixed": "#1b1c1c",
+                    "tertiary": "#0c0c0b",
+                    "primary-fixed": "#e5e2e1",
+                    "secondary-fixed": "#d6e3ff",
+                    "surface-container-high": "#e8e8e6",
+                    "on-tertiary-container": "#8c8987",
+                    "surface-bright": "#f9f9f7",
+                    "background": "#f9f9f7",
+                    "tertiary-fixed": "#e6e2e0",
+                    "outline": "#747878",
+                    "secondary-container": "#8fb7fe",
+                    "secondary": "#335e9f",
+                    "primary": "#0b0c0c",
+                    "outline-variant": "#c4c7c7",
+                    "tertiary-fixed-dim": "#c9c6c4",
+                    "error-container": "#ffdad6",
+                    "surface-container-highest": "#e2e3e1",
+                    "secondary-fixed-dim": "#aac7ff",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "on-tertiary-fixed-variant": "#484645",
+                    "on-error-container": "#93000a",
+                    "on-background": "#1a1c1b",
+                    "inverse-on-surface": "#f1f1ef",
+                    "tertiary-container": "#232221",
+                    "surface-variant": "#e2e3e1",
+                    "on-error": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-container": "#8a8989",
+                    "surface-dim": "#dadad8",
+                    "on-tertiary-fixed": "#1c1b1a",
+                    "on-secondary-container": "#154686",
+                    "on-surface": "#1a1c1b",
+                    "on-secondary-fixed": "#001b3e",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-primary": "#c8c6c5",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "lg": "24px",
+                    "xl": "32px",
+                    "xxl": "48px",
+                    "margin": "64px",
+                    "sm": "8px",
+                    "gutter": "24px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "body-sm": ["Inter"],
+                    "headline-sm": ["DM Sans"],
+                    "button-text": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["DM Sans"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["DM Sans"],
+                    "display-lg": ["DM Sans"]
+            },
+            "fontSize": {
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "button-text": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .slide-to-dispatch {
+            user-select: none;
+            touch-action: none;
+        }
+        .emergency-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .map-container {
+            filter: grayscale(0.2) contrast(1.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-secondary selection:text-white">
+<!-- Top Navigation Bar (Shared Component) -->
+<header class="fixed top-0 w-full h-[54px] z-50 bg-surface border-b-[1.5px] border-outline-variant">
+<div class="flex justify-between items-center px-lg h-full max-w-[1440px] mx-auto">
+<div class="flex items-center gap-md">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">MechHub</span>
+<span class="bg-error/10 text-error px-sm py-1 rounded-full font-label-md text-label-md uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">emergency</span> Emergency Mode
+                </span>
+</div>
+<div class="hidden md:flex items-center gap-xl">
+<nav class="flex gap-lg">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Services</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Workshops</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Pricing</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Fleet</a>
+</nav>
+<div class="flex items-center gap-md">
+<button class="bg-[#B71C1C] text-white font-button-text text-button-text px-md py-2 rounded-[5px] flex items-center gap-2 hover:bg-[#8e1616] transition-all">
+<span class="material-symbols-outlined">emergency</span> Get Help Now
+                    </button>
+</div>
+</div>
+</div>
+</header>
+<!-- Side Navigation Bar (Shared Component) -->
+<aside class="fixed left-0 top-0 h-full w-[280px] z-40 bg-tertiary border-r-[1.5px] border-outline shadow-md hidden md:flex flex-col pt-[64px]">
+<div class="px-lg py-md border-b border-white/10 mb-md">
+<h2 class="font-headline-sm text-headline-sm text-on-tertiary">Account Management</h2>
+<p class="font-label-md text-label-md text-on-tertiary-container">Vehicle &amp; Service Control</p>
+</div>
+<nav class="flex-grow">
+<a class="flex items-center gap-md text-on-tertiary-container hover:text-on-tertiary px-lg py-3 transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md text-on-tertiary border-l-4 border-secondary-container bg-tertiary-container px-lg py-3" href="#">
+<span class="material-symbols-outlined">emergency</span>
+<span class="font-label-md text-label-md">Emergency Dispatch</span>
+</a>
+<a class="flex items-center gap-md text-on-tertiary-container hover:text-on-tertiary px-lg py-3 transition-all" href="#">
+<span class="material-symbols-outlined">directions_car</span>
+<span class="font-label-md text-label-md">My Vehicles</span>
+</a>
+<a class="flex items-center gap-md text-on-tertiary-container hover:text-on-tertiary px-lg py-3 transition-all" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-md text-label-md">Booking History</span>
+</a>
+<a class="flex items-center gap-md text-on-tertiary-container hover:text-on-tertiary px-lg py-3 transition-all" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Payments</span>
+</a>
+<a class="flex items-center gap-md text-on-tertiary-container hover:text-on-tertiary px-lg py-3 transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="p-lg mt-auto space-y-md border-t border-white/10">
+<button class="w-full bg-[#1A4A8A] text-white font-button-text text-button-text py-3 rounded-[5px] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">share_location</span> Share Location
+            </button>
+<button class="w-full bg-error text-white font-button-text text-button-text py-3 rounded-[5px] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">call</span> Call Dispatcher
+            </button>
+<div class="pt-md">
+<a class="flex items-center gap-md text-on-tertiary-container hover:text-on-tertiary py-2 transition-all" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-md text-label-md">Help Center</span>
+</a>
+<a class="flex items-center gap-md text-on-tertiary-container hover:text-on-tertiary py-2 transition-all" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Sign Out</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="md:ml-[280px] pt-[54px] pb-[40px] h-screen bg-surface-container-low flex flex-col relative">
+<!-- Status Bar -->
+<div class="bg-tertiary-container text-on-tertiary px-lg py-2 flex items-center justify-between border-b border-outline">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-error rounded-full emergency-pulse"></span>
+<span class="font-label-md text-label-md tracking-tight uppercase" id="status-text">Gaining GPS Lock...</span>
+</div>
+<span class="font-label-md text-label-md opacity-60">Accuracy: 3 meters</span>
+</div>
+<div class="flex-grow grid grid-cols-12 overflow-hidden">
+<!-- Map View Section -->
+<div class="col-span-12 lg:col-span-8 relative h-full bg-surface-container-highest map-container overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A highly detailed 2D map interface showing a street grid of Miami. Three prominent red medical cross icons mark hospital locations. A blue pulsing dot indicates the current user position on a dark-themed street map with high contrast for night readability. Map labels are clear and use a modern sans-serif font." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBl5CGO8G8-7faY2_3k40XFXqNaIBJTgxw9EiPDyO4MNwUUotx3wPTqgcr93J2AmCuwTMa0KY4ycEcHOkrvTFgJREmdCB30UzUdRzBYEzXd-8ca48EGVf1pIrxmA8RZQRpUo-PRktV4m-AFaq9byv53Whhf8MUxT2WdlGJP6aTyHJ_timOENKgdepzsYTF-TJIW4qI5Afz0BJsOEn3z8xuUEh8ll3AketJVsteLboFqfzlo2OqXyv73JXL_8okZVZeNjAdUJmfcRmk')"></div>
+<!-- Map Overlay Elements -->
+<div class="absolute top-lg left-lg space-y-sm">
+<div class="bg-white/90 backdrop-blur-sm p-md rounded-[5px] border border-outline-variant shadow-lg max-w-[240px]">
+<h4 class="font-headline-sm text-[16px] mb-xs flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-secondary">local_hospital</span> Nearby Facilities
+                        </h4>
+<div class="space-y-3 mt-md">
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-md text-on-surface font-bold">Jackson Memorial</p>
+<p class="text-[10px] text-on-surface-variant">Level 1 Trauma Center</p>
+</div>
+<span class="bg-error/10 text-error text-[10px] px-1.5 rounded-full font-bold">1.2 mi</span>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-md text-on-surface">UHealth Tower</p>
+<p class="text-[10px] text-on-surface-variant">General Medical</p>
+</div>
+<span class="bg-surface-variant text-on-surface-variant text-[10px] px-1.5 rounded-full font-bold">2.4 mi</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Emergency Markers (Interactive Simulation) -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+<div class="w-8 h-8 bg-secondary rounded-full border-4 border-white shadow-xl emergency-pulse"></div>
+<span class="mt-2 bg-primary text-white px-2 py-1 rounded text-[10px] font-bold uppercase tracking-widest">You</span>
+</div>
+</div>
+<!-- Priority Control Panel -->
+<div class="col-span-12 lg:col-span-4 bg-surface p-lg border-l border-outline-variant flex flex-col gap-lg overflow-y-auto">
+<!-- Focus Card: Nearest Hospital -->
+<div class="bg-white border-[1.5px] border-outline-variant rounded-xl p-lg shadow-sm">
+<div class="flex justify-between items-start mb-md">
+<span class="bg-error/10 text-error px-3 py-1 rounded-full font-label-md text-[10px] uppercase tracking-wider font-bold">Nearest Medical Facility</span>
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary leading-tight mb-xs">Jackson Memorial Trauma Center</h3>
+<p class="font-body-md text-on-surface-variant flex items-center gap-1 mb-md">
+<span class="material-symbols-outlined text-[18px]">location_on</span> 1611 NW 12th Ave, Miami, FL
+                    </p>
+<div class="grid grid-cols-2 gap-md">
+<div class="bg-surface-container p-md rounded-lg">
+<p class="font-label-md text-on-surface-variant uppercase text-[10px]">Distance</p>
+<p class="font-headline-sm text-primary">1.2 Miles</p>
+</div>
+<div class="bg-surface-container p-md rounded-lg">
+<p class="font-label-md text-on-surface-variant uppercase text-[10px]">ER Wait Time</p>
+<p class="font-headline-sm text-error">~8 Mins</p>
+</div>
+</div>
+</div>
+<!-- Incident Context -->
+<div class="space-y-md">
+<label class="font-label-md text-on-surface-variant uppercase text-[11px] font-bold">Severity Level</label>
+<div class="flex gap-sm">
+<button class="flex-1 py-3 px-md border border-outline-variant rounded-[5px] font-label-md text-on-surface hover:bg-surface-container transition-all">Minor Injury</button>
+<button class="flex-1 py-3 px-md border-2 border-error bg-error/5 rounded-[5px] font-label-md text-error font-bold flex items-center justify-center gap-2">
+                            Critical <span class="material-symbols-outlined text-[16px]">priority_high</span>
+</button>
+</div>
+</div>
+<!-- High-Contrast Dispatch Mechanic -->
+<div class="mt-auto space-y-lg pt-lg border-t border-outline-variant">
+<div class="relative h-[72px] bg-primary rounded-[5px] p-2 flex items-center slide-to-dispatch group cursor-pointer overflow-hidden border-2 border-primary hover:border-error transition-colors" id="dispatch-slider">
+<div class="absolute inset-0 bg-gradient-to-r from-error/0 to-error/20 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-700"></div>
+<div class="z-10 h-full aspect-square bg-white rounded-[4px] flex items-center justify-center text-primary shadow-xl cursor-grab active:cursor-grabbing transition-transform" id="slider-handle">
+<span class="material-symbols-outlined font-bold">ambulance</span>
+</div>
+<span class="flex-grow text-center text-white font-button-text text-button-text uppercase tracking-widest pointer-events-none">Slide to Dispatch</span>
+</div>
+<p class="text-center font-body-sm text-body-sm text-on-surface-variant italic">
+                        By sliding, you authorize an immediate emergency medical response to your current coordinates.
+                    </p>
+</div>
+<!-- Secondary Actions Mobile -->
+<div class="md:hidden grid grid-cols-2 gap-md mt-md">
+<button class="bg-[#1A4A8A] text-white font-button-text py-4 rounded-[5px] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">share_location</span> Share
+                    </button>
+<button class="bg-error text-white font-button-text py-4 rounded-[5px] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">call</span> Call 911
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer / UX Law Strip (Shared Component) -->
+<footer class="fixed bottom-0 w-full h-[40px] z-[60] bg-[#FFF9E6] border-t border-[#E0C040] flex items-center justify-center px-md">
+<p class="font-body-sm text-body-sm text-tertiary">
+            Applied: <span class="font-bold">Fitts's Law</span> - Sized and positioned primary dispatch action for rapid activation in high-stress scenarios.
+        </p>
+</footer>
+<script>
+        // Micro-interaction for the Slide to Dispatch
+        const slider = document.getElementById('dispatch-slider');
+        const handle = document.getElementById('slider-handle');
+        const statusText = document.getElementById('status-text');
+        let isDragging = false;
+        let startX = 0;
+        let currentX = 0;
+
+        const onStart = (e) => {
+            isDragging = true;
+            startX = (e.type === 'mousedown') ? e.pageX : e.touches[0].pageX;
+            handle.classList.remove('transition-transform');
+        };
+
+        const onMove = (e) => {
+            if (!isDragging) return;
+            const x = (e.type === 'mousemove') ? e.pageX : e.touches[0].pageX;
+            const walk = x - startX;
+            const maxWalk = slider.offsetWidth - handle.offsetWidth - 16; // 16 for padding
+            
+            currentX = Math.max(0, Math.min(walk, maxWalk));
+            handle.style.transform = `translateX(${currentX}px)`;
+
+            if (currentX >= maxWalk) {
+                onSuccess();
+            }
+        };
+
+        const onEnd = () => {
+            if (!isDragging) return;
+            isDragging = false;
+            const maxWalk = slider.offsetWidth - handle.offsetWidth - 16;
+            if (currentX < maxWalk) {
+                handle.classList.add('transition-transform');
+                handle.style.transform = `translateX(0px)`;
+                currentX = 0;
+            }
+        };
+
+        const onSuccess = () => {
+            isDragging = false;
+            slider.style.backgroundColor = '#1B5E20';
+            slider.style.borderColor = '#1B5E20';
+            slider.querySelector('span').innerText = 'AMBULANCE DISPATCHED';
+            handle.style.display = 'none';
+            statusText.innerText = 'Responders Notified - ETA 4 Mins';
+            statusText.parentElement.querySelector('span').classList.remove('bg-error');
+            statusText.parentElement.querySelector('span').classList.add('bg-[#1B5E20]');
+            
+            // Notification simulation
+            alert('Emergency Dispatch Confirmed. Jackson Memorial Trauma Center has been notified of your location. Stay where you are.');
+        };
+
+        handle.addEventListener('mousedown', onStart);
+        window.addEventListener('mousemove', onMove);
+        window.addEventListener('mouseup', onEnd);
+
+        handle.addEventListener('touchstart', onStart);
+        window.addEventListener('touchmove', onMove);
+        window.addEventListener('touchend', onEnd);
+
+        // Simulated GPS Lock UI Change after 3 seconds
+        setTimeout(() => {
+            if (statusText.innerText === 'Gaining GPS Lock...') {
+                statusText.innerText = 'Live Location Active';
+                statusText.classList.remove('opacity-60');
+            }
+        }, 3000);
+    </script>
+</body></html>
